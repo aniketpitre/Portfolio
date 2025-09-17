@@ -26,9 +26,8 @@ const MOCK_FILESYSTEM: Record<string, Record<string, string | { content: string,
 const listDirectory = (path: string): ReactNode => {
     const parts = path.replace(/\/$/, '').split('/');
     let current: Record<string, any> = MOCK_FILESYSTEM;
-    let currentPath = '';
-
-    if (parts[0] !== '' && parts.length > 0) {
+    
+    if (parts[0] !== '' && parts[0] in MOCK_FILESYSTEM) {
         const dir = MOCK_FILESYSTEM[parts[0]];
         if (!dir) return <p className="text-destructive">ls: cannot access '{path}': No such file or directory</p>;
         
@@ -41,7 +40,10 @@ const listDirectory = (path: string): ReactNode => {
                 ))}
             </div>
         );
+    } else if (parts[0] !== '' && parts.length > 0) {
+        return <p className="text-destructive">ls: cannot access '{path}': No such file or directory</p>;
     }
+
 
     // If no path, list top-level directories
     return (
@@ -87,6 +89,18 @@ export const processCommand = (
         return { command, output: 'cat: missing file operand' };
       }
       return { command, output: catFile(args[0], context) };
+
+    case 'view':
+        if (args.length === 0) {
+            return { command, output: 'view: missing view id. Try: user_profile, kubelet, auditd, education, credentials, skills, contact' };
+        }
+        const viewId = args[0] as ViewId;
+        const validViews: ViewId[] = ['system_health', 'user_profile', 'kubelet', 'auditd', 'education', 'credentials', 'skills', 'contact', 'help'];
+        if (validViews.includes(viewId)) {
+            context.setView(viewId);
+            return { command, output: `Switched to view: ${viewId}` };
+        }
+        return { command, output: `view: invalid view id '${viewId}'` };
 
     case 'kubectl':
       if (args[0] === 'get' && args[1] === 'pods') {
