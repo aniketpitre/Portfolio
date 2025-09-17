@@ -5,8 +5,8 @@ import './SkillsView.css';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
-const RADIUS = 350; // Radius for the category hubs from the center
-const CATEGORY_RADIUS = 120; // Radius for the skill nodes from their hub
+const RADIUS = 280; // Radius for the category hubs from the center
+const CATEGORY_RADIUS = 110; // Radius for the skill nodes from their hub
 
 export function SkillsView() {
   const skillsByCategory = SKILLS_LIST.reduce((acc, skill) => {
@@ -32,7 +32,7 @@ export function SkillsView() {
         <div className="skills-mobile-view">
             {categories.map((category) => {
                 const categoryInfo = SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES];
-                const skills = skillsByCategory[category];
+                const skills = skillsByCategory[category] || [];
                 const Icon = categoryInfo.icon;
                 return (
                     <div key={category} className="mb-6">
@@ -45,7 +45,7 @@ export function SkillsView() {
                             <p className="hub-label">{category}</p>
                         </div>
                         <div className="skills-wrapper">
-                            {skills.map(skill => (
+                            {skills && skills.map(skill => (
                                 <div key={skill} className={cn("mind-map-node", categoryInfo.color)}>
                                     {skill}
                                 </div>
@@ -59,9 +59,9 @@ export function SkillsView() {
         {/* Desktop Mind Map View */}
         <div className="skills-desktop-view">
             <div className="mind-map-center">
-                <div className="w-40 h-40 rounded-full bg-primary/80 flex flex-col items-center justify-center text-center p-2 animate-pulse-center">
-                    <Wrench className="h-12 w-12 text-accent" />
-                    <h2 className="text-lg font-headline text-primary-foreground mt-2">Skill Hub</h2>
+                <div className="w-32 h-32 rounded-full bg-primary/80 flex flex-col items-center justify-center text-center p-2">
+                    <Wrench className="h-10 w-10 text-accent" />
+                    <h2 className="text-md font-headline text-primary-foreground mt-1">Skill Hub</h2>
                 </div>
             </div>
 
@@ -85,7 +85,7 @@ export function SkillsView() {
                             } as React.CSSProperties}
                         >
                             <div className={cn("hub-icon-container", categoryInfo.color)}>
-                                <Icon className="h-8 w-8" />
+                                <Icon className="h-7 w-7" />
                             </div>
                             <p className="hub-label">{category}</p>
                         </div>

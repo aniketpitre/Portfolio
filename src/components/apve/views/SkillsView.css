@@ -1,7 +1,7 @@
 .mind-map-container {
     position: relative;
     width: 100%;
-    min-height: 900px;
+    min-height: 750px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,15 +40,6 @@
         z-index: 10;
     }
 
-    @keyframes pulse-center {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-
-    .mind-map-center > div {
-        animation: pulse-center 3s ease-in-out infinite;
-    }
-
     .mind-map-category-hub {
         position: absolute;
         top: 50%;
@@ -61,26 +52,26 @@
         animation: float 8s ease-in-out infinite, fadeIn 0.5s ease-out forwards;
         opacity: 0;
         transform: translate(var(--tx), var(--ty)); /* Set by inline style */
-        margin: -45px 0 0 -45px;
+        margin: -40px 0 0 -40px; /* Hub icon size / 2 */
     }
     
     .hub-icon-container {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         background: hsl(var(--card));
         border: 2px solid currentColor;
-        box-shadow: 0 0 15px currentColor, inset 0 0 10px currentColor;
+        box-shadow: 0 0 12px currentColor, inset 0 0 8px currentColor;
         transition: all 0.3s ease;
     }
     
     .hub-label {
-        margin-top: 8px;
+        margin-top: 6px;
         font-weight: 600;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: hsl(var(--foreground));
         text-shadow: 0 0 5px hsl(var(--background));
         white-space: nowrap;
@@ -90,9 +81,9 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        padding: 6px 12px;
+        padding: 4px 10px;
         border-radius: 20px;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 500;
         background-color: hsl(var(--card) / 0.8);
         backdrop-filter: blur(4px);
@@ -104,6 +95,13 @@
         box-shadow: 0 2px 8px hsl(var(--background) / 0.5);
         transform: translate(var(--tx), var(--ty)); /* Set by inline style */
         margin: -15px 0 0 -40px; /* Adjust for node size */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .mind-map-node:hover {
+        transform: translate(var(--tx), var(--ty)) scale(1.1);
+        box-shadow: 0 0 10px currentColor;
+        z-index: 20;
     }
 
     @keyframes fadeIn {
@@ -114,9 +112,9 @@
     
     @keyframes float {
         0% { transform: translate(var(--tx), var(--ty)); }
-        25% { transform: translate(calc(var(--tx) + 5px), calc(var(--ty) - 10px)); }
+        25% { transform: translate(calc(var(--tx) + 5px), calc(var(--ty) - 5px)); }
         50% { transform: translate(calc(var(--tx) - 5px), calc(var(--ty) + 5px)); }
-        75% { transform: translate(calc(var(--tx) + 10px), calc(var(--ty) + 0px)); }
+        75% { transform: translate(calc(var(--tx) + 5px), calc(var(--ty) + 0px)); }
         100% { transform: translate(var(--tx), var(--ty)); }
     }
     
@@ -198,4 +196,6 @@
     opacity: 1;
     width: auto;
     margin: 0;
+    padding: 6px 12px;
+    font-size: 0.8rem;
 }
