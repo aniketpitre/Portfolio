@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { PROJECTS } from '@/lib/app-data';
 import { Server, Zap, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
