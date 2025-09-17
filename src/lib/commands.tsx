@@ -16,19 +16,34 @@ const MOCK_FILESYSTEM: Record<string, Record<string, string | { content: string,
   },
   'education': {
     'history.log': { content: "User education history. Use 'education.log' from sidebar.", view: 'education' },
+  },
+  'skills': {
+    'list.txt': { content: SKILLS, view: 'skills' },
   }
 };
 
 
 const listDirectory = (path: string): ReactNode => {
     const parts = path.replace(/\/$/, '').split('/');
-    let current = MOCK_FILESYSTEM;
+    let current: Record<string, any> = MOCK_FILESYSTEM;
+    let currentPath = '';
+
     if (parts[0] !== '' && parts.length > 0) {
         const dir = MOCK_FILESYSTEM[parts[0]];
         if (!dir) return <p className="text-destructive">ls: cannot access '{path}': No such file or directory</p>;
-        current = { [parts[0]]: dir };
+        
+        // If a path is given, list files inside it
+        const files = Object.keys(dir);
+        return (
+            <div className="grid grid-cols-4 gap-x-4">
+                {files.map(file => (
+                    <p key={file} className="text-foreground">{file}</p>
+                ))}
+            </div>
+        );
     }
 
+    // If no path, list top-level directories
     return (
         <div className="grid grid-cols-4 gap-x-4">
             {Object.keys(current).map(dir => (
@@ -95,6 +110,18 @@ export const processCommand = (
     case 'send_message':
       context.setView('contact');
       return { command, output: 'Opening secure contact form...' };
+    
+    case 'whoami':
+        return { command, output: 'guest' };
+
+    case 'date':
+        return { command, output: new Date().toString() };
+    
+    case 'uname':
+        return { command, output: 'Linux apitre.io 5.4.0-150-generic #167-Ubuntu SMP Mon May 15 17:29:33 UTC 2023 x86_64 GNU/Linux' };
+    
+    case 'echo':
+        return { command, output: args.join(' ') };
 
     case 'clear':
       context.clearHistory();

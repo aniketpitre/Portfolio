@@ -2,11 +2,15 @@ import { HelpCircle } from "lucide-react";
 
 const commands = [
     { cmd: 'help', desc: 'Shows this list of available commands.' },
-    { cmd: 'ls [dir]', desc: 'Lists contents of a directory (e.g., `ls experience`).' },
+    { cmd: 'ls [dir]', desc: 'Lists contents of a directory (e.g., `ls experience`). If no directory is specified, lists root directories.' },
     { cmd: 'cat <file>', desc: 'Displays file content (e.g., `cat about/bio.txt`).' },
     { cmd: 'kubectl get pods', desc: 'Switches to the interactive Kubernetes project view.' },
     { cmd: 'run <project_id>', desc: 'Directly deploys and views a specific project pod.' },
     { cmd: 'send_message', desc: 'Opens the secure contact form.' },
+    { cmd: 'whoami', desc: 'Displays the current user.' },
+    { cmd: 'date', desc: 'Displays the current date and time.' },
+    { cmd: 'echo <text>', desc: 'Prints the provided text to the console.' },
+    { cmd: 'uname', desc: 'Displays system information.' },
     { cmd: 'clear', desc: 'Clears the terminal history.' },
     { cmd: 'exit', desc: 'Closes the guest session.' },
 ];
