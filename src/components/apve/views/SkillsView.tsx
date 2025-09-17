@@ -1,12 +1,9 @@
 'use client';
 import { SKILL_CATEGORIES, SKILLS_LIST } from '@/lib/app-data';
 import { Wrench } from 'lucide-react';
-import './SkillsView.css';
 import { cn } from '@/lib/utils';
 import React from 'react';
-
-const RADIUS = 220; // Radius for the category hubs from the center
-const CATEGORY_RADIUS = 90; // Radius for the skill nodes from their hub
+import './SkillsView.css';
 
 export function SkillsView() {
   const skillsByCategory = SKILLS_LIST.reduce((acc, skill) => {
@@ -17,120 +14,46 @@ export function SkillsView() {
     return acc;
   }, {} as Record<string, string[]>);
 
-  const categories = Object.keys(SKILL_CATEGORIES);
-  const numCategories = categories.length;
+  // Define a specific order for categories
+  const categoryOrder = [
+    'Programming & Web',
+    'System Administration',
+    'Cloud & DevOps',
+    'Databases',
+    'Soft Skills',
+    'Creative',
+    'Hobbies & Interests',
+  ];
 
   return (
     <div>
-      <h1 className="font-headline text-2xl text-accent mb-8 flex items-center gap-2">
+      <h1 className="font-headline text-2xl text-accent mb-12 flex items-center justify-center gap-2">
         <Wrench />
-        <span>/usr/lib/skills - Interactive Mind Map</span>
+        <span>/usr/lib/skills - Skill Matrix</span>
       </h1>
       
-      <div className="mind-map-container">
-        {/* Mobile / Fallback View */}
-        <div className="skills-mobile-view">
-            {categories.map((category) => {
-                const categoryInfo = SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES];
-                const skills = skillsByCategory[category] || [];
-                const Icon = categoryInfo.icon;
-                return (
-                    <div key={category} className="mb-6">
-                        <div 
-                            className={cn("mind-map-category-hub", categoryInfo.color)}
-                        >
-                            <div className="hub-icon-container">
-                                <Icon className="h-8 w-8" />
-                            </div>
-                            <p className="hub-label">{category}</p>
+      <div className="mind-map-grid">
+        {categoryOrder.map((category) => {
+          const categoryInfo = SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES];
+          const skills = skillsByCategory[category] || [];
+          if (!categoryInfo) return null;
+          const Icon = categoryInfo.icon;
+          return (
+            <div key={category} className={cn("mind-map-node", categoryInfo.color.replace('text-', 'border-'))}>
+                <div className="flex items-center gap-3 mb-4">
+                    <Icon className={cn("h-6 w-6", categoryInfo.color)} />
+                    <h3 className="font-headline text-lg text-foreground">{category}</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                    {skills.map(skill => (
+                        <div key={skill} className="text-sm bg-background border border-border rounded-full px-3 py-1 text-muted-foreground">
+                            {skill}
                         </div>
-                        <div className="skills-wrapper">
-                            {skills && skills.map(skill => (
-                                <div key={skill} className={cn("mind-map-node", categoryInfo.color)}>
-                                    {skill}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
-
-        {/* Desktop Mind Map View */}
-        <div className="skills-desktop-view">
-            <div className="mind-map-center">
-                <div className="w-28 h-28 rounded-full bg-primary/80 flex flex-col items-center justify-center text-center p-2">
-                    <Wrench className="h-8 w-8 text-accent" />
-                    <h2 className="text-sm font-headline text-primary-foreground mt-1">Skill Hub</h2>
+                    ))}
                 </div>
             </div>
-
-            {categories.map((category, i) => {
-                const angle = (i / numCategories) * 2 * Math.PI;
-                const x = RADIUS * Math.cos(angle);
-                const y = RADIUS * Math.sin(angle);
-                const categoryInfo = SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES];
-                const Icon = categoryInfo.icon;
-                const skills = skillsByCategory[category] || [];
-
-                return (
-                    <React.Fragment key={category}>
-                        {/* Category Hub */}
-                        <div 
-                            className="mind-map-category-hub"
-                            style={{ 
-                                '--tx': `${x}px`,
-                                '--ty': `${y}px`,
-                                animationDelay: `${i * 0.2}s` 
-                            } as React.CSSProperties}
-                        >
-                            <div className={cn("hub-icon-container", categoryInfo.color)}>
-                                <Icon className="h-7 w-7" />
-                            </div>
-                            <p className="hub-label">{category}</p>
-                        </div>
-
-                        {/* Connecting line from Center to Category Hub */}
-                        <svg className="mind-map-line" style={{ zIndex: 1 }}>
-                            <line 
-                                x1="50%" y1="50%" 
-                                x2={`calc(50% + ${x}px)`} y2={`calc(50% + ${y}px)`} 
-                            />
-                        </svg>
-
-                        {/* Skill Nodes around the Category Hub */}
-                        {skills.map((skill, j) => {
-                            const skillAngle = (j / skills.length) * 2 * Math.PI;
-                            const skillX = x + CATEGORY_RADIUS * Math.cos(skillAngle);
-                            const skillY = y + CATEGORY_RADIUS * Math.sin(skillAngle);
-
-                            return (
-                                <React.Fragment key={skill}>
-                                    <div 
-                                        className={cn("mind-map-node", categoryInfo.color)}
-                                        style={{ 
-                                            '--tx': `${skillX}px`,
-                                            '--ty': `${skillY}px`,
-                                            animationDelay: `${i * 0.2 + (j + 1) * 0.1}s`
-                                        } as React.CSSProperties}
-                                    >
-                                        {skill}
-                                    </div>
-                                    {/* Connecting line from Category Hub to Skill Node */}
-                                    <svg className="mind-map-line" style={{ zIndex: 0 }}>
-                                        <line 
-                                            x1={`calc(50% + ${x}px)`} y1={`calc(50% + ${y}px)`}
-                                            x2={`calc(50% + ${skillX}px)`} y2={`calc(50% + ${skillY}px)`}
-                                            className="skill-line"
-                                        />
-                                    </svg>
-                                </React.Fragment>
-                            )
-                        })}
-                    </React.Fragment>
-                )
-            })}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
