@@ -3,8 +3,8 @@
     {
       "id": "user-profile",
       "description": "A portrait of Aniket Pitre.",
-      "imageUrl": "https://picsum.photos/seed/aniket-profile/400/400",
-      "imageHint": "professional portrait"
+      "imageUrl": "https://picsum.photos/seed/man-by-lake/400/400",
+      "imageHint": "man sunset"
     }
   ]
 }
