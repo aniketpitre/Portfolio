@@ -10,6 +10,10 @@ export const BIO_CONTENT = `
 
 ACCESS GRANTED. DISPLAYING USER RECORD:
 ----------------------------------------
+I’m Aniket Pitre, an MCA postgraduate student driven by curiosity and innovation. My core interests lie in Cybersecurity, Linux, and Cloud technologies, where I enjoy exploring how systems work, how they break, and how to make them stronger. I focus on learning, experimenting, and applying concepts to solve real-world problems, while continuously expanding my skills across modern IT landscapes. With a vision to grow as a security and cloud-focused professional, I aim to create impactful solutions that blend technology, security, and efficiency.
+
+Beyond academics, I actively engage in research, projects, and collaborations that challenge me to think critically and creatively. My journey so far has been shaped by hands-on experience in system administration, vulnerability management, and cloud-based problem solving, along with a strong drive to keep exploring new technologies. I believe in combining technical skills with a forward-looking vision, contributing to solutions that are not only secure and reliable but also innovative and sustainable.
+
 Aniket Pitre is a versatile and results-driven professional with a robust foundation in Computer Science and a specialized focus on Cybersecurity and Cloud Technologies. With hands-on experience in vulnerability assessment, penetration testing, and cloud orchestration using Docker and Kubernetes, he excels at bridging the gap between software development and system security.
 
 His academic background, highlighted by a 'Best Paper' award, underscores his ability to conduct in-depth research and contribute meaningful insights to the field. Aniket is a proactive problem-solver, passionate about architecting secure, scalable, and resilient systems. He is constantly exploring emerging threats and innovative defensive strategies to stay at the forefront of the ever-evolving technology landscape.
