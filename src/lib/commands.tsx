@@ -1,7 +1,7 @@
 'use client';
 import type { ReactNode } from 'react';
 import type { AppContextType, ViewId } from '@/context/AppContext';
-import { BIO_CONTENT, PROJECTS, EXPERIENCE, EDUCATION, AWARDS_CERTIFICATIONS, SKILLS } from './app-data';
+import { BIO_CONTENT, PROJECTS, EXPERIENCE, SKILLS } from './app-data';
 import { HelpView } from '@/components/apve/views/HelpView';
 
 const MOCK_FILESYSTEM: Record<string, Record<string, string | { content: string, view: ViewId }>> = {
@@ -15,7 +15,7 @@ const MOCK_FILESYSTEM: Record<string, Record<string, string | { content: string,
     'career.log': { content: "System log of professional experience. Use 'auditd.service' from sidebar for a better view.", view: 'auditd' },
   },
   'education': {
-    'badges': { content: "Directory of awards and certifications. Use 'credentials.manager' from sidebar.", view: 'credentials' },
+    'history.log': { content: "User education history. Use 'education.log' from sidebar.", view: 'education' },
   }
 };
 

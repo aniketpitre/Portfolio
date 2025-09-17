@@ -16,6 +16,7 @@ export type ViewId =
   | 'user_profile'
   | 'kubelet'
   | 'auditd'
+  | 'education'
   | 'credentials'
   | 'contact'
   | 'help';

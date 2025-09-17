@@ -12,6 +12,7 @@ const daemons = [
   { id: 'user_profile', name: 'user_profile.daemon', icon: User, label: 'About Me' },
   { id: 'kubelet', name: 'kubelet.service', icon: Server, label: 'Projects' },
   { id: 'auditd', name: 'auditd.service', icon: BotMessageSquare, label: 'Experience' },
+  { id: 'education', name: 'education.log', icon: GraduationCap, label: 'Education' },
   { id: 'credentials', name: 'credentials.manager', icon: GraduationCap, label: 'Credentials' },
   { id: 'contact', name: 'sendmail.service', icon: Mail, label: 'Contact' },
 ];

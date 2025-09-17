@@ -1,5 +1,5 @@
 'use client';
-import { EDUCATION, AWARDS_CERTIFICATIONS, SKILLS } from '@/lib/app-data';
+import { AWARDS_CERTIFICATIONS, SKILLS } from '@/lib/app-data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
 import { GraduationCap, Award, Wrench } from 'lucide-react';
@@ -91,7 +91,6 @@ export function CredentialsManagerView() {
         <GraduationCap />
         <span>/etc/badges</span>
       </h1>
-      <CredentialSection title="Education" icon={GraduationCap} items={EDUCATION} />
       <CredentialSection title="Awards & Certifications" icon={Award} items={AWARDS_CERTIFICATIONS} />
       <CredentialSection title="Skills" icon={Wrench} items={SKILLS} />
     </div>

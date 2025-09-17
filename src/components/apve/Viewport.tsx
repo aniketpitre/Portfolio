@@ -9,6 +9,7 @@ import { AuditLogView } from './views/AuditLogView';
 import { CredentialsManagerView } from './views/CredentialsManagerView';
 import { ContactView } from './views/ContactView';
 import { HelpView } from './views/HelpView';
+import { EducationView } from './views/EducationView';
 
 const renderView = (view: string) => {
   switch (view) {
@@ -20,6 +21,8 @@ const renderView = (view: string) => {
         return <KubeletView />;
     case 'auditd':
         return <AuditLogView />;
+    case 'education':
+        return <EducationView />;
     case 'credentials':
         return <CredentialsManagerView />;
     case 'contact':

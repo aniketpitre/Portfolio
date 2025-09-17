@@ -67,14 +67,27 @@ export const EXPERIENCE = [
   },
 ];
 
-export const EDUCATION = [
+export const EDUCATION_HISTORY = [
     {
-        id: 'degree',
-        type: 'badge',
-        title: 'Bachelor of Engineering - Computer Science',
-        issuer: 'University of Mumbai',
-        year: '2019-2023',
-        description: 'Completed a comprehensive B.E. in Computer Science, building a strong foundation in algorithms, data structures, software engineering, and systems architecture.'
+        id: 'pg-mca',
+        institution: 'K.K. Wagh Institute of Engineering (PG-MCA)',
+        degree: 'Post-Graduate MCA',
+        years: '2024-Present',
+        details: 'Current CGPA: 7.77',
+    },
+    {
+        id: 'bba-ca',
+        institution: 'BYK College',
+        degree: 'BBA-CA',
+        years: '2019–2022',
+        details: 'Final CGPA: 8.95',
+    },
+    {
+        id: 'hsc',
+        institution: 'Bhonsala Military Junior College',
+        degree: 'HSC Commerce',
+        years: '2017–2019',
+        details: 'Final Grade: B',
     },
 ];
 
