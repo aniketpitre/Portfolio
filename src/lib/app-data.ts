@@ -157,46 +157,51 @@ export const AWARDS_CERTIFICATIONS = [
     }
 ];
 
-export const SKILLS_DATA = {
-    technical: [
-      {
-        title: 'Programming & Web',
-        icon: BrainCircuit,
-        skills: ['Python', 'C', 'C++', 'JavaScript', 'PHP', 'React', 'Next.js', 'TypeScript', 'HTML/CSS'],
-      },
-      {
-        title: 'System Administration',
-        icon: Cpu,
-        skills: ['Linux (RHCSA coursework)', 'Windows Server', 'Shell Scripting', 'Security Hardening'],
-      },
-      {
-        title: 'Cloud & DevOps',
-        icon: Server,
-        skills: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud Technologies', 'AWS'],
-      },
-      {
-        title: 'Databases',
-        icon: Database,
-        skills: ['Oracle', 'MySQL', 'MongoDB', 'SQL'],
-      },
-      {
-        title: 'Creative',
-        icon: Camera,
-        skills: ['Photo Editing', 'Photography', 'Video Editing'],
-      }
-    ],
-    soft: {
-      title: 'Soft Skills',
-      icon: Users,
-      skills: ['Analytical', 'Collaborator', 'Leader', 'Adaptable', 'Problem-Solving', 'Communication'],
-    },
-    hobbies: {
-        title: 'Hobbies & Interests',
-        icon: Gamepad,
-        skills: ['Watching Movies & Series', 'Playing Volleyball'],
-    }
+export const SKILL_CATEGORIES = {
+    'Programming & Web': { icon: BrainCircuit, color: 'text-cyan-400' },
+    'System Administration': { icon: Cpu, color: 'text-green-400' },
+    'Cloud & DevOps': { icon: Server, color: 'text-blue-400' },
+    'Databases': { icon: Database, color: 'text-yellow-400' },
+    'Creative': { icon: Camera, color: 'text-purple-400' },
+    'Soft Skills': { icon: Users, color: 'text-pink-400' },
+    'Hobbies & Interests': { icon: Gamepad, color: 'text-orange-400' },
 };
 
+export const SKILLS_LIST = [
+    { name: 'Python', category: 'Programming & Web' },
+    { name: 'C', category: 'Programming & Web' },
+    { name: 'C++', category: 'Programming & Web' },
+    { name: 'JavaScript', category: 'Programming & Web' },
+    { name: 'PHP', category: 'Programming & Web' },
+    { name: 'React', category: 'Programming & Web' },
+    { name: 'Next.js', category: 'Programming & Web' },
+    { name: 'TypeScript', category: 'Programming & Web' },
+    { name: 'HTML/CSS', category: 'Programming & Web' },
+    { name: 'Linux', category: 'System Administration' },
+    { name: 'Windows Server', category: 'System Administration' },
+    { name: 'Shell Scripting', category: 'System Administration' },
+    { name: 'Security Hardening', category: 'System Administration' },
+    { name: 'Git', category: 'Cloud & DevOps' },
+    { name: 'Docker', category: 'Cloud & DevOps' },
+    { name: 'Kubernetes', category: 'Cloud & DevOps' },
+    { name: 'CI/CD', category: 'Cloud & DevOps' },
+    { name: 'AWS', category: 'Cloud & DevOps' },
+    { name: 'Oracle', category: 'Databases' },
+    { name: 'MySQL', category: 'Databases' },
+    { name: 'MongoDB', category: 'Databases' },
+    { name: 'SQL', category: 'Databases' },
+    { name: 'Photo Editing', category: 'Creative' },
+    { name: 'Photography', category: 'Creative' },
+    { name: 'Video Editing', category: 'Creative' },
+    { name: 'Analytical', category: 'Soft Skills' },
+    { name: 'Collaborator', category: 'Soft Skills' },
+    { name: 'Leader', category: 'Soft Skills' },
+    { name: 'Adaptable', category: 'Soft Skills' },
+    { name: 'Problem-Solving', category: 'Soft Skills' },
+    { name: 'Communication', category: 'Soft Skills' },
+    { name: 'Watching Movies', category: 'Hobbies & Interests' },
+    { name: 'Volleyball', category: 'Hobbies & Interests' },
+];
 
 export const initialHistory = [
   {

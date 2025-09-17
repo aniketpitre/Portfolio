@@ -1,59 +1,84 @@
 .mind-map-container {
     position: relative;
     width: 100%;
-    min-height: 140vh; /* Increased height for more vertical space */
+    min-height: 100vh;
+    height: 900px; /* Fixed height for positioning */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: visible; /* Allow nodes to be outside the initial viewport if needed */
 }
 
 .mind-map-center {
-    position: relative;
+    position: absolute;
     z-index: 10;
-    animation: pulse-center 5s infinite ease-in-out;
 }
 
 @keyframes pulse-center {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.mind-map-category-hub {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: float 8s ease-in-out infinite, fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.hub-icon-container {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsl(var(--card));
+    border: 2px solid currentColor;
+    box-shadow: 0 0 15px currentColor, inset 0 0 10px currentColor;
+    transition: all 0.3s ease;
+}
+
+.hub-label {
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: hsl(var(--foreground));
+    text-shadow: 0 0 5px hsl(var(--background));
 }
 
 .mind-map-node {
     position: absolute;
-    width: 300px;
-    z-index: 5;
-    animation: float 8s ease-in-out infinite;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background-color: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid currentColor;
+    z-index: 4;
+    animation: float 10s ease-in-out infinite, fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px hsl(var(--background) / 0.5);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0px) translateX(0px);
-    }
-    25% {
-        transform: translateY(-15px) translateX(5px);
-    }
-    50% {
-        transform: translateY(5px) translateX(-5px);
-    }
-    75% {
-        transform: translateY(-10px) translateX(10px);
-    }
+    0%, 100% { transform: translate(var(--tx), var(--ty)); }
+    25% { transform: translate(calc(var(--tx) + 5px), calc(var(--ty) - 10px)); }
+    50% { transform: translate(calc(var(--tx) - 5px), calc(var(--ty) + 5px)); }
+    75% { transform: translate(calc(var(--tx) + 10px), calc(var(--ty) + 0px)); }
 }
-
-/* Positioning for each node - Adjusted for better visibility */
-.node-1 { top: 5%; left: calc(50% - 150px); animation-delay: 0s; } /* Programming */
-.node-2 { top: 25%; left: calc(50% - 450px); animation-delay: -1s; } /* SysAdmin */
-.node-3 { top: 25%; right: calc(50% - 450px); animation-delay: -2s; } /* Cloud */
-.node-4 { top: 55%; left: calc(50% - 550px); animation-delay: -3s; } /* Databases */
-.node-5 { top: 55%; right: calc(50% - 550px); animation-delay: -4s; } /* Creative */
-.node-6 { top: 85%; left: calc(50% - 350px); animation-delay: -5s; } /* Soft Skills */
-.node-7 { top: 85%; right: calc(50% - 350px); animation-delay: -6s; } /* Hobbies */
-
 
 .mind-map-line {
     position: absolute;
@@ -61,16 +86,22 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
     pointer-events: none;
 }
 
 .mind-map-line line {
-    stroke: hsl(var(--primary) / 0.3);
-    stroke-width: 2px;
-    stroke-dasharray: 5, 5;
-    animation: dash 20s linear infinite;
+    stroke: hsl(var(--border));
+    stroke-width: 1.5px;
+    stroke-dasharray: 4, 4;
+    animation: dash 30s linear infinite;
 }
+
+.mind-map-line line.skill-line {
+    stroke: hsl(var(--border) / 0.6);
+    stroke-width: 1px;
+    stroke-dasharray: 2, 3;
+}
+
 
 @keyframes dash {
   to {
@@ -78,57 +109,65 @@
   }
 }
 
-/* Line endpoints need to match node positions - Adjusted */
-.line-1 { x2: calc(50%); y2: calc(50% - 280px); }
-.line-2 { x2: calc(50% - 300px); y2: calc(50% - 120px); }
-.line-3 { x2: calc(50% + 300px); y2: calc(50% - 120px); }
-.line-4 { x2: calc(50% - 400px); y2: calc(50% + 110px); }
-.line-5 { x2: calc(50% + 400px); y2: calc(50% + 110px); }
-.line-6 { x2: calc(50% - 200px); y2: calc(50% + 310px); }
-.line-7 { x2: calc(50% + 200px); y2: calc(50% + 310px); }
-
-
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-    .mind-map-node {
-        width: 250px;
+    .mind-map-container {
+        transform: scale(0.8);
     }
-    .node-1 { top: 10%; left: calc(50% - 125px); }
-    .node-2 { top: 30%; left: calc(50% - 380px); }
-    .node-3 { top: 30%; right: calc(50% - 380px); }
-    .node-4 { top: 55%; left: calc(50% - 450px); }
-    .node-5 { top: 55%; right: calc(50% - 450px); }
-    .node-6 { top: 80%; left: calc(50% - 300px); }
-    .node-7 { top: 80%; right: calc(50% - 300px); }
-
-    .line-1 { y2: calc(50% - 220px); }
-    .line-2 { x2: calc(50% - 255px); y2: calc(50% - 90px); }
-    .line-3 { x2: calc(50% + 255px); y2: calc(50% - 90px); }
-    .line-4 { x2: calc(50% - 325px); y2: calc(50% + 110px); }
-    .line-5 { x2: calc(50% + 325px); y2: calc(50% + 110px); }
-    .line-6 { x2: calc(50% - 175px); y2: calc(50% + 280px); }
-    .line-7 { x2: calc(50% + 175px); y2: calc(50% + 280px); }
 }
 
+
+@media (max-width: 900px) {
+    .mind-map-container {
+        transform: scale(0.6);
+        height: 600px;
+    }
+}
 
 @media (max-width: 768px) {
     .mind-map-container {
         display: block;
         min-height: auto;
         height: auto;
-        padding-bottom: 2rem;
+        padding: 2rem 0;
+        transform: none;
     }
     .mind-map-center, .mind-map-line {
         display: none;
     }
-    .mind-map-node {
+    .mind-map-category-hub, .mind-map-node {
         position: relative;
         animation: none;
-        width: 90%;
-        margin: 1.5rem auto;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
         transform: none !important;
+        opacity: 1;
+    }
+
+    .mind-map-category-hub {
+        width: 90%;
+        margin: 2rem auto 1rem;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: flex-start;
+        padding: 0.5rem;
+        border-radius: var(--radius);
+        background: hsl(var(--card));
+    }
+    
+    .hub-label {
+        margin-top: 0;
+        font-size: 1.2rem;
+    }
+
+    .skills-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .mind-map-node {
+        width: auto;
+        margin: 0;
     }
 }
