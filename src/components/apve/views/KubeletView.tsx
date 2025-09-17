@@ -1,7 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PROJECTS } from '@/lib/app-data';
-import { Server, Zap, X } from 'lucide-react';
+import { Server, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAppContext } from '@/context/AppContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,7 +23,7 @@ const Pod = ({ project, isActive, onClick }: { project: any, isActive: boolean, 
     <div
       onClick={onClick}
       className={cn(
-        'absolute w-32 h-20 rounded-lg transition-all duration-500 cursor-pointer group',
+        'absolute w-40 h-24 rounded-lg transition-all duration-500 cursor-pointer group',
         'hover:scale-110 hover:-translate-y-2',
         isActive ? 'scale-[2.5] z-30' : 'z-10'
       )}
@@ -31,17 +31,18 @@ const Pod = ({ project, isActive, onClick }: { project: any, isActive: boolean, 
         transformStyle: 'preserve-3d',
         top: project.pos.y,
         left: project.pos.x,
+        transform: `translateX(-50%)`,
       }}
     >
       <div className="absolute inset-0 bg-card border border-border rounded-lg transform transition-transform duration-500 group-hover:translate-z-2">
         <div className="p-2 h-full flex flex-col justify-between">
           <div>
-            <p className="text-xs font-bold truncate">{project.name}</p>
-            <p className="text-[10px] text-muted-foreground">pod/{project.id}</p>
+            <p className="text-sm font-bold truncate">{project.name}</p>
+            <p className="text-xs text-muted-foreground">pod/{project.id}</p>
           </div>
           <div className="flex items-center gap-1">
             <div className={cn('w-2 h-2 rounded-full', statusColor)}></div>
-            <p className="text-[10px]">{project.status}</p>
+            <p className="text-xs">{project.status}</p>
           </div>
         </div>
         <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
@@ -94,15 +95,15 @@ export function KubeletView() {
 
   const podProjects = PROJECTS.map((p, i) => {
     const numCols = 3;
-    const xOffset = 10;
-    const yOffset = 10;
-    const colWidth = (100 - xOffset * 2) / (numCols - 1);
-    
+    const xPositions = [20, 50, 80]; // in percent
+    const yOffset = 15; // in percent
+    const ySpacing = 30; // in percent
+
     return {
       ...p,
       pos: {
-        x: `${xOffset + (i % numCols) * colWidth}%`,
-        y: `${yOffset + Math.floor(i / numCols) * 25}%`,
+        x: `${xPositions[i % numCols]}%`,
+        y: `${yOffset + Math.floor(i / numCols) * ySpacing}%`,
       },
     };
   });
