@@ -1,3 +1,4 @@
+
 'use client';
 import { EDUCATION_HISTORY } from '@/lib/app-data';
 import { GraduationCap, Calendar, ChevronDown } from 'lucide-react';
@@ -24,8 +25,9 @@ export function EducationView() {
                 <div className="timeline-content">
                   <div className="flex justify-between items-center w-full">
                     <div>
-                      <h2 className="text-xl font-headline text-left text-foreground">{edu.institution}</h2>
-                      <p className="text-md text-left text-accent">{edu.degree}</p>
+                      <h2 className="text-xl font-headline text-left text-foreground">{edu.degree}</h2>
+                      <p className="text-md text-left text-accent">{edu.institution}</p>
+                      <p className="text-sm text-left text-muted-foreground mt-1">{edu.description}</p>
                     </div>
                     <ChevronDown className="h-6 w-6 shrink-0 transition-transform duration-200 text-accent" />
                   </div>

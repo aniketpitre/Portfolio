@@ -105,6 +105,7 @@ export const EDUCATION_HISTORY = [
         id: 'pg-mca',
         institution: 'K.K. Wagh Institute of Engineering (PG-MCA)',
         degree: 'Post-Graduate MCA',
+        description: 'Advanced studies in computer applications and software development.',
         years: '2024-Present',
         details: 'Current CGPA: 7.77',
     },
@@ -112,6 +113,7 @@ export const EDUCATION_HISTORY = [
         id: 'bba-ca',
         institution: 'BYK College',
         degree: 'BBA-CA',
+        description: 'Foundation in business administration with a focus on computer applications.',
         years: '2019–2022',
         details: 'Final CGPA: 8.95',
     },
@@ -119,6 +121,7 @@ export const EDUCATION_HISTORY = [
         id: 'hsc',
         institution: 'Bhonsala Military Junior College',
         degree: 'HSC Commerce',
+        description: 'Higher secondary education in commerce stream.',
         years: '2017–2019',
         details: 'Final Grade: B',
     },
@@ -210,4 +213,3 @@ Technical Skills:
 Soft Skills:
 - Analytical, Collaborator, Leader, Adaptable
 `;
-
