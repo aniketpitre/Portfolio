@@ -1,10 +1,58 @@
 'use client';
 import { BIO_CONTENT, userProfileImage } from '@/lib/app-data';
 import Image from 'next/image';
-import { User, Mail, Linkedin, Github } from 'lucide-react';
+import { User, Mail, Linkedin, Github, Terminal, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AvatarIcon } from './AvatarIcon';
 import './UserProfileView.css';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { useState, useEffect } from 'react';
+
+const insights = [
+  { category: 'Cyber Security', text: 'The best defense is a good offense... and regular patching.' },
+  { category: 'Linux', text: 'In a world without walls or fences, who needs Windows and Gates?' },
+  { category: 'Cloud', text: 'There is no cloud, it\'s just someone else\'s computer.' },
+  { category: 'Docker', text: 'Docker: "It works on my machine" is now a certified feature.' },
+  { category: 'Kubernetes', text: 'Kubernetes: The final boss of container orchestration. May the YAML be with you.' },
+  { category: 'Cyber Security', text: 'Passwords are like underwear: don\'t leave them lying around, change them often, and don\'t share them.' },
+];
+
+const SystemInsights = () => {
+    const [index, setIndex] = useState(0);
+
+    const nextInsight = () => {
+        setIndex((prev) => (prev + 1) % insights.length);
+    }
+  
+    useEffect(() => {
+      const timer = setInterval(nextInsight, 7000);
+      return () => clearInterval(timer);
+    }, []);
+
+    const insight = insights[index];
+    
+    return (
+        <Card className="mt-8 w-full border-dashed border-accent/50">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
+                    <Terminal className="h-4 w-4 text-accent" />
+                    <span>User Insights</span>
+                </CardTitle>
+                <Button variant="ghost" size="icon" onClick={nextInsight} className="h-6 w-6">
+                    <RefreshCw className="h-3 w-3" />
+                </Button>
+            </CardHeader>
+            <CardContent className="font-code text-xs pt-2">
+                <Badge variant="secondary" className="mb-2 border-accent/30">{insight.category}</Badge>
+                <p className="text-muted-foreground">
+                    <span className="text-accent/80 mr-1">$</span> 
+                    {insight.text}
+                </p>
+            </CardContent>
+        </Card>
+    );
+}
 
 export function UserProfileView() {
   return (
@@ -47,6 +95,7 @@ export function UserProfileView() {
                     <a href="https://github.com/Aniket-Pitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-4 w-4" /></a>
                 </Button>
             </div>
+            <SystemInsights />
         </div>
         <div className="md:col-span-2 bg-card p-4 rounded-lg border border-border">
           <pre className="font-code whitespace-pre-wrap text-sm text-foreground">
