@@ -1,3 +1,4 @@
+
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export const userProfileImage = PlaceHolderImages.find(p => p.id === 'user-profile');
@@ -95,11 +96,11 @@ export const AWARDS_CERTIFICATIONS = [
     {
         id: 'award-paper',
         type: 'featured-badge',
-        title: 'Best Paper Award - ICRTIEA-2022',
-        issuer: 'Fr. C. Rodrigues Institute of Technology',
-        year: '2022',
-        description: 'Awarded "Best Paper" for research on "A Study on the Effectiveness of Machine Learning Algorithms in the Detection of SQL Injection Attacks."',
-        abstract: 'This research evaluates the performance of various machine learning classifiers—including Support Vector Machines, Naive Bayes, and Random Forests—in identifying SQL injection vulnerabilities. By analyzing patterns in HTTP requests, the study demonstrates the high efficacy of ML-based approaches over traditional signature-based methods, proposing a more dynamic and resilient defense mechanism against evolving cyber threats.'
+        title: 'Best Paper Award',
+        issuer: 'ICEISF',
+        year: '2025',
+        description: '“Tokenizing Trees as Digital Assets: Exploring Blockchain for Sustainable Investment”',
+        abstract: 'This research explores the innovative application of blockchain technology to tokenize real-world forestry assets. It proposes a framework for creating transparent, liquid, and secure digital tokens that represent ownership in sustainable forestry projects. The paper examines the potential for this model to unlock new investment avenues, enhance ecological preservation efforts, and provide a decentralized mechanism for verifying carbon credits. By bridging the gap between environmental finance and distributed ledger technology, this work aims to foster a new class of green investments that are both profitable and ecologically responsible.'
     },
     {
         id: 'award-tcs-team',

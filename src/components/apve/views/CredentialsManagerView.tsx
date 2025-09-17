@@ -1,3 +1,4 @@
+
 'use client';
 import { AWARDS_CERTIFICATIONS, SKILLS } from '@/lib/app-data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -44,7 +45,8 @@ const CredentialSection = ({ title, icon: Icon, items }: { title: string, icon: 
                             <Card className="cursor-pointer bg-card/80 border-amber-500/50 hover:border-amber-500 transition-all amber-glow">
                                 <BadgeContent />
                                 <CardContent>
-                                <p className="text-sm text-muted-foreground">Click to view details and abstract.</p>
+                                    <p className="text-sm font-medium">{cred.description}</p>
+                                    <p className="text-sm text-muted-foreground mt-2">Click to view abstract.</p>
                                 </CardContent>
                             </Card>
                             </DialogTrigger>
@@ -56,7 +58,7 @@ const CredentialSection = ({ title, icon: Icon, items }: { title: string, icon: 
                                 </DialogDescription>
                             </DialogHeader>
                             <div className="space-y-4 font-body text-foreground">
-                                <p>{cred.description}</p>
+                                <p className='text-lg font-medium'>{cred.description}</p>
                                 {cred.abstract && (
                                     <div className="border-l-4 border-accent pl-4">
                                         <h3 className="font-semibold mb-2">Abstract</h3>
