@@ -1,5 +1,5 @@
 'use client';
-import { BIO_CONTENT } from '@/lib/app-data';
+import { BIO_CONTENT, userProfileImage } from '@/lib/app-data';
 import Image from 'next/image';
 import { User, Mail, Linkedin, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,13 +18,16 @@ export function UserProfileView() {
             <div className="flip-card">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
-                  <Image
-                    src="/aniket-profile.jpg"
-                    alt="A portrait of Aniket Pitre"
-                    width={200}
-                    height={200}
-                    className="rounded-full border-4 border-primary shadow-lg"
-                  />
+                  {userProfileImage && (
+                    <Image
+                      src={userProfileImage.imageUrl}
+                      alt={userProfileImage.description}
+                      data-ai-hint={userProfileImage.imageHint}
+                      width={200}
+                      height={200}
+                      className="rounded-full border-4 border-primary shadow-lg"
+                    />
+                  )}
                 </div>
                 <div className="flip-card-back">
                    <AvatarIcon />
