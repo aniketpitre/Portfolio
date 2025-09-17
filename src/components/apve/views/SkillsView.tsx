@@ -5,8 +5,8 @@ import './SkillsView.css';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
-const RADIUS = 280; // Radius for the category hubs from the center
-const CATEGORY_RADIUS = 110; // Radius for the skill nodes from their hub
+const RADIUS = 220; // Radius for the category hubs from the center
+const CATEGORY_RADIUS = 90; // Radius for the skill nodes from their hub
 
 export function SkillsView() {
   const skillsByCategory = SKILLS_LIST.reduce((acc, skill) => {
@@ -59,9 +59,9 @@ export function SkillsView() {
         {/* Desktop Mind Map View */}
         <div className="skills-desktop-view">
             <div className="mind-map-center">
-                <div className="w-32 h-32 rounded-full bg-primary/80 flex flex-col items-center justify-center text-center p-2">
-                    <Wrench className="h-10 w-10 text-accent" />
-                    <h2 className="text-md font-headline text-primary-foreground mt-1">Skill Hub</h2>
+                <div className="w-28 h-28 rounded-full bg-primary/80 flex flex-col items-center justify-center text-center p-2">
+                    <Wrench className="h-8 w-8 text-accent" />
+                    <h2 className="text-sm font-headline text-primary-foreground mt-1">Skill Hub</h2>
                 </div>
             </div>
 
