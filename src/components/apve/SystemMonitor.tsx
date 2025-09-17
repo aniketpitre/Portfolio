@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 
 const daemons = [
-  { id: 'system_health', name: 'system_health.service', icon: ShieldCheck, label: 'System Health' },
   { id: 'user_profile', name: 'user_profile.daemon', icon: User, label: 'About Me' },
   { id: 'kubelet', name: 'kubelet.service', icon: Server, label: 'Projects' },
   { id: 'auditd', name: 'auditd.service', icon: BotMessageSquare, label: 'Experience' },
@@ -16,6 +15,7 @@ const daemons = [
   { id: 'credentials', name: 'credentials.manager', icon: GraduationCap, label: 'Credentials' },
   { id: 'skills', name: 'skills.conf', icon: Wrench, label: 'Skills' },
   { id: 'contact', name: 'sendmail.service', icon: Mail, label: 'Contact' },
+  { id: 'system_health', name: 'system_health.service', icon: ShieldCheck, label: 'System Health' },
 ];
 
 const StatBar = ({ icon: Icon, label, value, unit }: { icon: React.ElementType, label: string, value: number, unit: string }) => (
