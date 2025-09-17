@@ -68,7 +68,8 @@ export const EXPERIENCE = [
     event: 'ASSIGNMENT_COMPLETED',
     user: 'aniket.pitre',
     role: 'SystemAdmin@TCS',
-    details: `Vulnerability Scanning & Management:
+    details: `Tata Consultancy Services - System Administrator:
+Vulnerability Scanning & Management:
 - Conducted regular vulnerability scans on Linux and Windows servers to identify security weaknesses.
 - Applied patches and updates to ensure systems remained secure.
 Security Patching:
@@ -89,7 +90,7 @@ Collaboration & Reporting:
     event: 'TRAINING_COMPLETED',
     user: 'aniket.pitre',
     role: 'Intern@CODTECH',
-    details: 'Completed an intensive internship focused on Cybersecurity and Ethical Hacking. Conducted penetration testing on web applications, identified critical security flaws, and provided detailed reports with remediation strategies. Key projects developed during this internship are linked below.',
+    details: 'Codtech - Intern: Completed an intensive internship focused on Cybersecurity and Ethical Hacking. Conducted penetration testing on web applications, identified critical security flaws, and provided detailed reports with remediation strategies. Key projects developed during this internship are listed below.',
     awards: [],
     projects: [
         { id: 'encryption-tool', name: 'Advanced Encryption Tool'},
@@ -127,7 +128,7 @@ export const AWARDS_CERTIFICATIONS = [
     {
         id: 'award-paper',
         type: 'featured-badge',
-        title: 'Best Paper Award',
+        title: '🏆 Best Paper Award — ICEISF (Jan 2025)',
         issuer: 'ICEISF',
         year: '2025',
         description: '“Tokenizing Trees as Digital Assets: Exploring Blockchain for Sustainable Investment”',
