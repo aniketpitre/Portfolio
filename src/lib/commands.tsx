@@ -149,7 +149,7 @@ export const processCommand = (
         return { command, output: 
           <div>
             <p className="text-destructive">COMMAND DENIED: Insufficient permissions.</p>
-            <p className="font-code mt-2">> Nice try. Security is a feature, not a bug in this environment. 😉</p>
+            <p className="font-code mt-2">&gt; Nice try. Security is a feature, not a bug in this environment. 😉</p>
           </div>
         };
 

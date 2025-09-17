@@ -1,6 +1,6 @@
 
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { BrainCircuit, Cpu, Database, Server, Users, Wrench } from 'lucide-react';
+import { BrainCircuit, Cpu, Database, Server, Users, Wrench, Camera, Film, Gamepad } from 'lucide-react';
 
 export const userProfileImage = PlaceHolderImages.find(p => p.id === 'user-profile');
 
@@ -172,19 +172,29 @@ export const SKILLS_DATA = {
       {
         title: 'Cloud & DevOps',
         icon: Server,
-        skills: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud Technologies'],
+        skills: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud Technologies', 'AWS'],
       },
       {
         title: 'Databases',
         icon: Database,
         skills: ['Oracle', 'MySQL', 'MongoDB', 'SQL'],
       },
+      {
+        title: 'Creative',
+        icon: Camera,
+        skills: ['Photo Editing', 'Photography', 'Video Editing'],
+      }
     ],
     soft: {
       title: 'Soft Skills',
       icon: Users,
       skills: ['Analytical', 'Collaborator', 'Leader', 'Adaptable', 'Problem-Solving', 'Communication'],
     },
+    hobbies: {
+        title: 'Hobbies & Interests',
+        icon: Gamepad,
+        skills: ['Watching Movies & Series', 'Playing Volleyball'],
+    }
 };
 
 
@@ -207,9 +217,13 @@ export const SKILLS = `
 Technical Skills:
 - Programming: Python, C, C++, JavaScript, PHP, React
 - System Admin: Linux (RHCSA coursework), Windows
-- Cloud/DevOps: Git, Docker, Kubernetes
+- Cloud/DevOps: Git, Docker, Kubernetes, AWS
 - Databases: Oracle, MySQL, MongoDB
+- Creative: Photo Editing, Photography, Video Editing
 
 Soft Skills:
 - Analytical, Collaborator, Leader, Adaptable
+
+Hobbies:
+- Watching Movies & Series, Playing Volleyball
 `;

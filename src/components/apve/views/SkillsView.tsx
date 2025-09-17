@@ -2,10 +2,10 @@
 import { SKILLS_DATA } from '@/lib/app-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Wrench, BrainCircuit, Users } from 'lucide-react';
+import { Wrench, BrainCircuit, Users, Gamepad, Camera } from 'lucide-react';
 
-const SkillCategory = ({ title, icon: Icon, skills }: { title: string, icon: React.ElementType, skills: string[] }) => (
-    <Card className="bg-card/60 border-primary/20 hover:border-primary transition-all transform hover:-translate-y-1">
+const SkillCategory = ({ title, icon: Icon, skills, className }: { title: string, icon: React.ElementType, skills: string[], className?: string }) => (
+    <Card className={`bg-card/60 border-primary/20 hover:border-primary transition-all transform hover:-translate-y-1 ${className}`}>
         <CardHeader>
             <CardTitle className="flex items-center gap-3 text-accent text-lg">
                 <Icon className="h-6 w-6" />
@@ -33,9 +33,10 @@ export function SkillsView() {
         <span>/usr/lib/skills</span>
       </h1>
       
-      <div className="space-y-8">
-        <div>
-            <h2 className="font-headline text-xl text-foreground mb-4 flex items-center gap-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Technical Skills - Main Column */}
+        <div className="lg:col-span-2 space-y-6">
+            <h2 className="font-headline text-xl text-foreground flex items-center gap-2">
                 <BrainCircuit />
                 <span>Technical Skills</span>
             </h2>
@@ -46,13 +47,25 @@ export function SkillsView() {
             </div>
         </div>
 
-        <div>
-            <h2 className="font-headline text-xl text-foreground mb-4 flex items-center gap-2">
-                <Users />
-                <span>Soft Skills</span>
-            </h2>
-            <div className="grid grid-cols-1">
-                <SkillCategory {...SKILLS_DATA.soft} />
+        {/* Soft Skills & Hobbies - Side Column */}
+        <div className="space-y-6">
+            <div>
+                <h2 className="font-headline text-xl text-foreground mb-4 flex items-center gap-2">
+                    <Users />
+                    <span>Soft Skills</span>
+                </h2>
+                <div className="grid grid-cols-1 gap-6">
+                    <SkillCategory {...SKILLS_DATA.soft} />
+                </div>
+            </div>
+             <div>
+                <h2 className="font-headline text-xl text-foreground mb-4 flex items-center gap-2">
+                    <Gamepad />
+                    <span>Hobbies & Interests</span>
+                </h2>
+                <div className="grid grid-cols-1 gap-6">
+                    <SkillCategory {...SKILLS_DATA.hobbies} />
+                </div>
             </div>
         </div>
       </div>
