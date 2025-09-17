@@ -25,7 +25,7 @@ export function UserProfileView() {
                       data-ai-hint={userProfileImage.imageHint}
                       width={160}
                       height={160}
-                      className="rounded-full border-4 border-primary shadow-lg"
+                      className="rounded-full border-4 border-primary shadow-lg object-cover"
                     />
                   )}
                 </div>
