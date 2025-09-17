@@ -1,173 +1,201 @@
 .mind-map-container {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    height: 900px; /* Fixed height for positioning */
+    min-height: 900px;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: visible; /* Allow nodes to be outside the initial viewport if needed */
+    overflow: hidden;
 }
 
-.mind-map-center {
-    position: absolute;
-    z-index: 10;
+.skills-desktop-view {
+    display: none; /* Hidden by default */
 }
 
-@keyframes pulse-center {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-.mind-map-category-hub {
-    position: absolute;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    animation: float 8s ease-in-out infinite, fadeIn 0.5s ease-out forwards;
-    opacity: 0;
-}
-
-.hub-icon-container {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: hsl(var(--card));
-    border: 2px solid currentColor;
-    box-shadow: 0 0 15px currentColor, inset 0 0 10px currentColor;
-    transition: all 0.3s ease;
-}
-
-.hub-label {
-    margin-top: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: hsl(var(--foreground));
-    text-shadow: 0 0 5px hsl(var(--background));
-}
-
-.mind-map-node {
-    position: absolute;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    background-color: hsl(var(--card) / 0.8);
-    backdrop-filter: blur(4px);
-    border: 1px solid currentColor;
-    z-index: 4;
-    animation: float 10s ease-in-out infinite, fadeIn 0.5s ease-out forwards;
-    opacity: 0;
-    white-space: nowrap;
-    box-shadow: 0 2px 8px hsl(var(--background) / 0.5);
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes float {
-    0%, 100% { transform: translate(var(--tx), var(--ty)); }
-    25% { transform: translate(calc(var(--tx) + 5px), calc(var(--ty) - 10px)); }
-    50% { transform: translate(calc(var(--tx) - 5px), calc(var(--ty) + 5px)); }
-    75% { transform: translate(calc(var(--tx) + 10px), calc(var(--ty) + 0px)); }
-}
-
-.mind-map-line {
-    position: absolute;
-    top: 0;
-    left: 0;
+.skills-mobile-view {
+    display: block;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.mind-map-line line {
-    stroke: hsl(var(--border));
-    stroke-width: 1.5px;
-    stroke-dasharray: 4, 4;
-    animation: dash 30s linear infinite;
-}
-
-.mind-map-line line.skill-line {
-    stroke: hsl(var(--border) / 0.6);
-    stroke-width: 1px;
-    stroke-dasharray: 2, 3;
 }
 
 
-@keyframes dash {
-  to {
-    stroke-dashoffset: 1000;
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .mind-map-container {
-        transform: scale(0.8);
-    }
-}
-
-
-@media (max-width: 900px) {
-    .mind-map-container {
-        transform: scale(0.6);
-        height: 600px;
-    }
-}
-
-@media (max-width: 768px) {
-    .mind-map-container {
-        display: block;
-        min-height: auto;
-        height: auto;
-        padding: 2rem 0;
-        transform: none;
-    }
-    .mind-map-center, .mind-map-line {
+/* DESKTOP STYLES */
+@media (min-width: 1024px) {
+    .skills-mobile-view {
         display: none;
     }
-    .mind-map-category-hub, .mind-map-node {
-        position: relative;
-        animation: none;
-        transform: none !important;
-        opacity: 1;
+    .skills-desktop-view {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mind-map-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+    }
+
+    @keyframes pulse-center {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    .mind-map-center > div {
+        animation: pulse-center 3s ease-in-out infinite;
     }
 
     .mind-map-category-hub {
-        width: 90%;
-        margin: 2rem auto 1rem;
-        flex-direction: row;
-        gap: 1rem;
-        justify-content: flex-start;
-        padding: 0.5rem;
-        border-radius: var(--radius);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        animation: float 8s ease-in-out infinite, fadeIn 0.5s ease-out forwards;
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)); /* Set by inline style */
+        margin: -45px 0 0 -45px;
+    }
+    
+    .hub-icon-container {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: hsl(var(--card));
+        border: 2px solid currentColor;
+        box-shadow: 0 0 15px currentColor, inset 0 0 10px currentColor;
+        transition: all 0.3s ease;
     }
     
     .hub-label {
-        margin-top: 0;
-        font-size: 1.2rem;
+        margin-top: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: hsl(var(--foreground));
+        text-shadow: 0 0 5px hsl(var(--background));
+        white-space: nowrap;
+    }
+    
+    .mind-map-node {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        background-color: hsl(var(--card) / 0.8);
+        backdrop-filter: blur(4px);
+        border: 1px solid currentColor;
+        z-index: 4;
+        animation: float 10s ease-in-out infinite, fadeIn 0.5s ease-out forwards;
+        opacity: 0;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px hsl(var(--background) / 0.5);
+        transform: translate(var(--tx), var(--ty)); /* Set by inline style */
+        margin: -15px 0 0 -40px; /* Adjust for node size */
     }
 
-    .skills-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        justify-content: center;
-        width: 90%;
-        margin: 0 auto;
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
     }
-    .mind-map-node {
-        width: auto;
-        margin: 0;
+    
+    @keyframes float {
+        0% { transform: translate(var(--tx), var(--ty)); }
+        25% { transform: translate(calc(var(--tx) + 5px), calc(var(--ty) - 10px)); }
+        50% { transform: translate(calc(var(--tx) - 5px), calc(var(--ty) + 5px)); }
+        75% { transform: translate(calc(var(--tx) + 10px), calc(var(--ty) + 0px)); }
+        100% { transform: translate(var(--tx), var(--ty)); }
     }
+    
+    .mind-map-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+    
+    .mind-map-line line {
+        stroke: hsl(var(--border));
+        stroke-width: 1.5px;
+        stroke-dasharray: 4, 4;
+        animation: dash 30s linear infinite;
+    }
+    
+    .mind-map-line line.skill-line {
+        stroke: hsl(var(--border) / 0.6);
+        stroke-width: 1px;
+        stroke-dasharray: 2, 3;
+    }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 1000;
+      }
+    }
+}
+
+
+/* MOBILE STYLES (default) */
+.skills-mobile-view .mind-map-category-hub {
+    position: relative;
+    animation: none;
+    transform: none !important;
+    opacity: 1;
+    width: 100%;
+    margin: 2rem auto 1rem;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: flex-start;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    background: hsl(var(--card));
+    align-items: center;
+}
+
+.skills-mobile-view .hub-icon-container {
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 0 8px currentColor;
+}
+.skills-mobile-view .hub-icon-container > svg {
+    width: 24px;
+    height: 24px;
+}
+
+.skills-mobile-view .hub-label {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto 1rem;
+    padding-left: 0.5rem;
+}
+.skills-mobile-view .mind-map-node {
+    position: relative;
+    animation: none;
+    transform: none !important;
+    opacity: 1;
+    width: auto;
+    margin: 0;
 }
