@@ -16,7 +16,7 @@
 
 .timeline-item {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .timeline-item:last-child {
@@ -26,7 +26,7 @@
 .timeline-icon-container {
     position: absolute;
     left: -32px;
-    top: 0;
+    top: 22px; /* Adjust to center with the trigger */
     z-index: 10;
 }
 
@@ -40,8 +40,28 @@
     backdrop-filter: blur(5px);
 }
 
+.timeline-trigger {
+    padding: 0 !important;
+    width: 100%;
+}
+
+.timeline-trigger svg {
+    margin-left: 1rem;
+}
+
+.timeline-trigger[data-state=open] > .timeline-content {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
+}
+
+.timeline-trigger[data-state=open] svg {
+    transform: rotate(180deg);
+}
+
+
 .timeline-content {
     position: relative;
+    width: 100%;
     padding: 1rem;
     background-color: hsl(var(--card) / 0.6);
     border-radius: var(--radius);
@@ -49,8 +69,18 @@
     transition: all 0.3s ease;
 }
 
-.timeline-content:hover {
+.timeline-trigger:hover .timeline-content {
     border-color: hsl(var(--primary));
     transform: translateY(-2px);
     box-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
+}
+
+.timeline-details-content {
+    position: relative;
+    padding: 1rem 1rem 1rem 1.5rem;
+    margin-top: -0.5rem;
+    border-left: 2px solid hsl(var(--primary) / 0.5);
+    background-color: hsl(var(--background)/0.5);
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
 }
