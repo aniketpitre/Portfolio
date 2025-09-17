@@ -37,7 +37,7 @@ type AppContextType = {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [view, setView] = useState<ViewId>('system_health');
+  const [view, setView] = useState<ViewId>('user_profile');
   const [history, setHistory] = useState<CommandHistory[]>(initialHistory);
   const [isExited, setIsExited] = useState(false);
   const [activePod, setActivePod] = useState<string | null>(null);
