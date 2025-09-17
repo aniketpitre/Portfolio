@@ -1,7 +1,7 @@
 .mind-map-container {
     position: relative;
     width: 100%;
-    min-height: 90vh;
+    min-height: 110vh; /* Increased height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,13 +46,13 @@
 }
 
 /* Positioning for each node */
-.node-1 { top: -80px; left: calc(50% - 150px); animation-delay: 0s; }
-.node-2 { top: 100px; left: calc(50% - 450px); animation-delay: -1s; }
-.node-3 { top: 100px; right: calc(50% - 450px); animation-delay: -2s; }
-.node-4 { top: 320px; left: calc(50% - 550px); animation-delay: -3s; }
-.node-5 { top: 320px; right: calc(50% - 550px); animation-delay: -4s; }
-.node-6 { top: 520px; left: calc(50% - 350px); animation-delay: -5s; }
-.node-7 { top: 520px; right: calc(50% - 350px); animation-delay: -6s; }
+.node-1 { top: 5%; left: calc(50% - 150px); animation-delay: 0s; } /* Programming */
+.node-2 { top: 25%; left: calc(50% - 480px); animation-delay: -1s; } /* SysAdmin */
+.node-3 { top: 25%; right: calc(50% - 480px); animation-delay: -2s; } /* Cloud */
+.node-4 { top: 50%; left: calc(50% - 580px); animation-delay: -3s; } /* Databases */
+.node-5 { top: 50%; right: calc(50% - 580px); animation-delay: -4s; } /* Creative */
+.node-6 { top: 75%; left: calc(50% - 400px); animation-delay: -5s; } /* Soft Skills */
+.node-7 { top: 75%; right: calc(50% - 400px); animation-delay: -6s; } /* Hobbies */
 
 
 .mind-map-line {
@@ -79,13 +79,13 @@
 }
 
 /* Line endpoints need to match node positions */
-.line-1 { x2: 50%; y2: calc(50% - 200px); }
-.line-2 { x2: calc(50% - 300px); y2: calc(50% - 80px); }
-.line-3 { x2: calc(50% + 300px); y2: calc(50% - 80px); }
-.line-4 { x2: calc(50% - 400px); y2: calc(50% + 140px); }
-.line-5 { x2: calc(50% + 400px); y2: calc(50% + 140px); }
-.line-6 { x2: calc(50% - 200px); y2: calc(50% + 340px); }
-.line-7 { x2: calc(50% + 200px); y2: calc(50% + 340px); }
+.line-1 { x2: 50%; y2: calc(50% - 220px); }
+.line-2 { x2: calc(50% - 330px); y2: calc(50% - 100px); }
+.line-3 { x2: calc(50% + 330px); y2: calc(50% - 100px); }
+.line-4 { x2: calc(50% - 430px); y2: calc(50% + 80px); }
+.line-5 { x2: calc(50% + 430px); y2: calc(50% + 80px); }
+.line-6 { x2: calc(50% - 250px); y2: calc(50% + 280px); }
+.line-7 { x2: calc(50% + 250px); y2: calc(50% + 280px); }
 
 
 /* Responsive adjustments */
@@ -93,21 +93,21 @@
     .mind-map-node {
         width: 250px;
     }
-    .node-1 { top: -50px; left: calc(50% - 125px); }
-    .node-2 { top: 120px; left: calc(50% - 350px); }
-    .node-3 { top: 120px; right: calc(50% - 350px); }
-    .node-4 { top: 320px; left: calc(50% - 400px); }
-    .node-5 { top: 320px; right: calc(50% - 400px); }
-    .node-6 { top: 480px; left: calc(50% - 250px); }
-    .node-7 { top: 480px; right: calc(50% - 250px); }
+    .node-1 { top: 10%; left: calc(50% - 125px); }
+    .node-2 { top: 30%; left: calc(50% - 380px); }
+    .node-3 { top: 30%; right: calc(50% - 380px); }
+    .node-4 { top: 50%; left: calc(50% - 450px); }
+    .node-5 { top: 50%; right: calc(50% - 450px); }
+    .node-6 { top: 70%; left: calc(50% - 300px); }
+    .node-7 { top: 70%; right: calc(50% - 300px); }
 
-    .line-1 { y2: calc(50% - 160px); }
-    .line-2 { x2: calc(50% - 225px); y2: calc(50% - 50px); }
-    .line-3 { x2: calc(50% + 225px); y2: calc(50% - 50px); }
-    .line-4 { x2: calc(50% - 275px); y2: calc(50% + 150px); }
-    .line-5 { x2: calc(50% + 275px); y2: calc(50% + 150px); }
-    .line-6 { x2: calc(50% - 125px); y2: calc(50% + 310px); }
-    .line-7 { x2: calc(50% + 125px); y2: calc(50% + 310px); }
+    .line-1 { y2: calc(50% - 180px); }
+    .line-2 { x2: calc(50% - 255px); y2: calc(50% - 70px); }
+    .line-3 { x2: calc(50% + 255px); y2: calc(50% - 70px); }
+    .line-4 { x2: calc(50% - 325px); y2: calc(50% + 80px); }
+    .line-5 { x2: calc(50% + 325px); y2: calc(50% + 80px); }
+    .line-6 { x2: calc(50% - 175px); y2: calc(50% + 230px); }
+    .line-7 { x2: calc(50% + 175px); y2: calc(50% + 230px); }
 }
 
 
