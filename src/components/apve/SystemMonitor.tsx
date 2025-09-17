@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Cpu, Server, Network, MemoryStick, ShieldCheck, User, GraduationCap, Mail, BotMessageSquare } from 'lucide-react';
+import { Cpu, Server, Network, MemoryStick, ShieldCheck, User, GraduationCap, Mail, BotMessageSquare, Wrench } from 'lucide-react';
 import { useAppContext } from '@/context/AppContext';
 import { useInterval } from '@/hooks/use-interval';
 import { cn } from '@/lib/utils';
@@ -14,6 +14,7 @@ const daemons = [
   { id: 'auditd', name: 'auditd.service', icon: BotMessageSquare, label: 'Experience' },
   { id: 'education', name: 'education.log', icon: GraduationCap, label: 'Education' },
   { id: 'credentials', name: 'credentials.manager', icon: GraduationCap, label: 'Credentials' },
+  { id: 'skills', name: 'skills.conf', icon: Wrench, label: 'Skills' },
   { id: 'contact', name: 'sendmail.service', icon: Mail, label: 'Contact' },
 ];
 

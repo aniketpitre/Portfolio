@@ -1,5 +1,6 @@
 
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { BrainCircuit, Cpu, Database, Server, Users } from 'lucide-react';
 
 export const userProfileImage = PlaceHolderImages.find(p => p.id === 'user-profile');
 
@@ -122,18 +123,35 @@ export const AWARDS_CERTIFICATIONS = [
     }
 ];
 
-export const SKILLS = [
-  { id: 'sec', name: 'Cybersecurity' },
-  { id: 'pentest', name: 'Penetration Testing' },
-  { id: 'cloud', name: 'Cloud Technologies' },
-  { id: 'docker', name: 'Docker' },
-  { id: 'k8s', name: 'Kubernetes' },
-  { id: 'python', name: 'Python' },
-  { id: 'ts', name: 'TypeScript' },
-  { id: 'react', name: 'React/Next.js' },
-  { id: 'sql', name: 'SQL' },
-  { id: 'ml', name: 'Machine Learning' },
-];
+export const SKILLS_DATA = {
+    technical: [
+      {
+        title: 'Programming & Web',
+        icon: BrainCircuit,
+        skills: ['Python', 'C', 'C++', 'JavaScript', 'PHP', 'React', 'Next.js', 'TypeScript', 'HTML/CSS'],
+      },
+      {
+        title: 'System Administration',
+        icon: Cpu,
+        skills: ['Linux (RHCSA coursework)', 'Windows Server', 'Shell Scripting', 'Security Hardening'],
+      },
+      {
+        title: 'Cloud & DevOps',
+        icon: Server,
+        skills: ['Git', 'Docker', 'Kubernetes', 'CI/CD', 'Cloud Technologies'],
+      },
+      {
+        title: 'Databases',
+        icon: Database,
+        skills: ['Oracle', 'MySQL', 'MongoDB', 'SQL'],
+      },
+    ],
+    soft: {
+      title: 'Soft Skills',
+      icon: Users,
+      skills: ['Analytical', 'Collaborator', 'Leader', 'Adaptable', 'Problem-Solving', 'Communication'],
+    },
+};
 
 
 export const initialHistory = [

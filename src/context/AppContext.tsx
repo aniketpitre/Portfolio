@@ -18,6 +18,7 @@ export type ViewId =
   | 'auditd'
   | 'education'
   | 'credentials'
+  | 'skills'
   | 'contact'
   | 'help';
 

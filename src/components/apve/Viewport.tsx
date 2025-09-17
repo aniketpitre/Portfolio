@@ -10,6 +10,7 @@ import { CredentialsManagerView } from './views/CredentialsManagerView';
 import { ContactView } from './views/ContactView';
 import { HelpView } from './views/HelpView';
 import { EducationView } from './views/EducationView';
+import { SkillsView } from './views/SkillsView';
 
 const renderView = (view: string) => {
   switch (view) {
@@ -25,6 +26,8 @@ const renderView = (view: string) => {
         return <EducationView />;
     case 'credentials':
         return <CredentialsManagerView />;
+    case 'skills':
+        return <SkillsView />;
     case 'contact':
         return <ContactView />;
     case 'help':
