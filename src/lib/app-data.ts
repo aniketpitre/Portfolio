@@ -104,19 +104,21 @@ export const AWARDS_CERTIFICATIONS = [
     },
     {
         id: 'award-tcs-team',
-        type: 'badge',
+        type: 'featured-badge',
         title: 'Best Team Award',
         issuer: 'Tata Consultancy Services',
         year: '2023',
-        description: 'Recognized for outstanding collaboration and performance within the system administration team.'
+        description: 'Recognized for outstanding collaboration and performance within the system administration team.',
+        abstract: 'This award acknowledges the team\'s synergy, efficiency, and collective success in achieving project milestones and exceeding performance metrics. It highlights a commitment to shared goals and mutual support.'
     },
     {
         id: 'award-tcs-special',
-        type: 'badge',
+        type: 'featured-badge',
         title: 'Special Achievement Award',
         issuer: 'Tata Consultancy Services',
         year: '2022',
-        description: 'Awarded for exceptional contributions and dedication to improving enterprise security posture.'
+        description: 'Awarded for exceptional contributions and dedication to improving enterprise security posture.',
+        abstract: 'This individual honor recognizes proactive identification of critical vulnerabilities and the implementation of robust security measures that significantly enhanced the integrity and resilience of the company\'s digital infrastructure.'
     }
 ];
 
