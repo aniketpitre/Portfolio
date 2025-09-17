@@ -1,0 +1,56 @@
+.timeline-container {
+    position: relative;
+    padding-left: 50px; /* Space for the icons and line */
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 20px; /* Center the line */
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background-color: hsl(var(--border));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-icon-container {
+    position: absolute;
+    left: -32px;
+    top: 0;
+    z-index: 10;
+}
+
+.timeline-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.timeline-content {
+    position: relative;
+    padding: 1rem;
+    background-color: hsl(var(--card) / 0.6);
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    border-color: hsl(var(--primary));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
+}
