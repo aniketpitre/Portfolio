@@ -6,16 +6,17 @@ import { useAppContext } from '@/context/AppContext';
 import { useInterval } from '@/hooks/use-interval';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const daemons = [
-  { id: 'user_profile', name: 'user_profile.daemon', icon: User, label: 'About Me' },
-  { id: 'kubelet', name: 'kubelet.service', icon: Server, label: 'Projects' },
-  { id: 'auditd', name: 'auditd.service', icon: BotMessageSquare, label: 'Experience' },
-  { id: 'education', name: 'education.log', icon: GraduationCap, label: 'Education' },
-  { id: 'credentials', name: 'credentials.manager', icon: GraduationCap, label: 'Credentials' },
-  { id: 'skills', name: 'skills.conf', icon: Wrench, label: 'Skills' },
-  { id: 'contact', name: 'sendmail.service', icon: Mail, label: 'Contact' },
-  { id: 'system_health', name: 'system_health.service', icon: ShieldCheck, label: 'System Health' },
+  { id: 'user_profile', name: 'user_profile.daemon', icon: User, label: 'About Me', description: 'Displays user biography and social links.' },
+  { id: 'kubelet', name: 'kubelet.service', icon: Server, label: 'Projects', description: 'Manages and displays project pods.' },
+  { id: 'auditd', name: 'auditd.service', icon: BotMessageSquare, label: 'Experience', description: 'Logs professional career events.' },
+  { id: 'education', name: 'education.log', icon: GraduationCap, label: 'Education', description: 'Shows academic history and trajectory.' },
+  { id: 'credentials', name: 'credentials.manager', icon: GraduationCap, label: 'Credentials', description: 'Manages awards and certifications.' },
+  { id: 'skills', name: 'skills.conf', icon: Wrench, label: 'Skills', description: 'Lists technical and soft skills.' },
+  { id: 'contact', name: 'sendmail.service', icon: Mail, label: 'Contact', description: 'Opens a secure message relay.' },
+  { id: 'system_health', name: 'system_health.service', icon: ShieldCheck, label: 'System Health', description: 'Monitors system performance metrics.' },
 ];
 
 const StatBar = ({ icon: Icon, label, value, unit }: { icon: React.ElementType, label: string, value: number, unit: string }) => (
@@ -59,24 +60,32 @@ export default function SystemMonitor() {
 
       <div className="flex-1 space-y-2 overflow-y-auto">
         <h2 className="text-sm font-semibold text-muted-foreground">RUNNING DAEMONS</h2>
-        {daemons.map(daemon => (
-          <button
-            key={daemon.id}
-            onClick={() => setView(daemon.id as any)}
-            className={cn(
-              "w-full flex items-center gap-3 p-2 rounded-md text-left text-sm transition-colors",
-              view === daemon.id
-                ? 'bg-primary/80 text-primary-foreground'
-                : 'hover:bg-primary/20 text-muted-foreground hover:text-foreground'
-            )}
-          >
-            <daemon.icon size={16} className={cn(view === daemon.id ? "text-accent" : "")} />
-            <div className="flex-1 truncate">
-              <p className="font-medium">{daemon.label}</p>
-              <p className="text-xs text-muted-foreground/80">{daemon.name}</p>
-            </div>
-          </button>
-        ))}
+        <TooltipProvider>
+            {daemons.map(daemon => (
+              <Tooltip key={daemon.id} delayDuration={0}>
+                  <TooltipTrigger asChild>
+                    <button
+                        onClick={() => setView(daemon.id as any)}
+                        className={cn(
+                        "w-full flex items-center gap-3 p-2 rounded-md text-left text-sm transition-colors",
+                        view === daemon.id
+                            ? 'bg-primary/80 text-primary-foreground'
+                            : 'hover:bg-primary/20 text-muted-foreground hover:text-foreground'
+                        )}
+                    >
+                        <daemon.icon size={16} className={cn(view === daemon.id ? "text-accent" : "")} />
+                        <div className="flex-1 truncate">
+                        <p className="font-medium">{daemon.label}</p>
+                        <p className="text-xs text-muted-foreground/80">{daemon.name}</p>
+                        </div>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right" className="font-sans">
+                      <p>{daemon.description}</p>
+                  </TooltipContent>
+              </Tooltip>
+            ))}
+        </TooltipProvider>
       </div>
       
       <div className="text-xs text-muted-foreground">
