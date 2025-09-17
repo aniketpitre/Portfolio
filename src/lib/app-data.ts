@@ -100,6 +100,22 @@ export const AWARDS_CERTIFICATIONS = [
         year: '2022',
         description: 'Awarded "Best Paper" for research on "A Study on the Effectiveness of Machine Learning Algorithms in the Detection of SQL Injection Attacks."',
         abstract: 'This research evaluates the performance of various machine learning classifiers—including Support Vector Machines, Naive Bayes, and Random Forests—in identifying SQL injection vulnerabilities. By analyzing patterns in HTTP requests, the study demonstrates the high efficacy of ML-based approaches over traditional signature-based methods, proposing a more dynamic and resilient defense mechanism against evolving cyber threats.'
+    },
+    {
+        id: 'award-tcs-team',
+        type: 'badge',
+        title: 'Best Team Award',
+        issuer: 'Tata Consultancy Services',
+        year: '2023',
+        description: 'Recognized for outstanding collaboration and performance within the system administration team.'
+    },
+    {
+        id: 'award-tcs-special',
+        type: 'badge',
+        title: 'Special Achievement Award',
+        issuer: 'Tata Consultancy Services',
+        year: '2022',
+        description: 'Awarded for exceptional contributions and dedication to improving enterprise security posture.'
     }
 ];
 
