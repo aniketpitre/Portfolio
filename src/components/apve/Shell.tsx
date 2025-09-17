@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -52,14 +53,14 @@ export default function Shell() {
           {history.map((item) => (
             <div key={item.id}>
               <div className="flex items-center">
-                <span className="text-accent">guest@apitre.io:~$</span>
+                <span className="text-accent">guest@aniketpitre:~$</span>
                 <span className="ml-2">{item.command}</span>
               </div>
               <div className="leading-snug">{item.output}</div>
             </div>
           ))}
           <form onSubmit={handleCommand} className="flex items-center">
-            <label htmlFor="shell-input" className="text-accent">guest@apitre.io:~$</label>
+            <label htmlFor="shell-input" className="text-accent">guest@aniketpitre:~$</label>
             <input
               id="shell-input"
               ref={inputRef}
