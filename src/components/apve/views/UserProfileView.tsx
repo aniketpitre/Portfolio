@@ -23,8 +23,8 @@ export function UserProfileView() {
                       src={userProfileImage.imageUrl}
                       alt={userProfileImage.description}
                       data-ai-hint={userProfileImage.imageHint}
-                      width={200}
-                      height={200}
+                      width={160}
+                      height={160}
                       className="rounded-full border-4 border-primary shadow-lg"
                     />
                   )}

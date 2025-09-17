@@ -1,6 +1,6 @@
 export const AvatarIcon = () => (
-    <div className="w-[200px] h-[200px] rounded-full bg-secondary flex items-center justify-center border-4 border-accent shadow-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="180" height="180" className="relative top-1">
+    <div className="w-[160px] h-[160px] rounded-full bg-secondary flex items-center justify-center border-4 border-accent shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="144" height="144" className="relative top-1">
             <defs>
                 <clipPath id="clip">
                     <circle cx="100" cy="100" r="90"/>
