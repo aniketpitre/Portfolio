@@ -52,10 +52,10 @@ export const PROJECTS = [
         status: 'Idle',
     },
     {
-      id: 'portfolio-cli',
-      name: 'APVE Environment',
-      description: 'This very portfolio. A fully interactive, simulated command-line environment showcasing expertise in UI/UX, system design, and frontend development.',
-      techStack: ['Next.js', 'TypeScript', 'TailwindCSS'],
+      id: 'k8s-validator',
+      name: 'AI K8s Validator',
+      description: 'An interactive AI-powered demo that validates if a Kubernetes pod\'s tech stack is appropriate for its stated purpose. Powered by Genkit.',
+      techStack: ['Next.js', 'TypeScript', 'Genkit', 'AI/ML'],
       status: 'Running',
     },
   ];

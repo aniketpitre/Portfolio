@@ -1,5 +1,6 @@
+
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PROJECTS } from '@/lib/app-data';
 import { Server, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -23,7 +24,7 @@ const Pod = ({ project, isActive, onClick }: { project: any, isActive: boolean, 
     <div
       onClick={onClick}
       className={cn(
-        'absolute w-40 h-24 rounded-lg transition-all duration-500 cursor-pointer group',
+        'absolute w-48 h-28 rounded-lg transition-all duration-500 cursor-pointer group',
         'hover:scale-110 hover:-translate-y-2',
         isActive ? 'scale-[2.5] z-30' : 'z-10'
       )}
@@ -35,17 +36,17 @@ const Pod = ({ project, isActive, onClick }: { project: any, isActive: boolean, 
       }}
     >
       <div className="absolute inset-0 bg-card border border-border rounded-lg transform transition-transform duration-500 group-hover:translate-z-2">
-        <div className="p-2 h-full flex flex-col justify-between">
+        <div className="p-3 h-full flex flex-col justify-between">
           <div>
-            <p className="text-sm font-bold truncate">{project.name}</p>
+            <p className="text-base font-bold truncate">{project.name}</p>
             <p className="text-xs text-muted-foreground">pod/{project.id}</p>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <div className={cn('w-2 h-2 rounded-full', statusColor)}></div>
-            <p className="text-xs">{project.status}</p>
+            <p className="text-xs font-medium">{project.status}</p>
           </div>
         </div>
-        <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+        <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
       </div>
     </div>
   );
@@ -95,15 +96,15 @@ export function KubeletView() {
 
   const podProjects = PROJECTS.map((p, i) => {
     const numCols = 3;
-    const xPositions = [20, 50, 80]; // in percent
-    const yOffset = 15; // in percent
-    const ySpacing = 30; // in percent
+    const xPositions = [25, 50, 75]; // in percent
+    const yOffset = '15%'; 
+    const ySpacing = '35%';
 
     return {
       ...p,
       pos: {
         x: `${xPositions[i % numCols]}%`,
-        y: `${yOffset + Math.floor(i / numCols) * ySpacing}%`,
+        y: `calc(${yOffset} + ${Math.floor(i / numCols)} * ${ySpacing})`,
       },
     };
   });
