@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Aniket Pitre Virtual Environment (APVE)',
+  title: 'Aniket Pitre | Virtual Environment',
   description: 'Guest-level SSH access to a personal Virtualized Command & Control Environment.',
 };
 

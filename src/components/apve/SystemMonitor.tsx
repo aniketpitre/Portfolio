@@ -45,7 +45,10 @@ export default function SystemMonitor() {
 
   return (
     <aside className="hidden md:flex flex-col w-64 border-r border-border bg-card/20 p-4 space-y-6">
-      <h1 className="font-headline text-lg text-accent text-glow">APVE C&C</h1>
+      <div>
+        <h1 className="font-headline text-xl text-accent text-glow">Aniket Pitre</h1>
+        <p className="text-sm text-muted-foreground">Virtual Environment</p>
+      </div>
       
       <div className="space-y-4">
         <h2 className="text-sm font-semibold text-muted-foreground">SYSTEM STATUS</h2>
