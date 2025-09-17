@@ -1,6 +1,6 @@
 
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { BrainCircuit, Cpu, Database, Server, Users } from 'lucide-react';
+import { BrainCircuit, Cpu, Database, Server, Users, Wrench } from 'lucide-react';
 
 export const userProfileImage = PlaceHolderImages.find(p => p.id === 'user-profile');
 
@@ -16,35 +16,49 @@ His academic background, highlighted by a 'Best Paper' award, underscores his ab
 `;
 
 export const PROJECTS = [
-  {
-    id: 'ransomware-detector',
-    name: 'Ransomware Detector',
-    description: 'A real-time file integrity monitor that uses hashing algorithms to detect and flag unauthorized file modifications, simulating a key defense against ransomware.',
-    techStack: ['Python', 'Hashing', 'File I/O'],
-    status: 'Running',
-  },
-  {
-    id: 'k8s-validator',
-    name: 'K8s Pod Validator',
-    description: 'An AI-powered tool to validate Kubernetes pod configurations. It uses a GenAI model to check if a pod\'s tech stack is appropriate for its described purpose.',
-    techStack: ['Next.js', 'GenAI', 'Zod'],
-    status: 'Running',
-  },
-  {
-    id: 'virtual-tour',
-    name: '3D Virtual Tour',
-    description: 'A proof-of-concept for an immersive 3D tour of a college campus, built with fundamental web technologies and architectural visualization principles.',
-    techStack: ['React', 'JavaScript', 'HTML/CSS'],
-    status: 'Idle',
-  },
-  {
-    id: 'portfolio-cli',
-    name: 'APVE Environment',
-    description: 'This very portfolio. A fully interactive, simulated command-line environment showcasing expertise in UI/UX, system design, and frontend development.',
-    techStack: ['Next.js', 'TypeScript', 'TailwindCSS'],
-    status: 'Running',
-  },
-];
+    {
+      id: 'ransomware-detector',
+      name: 'Smart Ransomware Detector',
+      description: 'Real-time ransomware monitoring with auto backup, quarantine, and alerts. Features disk health charts, GSAP animations, and a dark/light theme.',
+      techStack: ['PHP', 'JavaScript', 'GSAP', 'MySQL'],
+      status: 'Running',
+    },
+    {
+      id: 'encryption-tool',
+      name: 'Advanced Encryption Tool',
+      description: 'A robust tool for AES-256 encryption/decryption using PBKDF2HMAC for key derivation, CBC mode, and PKCS7 padding to ensure data confidentiality.',
+      techStack: ['Python', 'AES-256', 'PBKDF2HMAC', 'Cryptography'],
+      status: 'Running',
+    },
+    {
+        id: 'pen-testing-toolkit',
+        name: 'Penetration Testing Toolkit',
+        description: 'A modular Python framework for security testing, including a TCP port scanner and a demonstration brute-force module.',
+        techStack: ['Python', 'Networking', 'Security'],
+        status: 'Idle',
+    },
+    {
+        id: 'file-integrity-checker',
+        name: 'File Integrity Checker',
+        description: 'Monitors file integrity using SHA-256 hashes stored in a JSON database to detect tampering or unauthorized modifications.',
+        techStack: ['Python', 'SHA-256', 'File I/O'],
+        status: 'Running',
+    },
+    {
+        id: 'virtual-tour',
+        name: 'KKWIEER Virtual Tour',
+        description: 'An interactive and immersive virtual tour of the MCA department at KKWIEER, built with React to be responsive and scalable.',
+        techStack: ['React', 'JavaScript', 'HTML/CSS'],
+        status: 'Idle',
+    },
+    {
+      id: 'portfolio-cli',
+      name: 'APVE Environment',
+      description: 'This very portfolio. A fully interactive, simulated command-line environment showcasing expertise in UI/UX, system design, and frontend development.',
+      techStack: ['Next.js', 'TypeScript', 'TailwindCSS'],
+      status: 'Running',
+    },
+  ];
 
 export const EXPERIENCE = [
   {
@@ -166,3 +180,16 @@ export const initialHistory = [
     output: `Success. Spawning guest shell... Welcome to 'help' to see available commands.`
   }
 ];
+
+// Note: The 'SKILLS' export below is for the command processor and is different from SKILLS_DATA.
+// It is intentionally simplified for the 'cat' command.
+export const SKILLS = `
+Technical Skills:
+- Programming: Python, C, C++, JavaScript, PHP, React
+- System Admin: Linux (RHCSA coursework), Windows
+- Cloud/DevOps: Git, Docker, Kubernetes
+- Databases: Oracle, MySQL, MongoDB
+
+Soft Skills:
+- Analytical, Collaborator, Leader, Adaptable
+`;

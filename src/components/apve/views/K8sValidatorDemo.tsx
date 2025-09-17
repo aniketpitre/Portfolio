@@ -29,8 +29,8 @@ export function K8sValidatorDemo() {
   } = useForm<FormValues>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      description: 'A simple Nginx web server pod to serve static HTML content.',
-      techStack: 'nginx:1.21, alpine-linux',
+      description: 'A real-time file integrity monitor that uses hashing algorithms to detect and flag unauthorized file modifications.',
+      techStack: 'PHP, JavaScript, MySQL',
     },
   });
 

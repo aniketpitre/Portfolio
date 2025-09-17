@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PROJECTS } from '@/lib/app-data';
 import { Server, Zap, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -92,13 +92,20 @@ export function KubeletView() {
   const { activePod, setActivePod } = useAppContext();
   const [isDeploying, setIsDeploying] = useState(false);
 
-  const podProjects = PROJECTS.map((p, i) => ({
-    ...p,
-    pos: {
-      x: `${(i % 2) * 50 + 15}%`,
-      y: `${Math.floor(i / 2) * 35 + 10}%`,
-    },
-  }));
+  const podProjects = PROJECTS.map((p, i) => {
+    const numCols = 3;
+    const xOffset = 10;
+    const yOffset = 10;
+    const colWidth = (100 - xOffset * 2) / (numCols - 1);
+    
+    return {
+      ...p,
+      pos: {
+        x: `${xOffset + (i % numCols) * colWidth}%`,
+        y: `${yOffset + Math.floor(i / numCols) * 25}%`,
+      },
+    };
+  });
 
   const handlePodClick = (podId: string) => {
     if (activePod === podId) {
@@ -119,7 +126,7 @@ export function KubeletView() {
         <span>Kubernetes Cluster: Pods</span>
       </h1>
       <div
-        className="relative h-[60vh] w-full bg-card rounded-lg border-border p-4 overflow-hidden"
+        className="relative h-[80vh] w-full bg-card rounded-lg border-border p-4 overflow-hidden"
         style={{ perspective: '1000px' }}
       >
         <div className={cn("absolute inset-0 transition-all duration-700", activePod ? 'opacity-20 blur-sm' : 'opacity-100')}>
