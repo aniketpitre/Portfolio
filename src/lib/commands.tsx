@@ -1,7 +1,7 @@
 'use client';
 import type { ReactNode } from 'react';
 import type { AppContextType, ViewId } from '@/context/AppContext';
-import { BIO_CONTENT, PROJECTS, EXPERIENCE, EDUCATION } from './app-data';
+import { BIO_CONTENT, PROJECTS, EXPERIENCE, EDUCATION, AWARDS_CERTIFICATIONS, SKILLS } from './app-data';
 import { HelpView } from '@/components/apve/views/HelpView';
 
 const MOCK_FILESYSTEM: Record<string, Record<string, string | { content: string, view: ViewId }>> = {
@@ -108,7 +108,7 @@ export const processCommand = (
         return { command, output: 
           <div>
             <p className="text-destructive">COMMAND DENIED: Insufficient permissions.</p>
-            <p className="font-code mt-2">&gt; Nice try. Security is a feature, not a bug in this environment. 😉</p>
+            <p className="font-code mt-2">> Nice try. Security is a feature, not a bug in this environment. 😉</p>
           </div>
         };
 

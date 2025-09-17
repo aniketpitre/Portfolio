@@ -76,16 +76,33 @@ export const EDUCATION = [
         year: '2019-2023',
         description: 'Completed a comprehensive B.E. in Computer Science, building a strong foundation in algorithms, data structures, software engineering, and systems architecture.'
     },
+];
+
+export const AWARDS_CERTIFICATIONS = [
     {
         id: 'award-paper',
         type: 'featured-badge',
         title: 'Best Paper Award - ICRTIEA-2022',
         issuer: 'Fr. C. Rodrigues Institute of Technology',
         year: '2022',
-        description: 'Awarded "Best Paper" for research on "A Study on the Effectiveness of Machine Learning Algorithms in the Detection of SQL Injection Attacks." The paper was published in the ICRTIEA-2022 conference proceedings, showcasing advanced research capabilities in cybersecurity.',
+        description: 'Awarded "Best Paper" for research on "A Study on the Effectiveness of Machine Learning Algorithms in the Detection of SQL Injection Attacks."',
         abstract: 'This research evaluates the performance of various machine learning classifiers—including Support Vector Machines, Naive Bayes, and Random Forests—in identifying SQL injection vulnerabilities. By analyzing patterns in HTTP requests, the study demonstrates the high efficacy of ML-based approaches over traditional signature-based methods, proposing a more dynamic and resilient defense mechanism against evolving cyber threats.'
     }
 ];
+
+export const SKILLS = [
+  { id: 'sec', name: 'Cybersecurity' },
+  { id: 'pentest', name: 'Penetration Testing' },
+  { id: 'cloud', name: 'Cloud Technologies' },
+  { id: 'docker', name: 'Docker' },
+  { id: 'k8s', name: 'Kubernetes' },
+  { id: 'python', name: 'Python' },
+  { id: 'ts', name: 'TypeScript' },
+  { id: 'react', name: 'React/Next.js' },
+  { id: 'sql', name: 'SQL' },
+  { id: 'ml', name: 'Machine Learning' },
+];
+
 
 export const initialHistory = [
   {
@@ -96,6 +113,6 @@ export const initialHistory = [
   {
     id: 1,
     command: 'init',
-    output: `Success. Spawning guest shell... Welcome to APVE. Type 'help' to see available commands.`
+    output: `Success. Spawning guest shell... Welcome to 'help' to see available commands.`
   }
 ];
