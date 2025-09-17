@@ -19,14 +19,16 @@ export function UserProfileView() {
               <div className="flip-card-inner">
                 <div className="flip-card-front">
                   {userProfileImage && (
-                    <Image
-                      src={userProfileImage.imageUrl}
-                      alt={userProfileImage.description}
-                      data-ai-hint={userProfileImage.imageHint}
-                      width={160}
-                      height={160}
-                      className="rounded-full border-4 border-primary shadow-lg object-cover"
-                    />
+                    <div className="w-full h-full rounded-full overflow-hidden border-4 border-primary shadow-lg">
+                      <Image
+                        src={userProfileImage.imageUrl}
+                        alt={userProfileImage.description}
+                        data-ai-hint={userProfileImage.imageHint}
+                        width={160}
+                        height={160}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
                   )}
                 </div>
                 <div className="flip-card-back">
