@@ -2,21 +2,20 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { PROJECTS } from '@/lib/app-data';
-import { Server, X } from 'lucide-react';
+import { Server, X, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAppContext } from '@/context/AppContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { K8sValidatorDemo } from './K8sValidatorDemo';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
-// This is a special component to render the whale icon
 const WhaleIcon = () => (
   <svg role="img" viewBox="0 0 24 24" className="w-24 h-24 text-blue-400" fill="currentColor">
     <path d="M6.936 18.293c.276.54.12 1.196-.363 1.545l-1.442 1.05C2.633 22.185 0 20.925 0 18.293c0-2.38 1.938-4.32 4.32-4.32h.568c.81 0 1.58.33 2.14 1.08l-.092 3.24zM22.8 9.6c.72 0 1.2-1.08 1.2-2.4s-.48-2.4-1.2-2.4c-.72 0-1.2 1.08-1.2 2.4s.48 2.4 1.2 2.4zm-1.2-6c.72 0 1.2-.6 1.2-1.2s-.48-1.2-1.2-1.2-1.2.6-1.2 1.2.48 1.2 1.2 1.2zM24 12c0-2.016-.84-3.84-2.4-4.8v3.6c0 .888.336 1.68 1.2 2.4.24.24.48.36.72.6l.48-.84zM19.2 1.2c.72 0 1.2-.6 1.2-1.2s-.48-1.2-1.2-1.2-1.2.6-1.2 1.2.48 1.2 1.2 1.2zm-1.2 1.2c-.72 0-1.2.6-1.2 1.2s.48 1.2 1.2 1.2c.72 0 1.2-.6 1.2-1.2s-.48-1.2-1.2-1.2zm-1.2 1.2c-.72 0-1.2.6-1.2 1.2s.48 1.2 1.2 1.2c.72 0 1.2-.6 1.2-1.2s-.48-1.2-1.2-1.2zM19.116 6c-.528.816-1.332 1.2-2.4 1.2H9.6c-2.304 0-4.44-.84-5.904-2.4C1.2 3.12 0 4.8 0 7.2v1.2C0 10.8.96 13.2 2.4 14.4l1.488-1.08c.528-.384.624-1.08.336-1.68l-1.056-1.872c.48.12.96.12 1.44.12h10.32c1.716 0 3.204-1.008 3.936-2.52.48-.96.72-2.04.72-3.12 0-.24-.012-.48-.024-.72h.012z"/>
   </svg>
 );
-
 
 const Pod = ({ project, isActive, onClick }: { project: any, isActive: boolean, onClick: () => void }) => {
   const statusColor = project.status === 'Running' ? 'bg-green-500' : 'bg-blue-500';
@@ -24,7 +23,7 @@ const Pod = ({ project, isActive, onClick }: { project: any, isActive: boolean, 
     <div
       onClick={onClick}
       className={cn(
-        'absolute w-48 h-28 rounded-lg transition-all duration-500 cursor-pointer group',
+        'absolute w-56 h-32 rounded-lg transition-all duration-500 cursor-pointer group',
         'hover:scale-110 hover:-translate-y-2',
         isActive ? 'scale-[2.5] z-30' : 'z-10'
       )}
@@ -52,36 +51,93 @@ const Pod = ({ project, isActive, onClick }: { project: any, isActive: boolean, 
   );
 };
 
+const deploymentLogs = [
+    { text: 'Starting deployment process for pod...', status: 'pending' },
+    { text: 'Requesting resources from cluster...', status: 'pending' },
+    { text: 'Resource allocation successful.', status: 'success' },
+    { text: 'Pulling container image: aniket-pitre/projects:latest...', status: 'pending' },
+    { text: 'Image pull complete.', status: 'success' },
+    { text: 'Creating container...', status: 'pending' },
+    { text: 'Container created. Attaching storage...', status: 'pending' },
+    { text: 'Storage attached successfully.', status: 'success' },
+    { text: 'Configuring networking...', status: 'pending' },
+    { text: 'Network configured. Pod is now online.', status: 'success' },
+    { text: 'Running health checks...', status: 'pending' },
+    { text: 'Health checks passed. Deployment successful.', status: 'success' },
+];
+
+const DeploymentLogView = ({ onFinished }: { onFinished: () => void }) => {
+    const [logs, setLogs] = useState<{ text: string, status: string }[]>([]);
+    
+    useEffect(() => {
+        let delay = 0;
+        deploymentLogs.forEach((log, index) => {
+            delay += Math.random() * 200 + 50;
+            setTimeout(() => {
+                setLogs(prev => [...prev, log]);
+                if (index === deploymentLogs.length - 1) {
+                    setTimeout(onFinished, 500);
+                }
+            }, delay);
+        });
+    }, [onFinished]);
+
+    return (
+        <div className="bg-black/80 font-code text-xs p-4 rounded-lg h-64">
+            <ScrollArea className="h-full">
+                {logs.map((log, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                        {log.status === 'success' ? <CheckCircle className="h-3 w-3 text-green-400" /> : <div className="h-3 w-3 animate-spin rounded-full border-2 border-dashed border-accent" />}
+                        <p>{log.text}</p>
+                    </div>
+                ))}
+            </ScrollArea>
+        </div>
+    )
+}
+
 const ProjectDetail = ({ project, onClose }: { project: any, onClose: () => void }) => {
-  return (
-    <div className="absolute inset-0 z-40 flex items-center justify-center">
-       <Card className="w-full max-w-2xl bg-background/90 backdrop-blur-sm border-primary animate-in fade-in zoom-in-95">
-        <CardHeader>
-          <div className="flex justify-between items-start">
-            <div>
-              <CardTitle className="text-2xl font-headline text-accent">{project.name}</CardTitle>
-              <CardDescription>deployment/{project.id}</CardDescription>
-            </div>
-            <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4" /></Button>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-muted-foreground">{project.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((tech: string) => (
-              <Badge key={tech} variant="secondary">{tech}</Badge>
-            ))}
-          </div>
-          <div className="border-t border-border pt-4">
-            {project.id === 'k8s-validator' ? <K8sValidatorDemo /> : <p className="text-center text-muted-foreground">Interactive demo would be displayed here.</p>}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
+    const [showContent, setShowContent] = useState(false);
+
+    return (
+        <div className="absolute inset-0 z-40 flex items-center justify-center">
+            <Card className="w-full max-w-2xl bg-background/90 backdrop-blur-sm border-primary animate-in fade-in zoom-in-95">
+                <CardHeader>
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <CardTitle className="text-2xl font-headline text-accent">{project.name}</CardTitle>
+                            <CardDescription>deployment/{project.id}</CardDescription>
+                        </div>
+                        <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4" /></Button>
+                    </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    {!showContent ? <DeploymentLogView onFinished={() => setShowContent(true)} /> : (
+                        <div className="animate-in fade-in space-y-4">
+                            <p className="text-muted-foreground">{project.description}</p>
+                            <div className="flex flex-wrap gap-2">
+                                {project.techStack.map((tech: string) => (
+                                <Badge key={tech} variant="secondary">{tech}</Badge>
+                                ))}
+                            </div>
+                            <div className="border-t border-border pt-4">
+                                {project.id === 'k8s-validator' ? <K8sValidatorDemo /> : <p className="text-center text-muted-foreground">Interactive demo would be displayed here.</p>}
+                            </div>
+                        </div>
+                    )}
+                </CardContent>
+            </Card>
+        </div>
+    );
 };
 
+
 const DeploymentAnimation = ({ onFinished }: { onFinished: () => void }) => {
+    useEffect(() => {
+        const timer = setTimeout(onFinished, 2000);
+        return () => clearTimeout(timer);
+    }, [onFinished]);
+
     return (
         <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm animate-in fade-in">
             <WhaleIcon />
@@ -93,12 +149,13 @@ const DeploymentAnimation = ({ onFinished }: { onFinished: () => void }) => {
 export function KubeletView() {
   const { activePod, setActivePod } = useAppContext();
   const [isDeploying, setIsDeploying] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
 
   const podProjects = PROJECTS.map((p, i) => {
     const numCols = 3;
-    const xPositions = [25, 50, 75]; // in percent
-    const yOffset = '15%'; 
-    const ySpacing = '35%';
+    const xPositions = [20, 50, 80]; // in percent
+    const yOffset = '20%'; 
+    const ySpacing = '45%';
 
     return {
       ...p,
@@ -111,14 +168,23 @@ export function KubeletView() {
 
   const handlePodClick = (podId: string) => {
     if (activePod === podId) {
-        setActivePod(null);
+        setShowDetail(false);
+        setTimeout(() => setActivePod(null), 300);
     } else {
-        setIsDeploying(true);
         setActivePod(podId);
-        setTimeout(() => setIsDeploying(false), 2000); // Animation duration
+        setIsDeploying(true);
+        setTimeout(() => {
+            setIsDeploying(false);
+            setShowDetail(true);
+        }, 2000); // Animation duration
     }
   };
   
+  const handleCloseDetail = () => {
+    setShowDetail(false);
+    setTimeout(() => setActivePod(null), 300);
+  }
+
   const selectedProject = activePod ? podProjects.find(p => p.id === activePod) : null;
 
   return (
@@ -137,9 +203,9 @@ export function KubeletView() {
             ))}
         </div>
         
-        {activePod && isDeploying && <DeploymentAnimation onFinished={() => setIsDeploying(false)} />}
-        {activePod && !isDeploying && selectedProject && (
-          <ProjectDetail project={selectedProject} onClose={() => setActivePod(null)} />
+        {isDeploying && <DeploymentAnimation onFinished={() => {}} />}
+        {showDetail && selectedProject && (
+          <ProjectDetail project={selectedProject} onClose={handleCloseDetail} />
         )}
       </div>
     </div>
