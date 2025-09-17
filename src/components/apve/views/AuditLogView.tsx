@@ -3,9 +3,19 @@
 import { EXPERIENCE } from '@/lib/app-data';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
-import { Terminal } from 'lucide-react';
+import { Terminal, Briefcase, Link } from 'lucide-react';
+import { useAppContext } from '@/context/AppContext';
+import { Button } from '@/components/ui/button';
 
 export function AuditLogView() {
+  const { setView, setActivePod } = useAppContext();
+
+  const handleProjectLink = (projectId: string) => {
+    setView('kubelet');
+    setActivePod(projectId);
+  };
+
+
   return (
     <div>
       <h1 className="font-headline text-2xl text-accent mb-4 flex items-center gap-2">
@@ -26,13 +36,40 @@ export function AuditLogView() {
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <div className="pl-4 border-l-2 border-primary ml-2">
-                  <p className="text-base text-foreground mb-3">{entry.details}</p>
-                  {entry.awards.length > 0 && (
-                     <div className="flex flex-wrap gap-2">
-                        {entry.awards.map(award => (
-                            <Badge key={award} variant="secondary" className="text-accent border-accent/50">{award}</Badge>
+                <div className="pl-4 border-l-2 border-primary ml-2 space-y-4">
+                  <p className="text-base text-foreground whitespace-pre-wrap">{entry.details}</p>
+                  
+                  {entry.projects && entry.projects.length > 0 && (
+                    <div>
+                        <h4 className="font-semibold text-accent/90 mb-2 flex items-center gap-2">
+                            <Briefcase size={16} />
+                            <span>Key Projects</span>
+                        </h4>
+                        <div className="space-y-2">
+                        {entry.projects.map(proj => (
+                            <div key={proj.id}>
+                                <Button
+                                    variant="link"
+                                    className="p-0 h-auto text-base text-foreground hover:text-accent"
+                                    onClick={() => handleProjectLink(proj.id)}
+                                >
+                                    <Link size={14} className="mr-2" />
+                                    {proj.name}
+                                </Button>
+                            </div>
                         ))}
+                        </div>
+                    </div>
+                  )}
+
+                  {entry.awards && entry.awards.length > 0 && (
+                     <div>
+                        <h4 className="font-semibold text-accent/90 mb-2">Accomplishments</h4>
+                        <div className="flex flex-wrap gap-2">
+                            {entry.awards.map(award => (
+                                <Badge key={award} variant="secondary" className="text-accent border-accent/50">{award}</Badge>
+                            ))}
+                        </div>
                      </div>
                   )}
                 </div>

@@ -65,21 +65,37 @@ export const EXPERIENCE = [
     id: 'tcs',
     timestamp: 'Aug-2022-2023',
     level: 'INFO',
-    event: 'USER_ASSIGNED',
+    event: 'ASSIGNMENT_COMPLETED',
     user: 'aniket.pitre',
     role: 'SystemAdmin@TCS',
-    details: 'As a System Administrator, performed comprehensive vulnerability scanning and penetration testing across enterprise systems. Developed and implemented security protocols, contributing to a significant reduction in system vulnerabilities.',
+    details: `Vulnerability Scanning & Management:
+- Conducted regular vulnerability scans on Linux and Windows servers to identify security weaknesses.
+- Applied patches and updates to ensure systems remained secure.
+Security Patching:
+- Managed and implemented security patches across the organization’s infrastructure.
+- Ensured timely remediation of vulnerabilities to reduce risk exposure.
+Compliance Management:
+- Ensured all systems met internal security standards and external compliance regulations.
+- Maintained a rigorous patch management schedule and audited system configurations.
+Collaboration & Reporting:
+- Collaborated with cross-functional teams to resolve identified vulnerabilities.
+- Provided regular reports on the status of security patches and compliance metrics.`,
     awards: ['Best Team Award', 'Special Achievement Award'],
   },
   {
     id: 'codtech',
-    timestamp: 'Jan-2025-2025',
+    timestamp: 'Jan-2025',
     level: 'INFO',
     event: 'TRAINING_COMPLETED',
     user: 'aniket.pitre',
     role: 'Intern@CODTECH',
-    details: 'Completed an intensive internship focused on Cybersecurity and Ethical Hacking. Conducted penetration testing on web applications, identified critical security flaws, and provided detailed reports with remediation strategies.',
+    details: 'Completed an intensive internship focused on Cybersecurity and Ethical Hacking. Conducted penetration testing on web applications, identified critical security flaws, and provided detailed reports with remediation strategies. Key projects developed during this internship are linked below.',
     awards: [],
+    projects: [
+        { id: 'encryption-tool', name: 'Advanced Encryption Tool'},
+        { id: 'pen-testing-toolkit', name: 'Penetration Testing Toolkit'},
+        { id: 'file-integrity-checker', name: 'File Integrity Checker'},
+    ],
   },
 ];
 
