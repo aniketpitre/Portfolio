@@ -1,21 +1,58 @@
 'use client';
 import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Send } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle, XCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
+type FormValues = {
+  email: string;
+  subject: string;
+  message: string;
+};
 
 export function ContactView() {
-    const [email, setEmail] = useState('');
-    const [subject, setSubject] = useState('');
-    const [message, setMessage] = useState('');
+    const { register, handleSubmit, reset } = useForm<FormValues>();
+    const [isLoading, setIsLoading] = useState(false);
+    const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-    const recipientEmail = 'pitreaniket@gmail.com';
+    const onSubmit: SubmitHandler<FormValues> = async (data) => {
+        setIsLoading(true);
+        setStatus(null);
 
-    const generateMailtoLink = () => {
-        const body = encodeURIComponent(message + `\n\nFrom: ${email}`);
-        return `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${body}`;
+        // IMPORTANT: Replace this URL with the one you get from deploying your Google Apps Script.
+        const googleScriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+        try {
+            if (googleScriptUrl === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                throw new Error("Google Apps Script URL is not configured.");
+            }
+
+            const response = await fetch(googleScriptUrl, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Google Apps Script cross-origin requests
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            
+            // Note: with 'no-cors', we can't read the response body, but we can assume success if no network error was thrown.
+            setStatus({ type: 'success', message: 'Message transmitted successfully! I will get back to you shortly.' });
+            reset();
+
+        } catch (error) {
+            console.error('Submission Error:', error);
+            const errorMessage = (error instanceof Error && error.message.includes('not configured')) 
+                ? 'The contact form is not yet connected to a data source.'
+                : 'An error occurred while transmitting the message. Please try again later.';
+            setStatus({ type: 'error', message: errorMessage });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -25,7 +62,7 @@ export function ContactView() {
                 <span>Secure Message Relay</span>
             </h1>
             <div className="max-w-xl mx-auto bg-card p-6 rounded-lg border border-border">
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-2">
                         <Label htmlFor="email">Your Return Address (Email)</Label>
                         <Input 
@@ -34,8 +71,7 @@ export function ContactView() {
                             placeholder="user@domain.com" 
                             required 
                             className="bg-background"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            {...register('email', { required: true })}
                         />
                     </div>
                     <div className="space-y-2">
@@ -46,8 +82,7 @@ export function ContactView() {
                             placeholder="Inquiry / Opportunity" 
                             required 
                             className="bg-background"
-                            value={subject}
-                            onChange={(e) => setSubject(e.target.value)}
+                            {...register('subject', { required: true })}
                         />
                     </div>
                     <div className="space-y-2">
@@ -58,17 +93,26 @@ export function ContactView() {
                             required 
                             rows={6} 
                             className="bg-background"
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
+                            {...register('message', { required: true })}
                         />
                     </div>
-                    <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                        <a href={generateMailtoLink()} >
-                            <Send className="mr-2 h-4 w-4" />
-                            Transmit Securely
-                        </a>
+                    <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90">
+                        {isLoading ? (
+                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Transmitting...</>
+                        ) : (
+                            <><Send className="mr-2 h-4 w-4" /> Transmit Securely</>
+                        )}
                     </Button>
                 </form>
+                {status && (
+                    <Alert variant={status.type === 'success' ? 'default' : 'destructive'} className={`mt-4 ${status.type === 'success' ? 'border-green-500' : ''}`}>
+                      {status.type === 'success' ? <CheckCircle className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}
+                      <AlertTitle>{status.type === 'success' ? 'Success' : 'Error'}</AlertTitle>
+                      <AlertDescription>
+                        {status.message}
+                      </AlertDescription>
+                    </Alert>
+                )}
             </div>
         </div>
     );
