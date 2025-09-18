@@ -43,7 +43,7 @@ export function SkillsView() {
               </div>
               {skills.map((skill, skillIndex) => {
                 const angle = (skillIndex / numSkills) * 2 * Math.PI;
-                const radius = 140 + (numSkills > 6 ? 25 : 0) + (skill.name.length > 10 ? 20 : 0);
+                const radius = 120 + (skill.name.length > 10 ? 15 : 0);
                 const x = Math.cos(angle) * radius;
                 const y = Math.sin(angle) * radius;
 
