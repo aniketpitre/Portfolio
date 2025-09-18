@@ -4,8 +4,17 @@ import { EXPERIENCE } from '@/lib/app-data';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Briefcase } from 'lucide-react';
+import { useAppContext } from '@/context/AppContext';
+import { Button } from '@/components/ui/button';
 
 export function AuditLogView() {
+  const { setView, setActivePod } = useAppContext();
+
+  const handleProjectClick = (projectId: string) => {
+    setView('kubelet');
+    setActivePod(projectId);
+  };
+
   return (
     <div>
       <h1 className="font-headline font-bold text-2xl text-foreground mb-6">Experience</h1>
@@ -30,13 +39,18 @@ export function AuditLogView() {
                               <Briefcase size={16} />
                               <span>Key Projects</span>
                           </h4>
-                          <ul className="list-disc list-inside space-y-1">
+                          <div className="flex flex-col items-start gap-1">
                             {entry.projects.map(proj => (
-                                <li key={proj.id}>
+                                <Button 
+                                  key={proj.id} 
+                                  variant="link" 
+                                  className="p-0 h-auto text-muted-foreground hover:text-primary"
+                                  onClick={() => handleProjectClick(proj.id)}
+                                >
                                     {proj.name}
-                                </li>
+                                </Button>
                             ))}
-                          </ul>
+                          </div>
                       </div>
                     )}
 
