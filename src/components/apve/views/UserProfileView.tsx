@@ -8,20 +8,20 @@ import './UserProfileView.css';
 export function UserProfileView() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-      <div className="md:col-span-1 flex flex-col items-center md:items-start">
-        <div className="mb-4">
+      <div className="md:col-span-1 flex flex-col items-center">
+        <div className="mb-6">
           <AvatarIcon />
         </div>
-        <h1 className="font-headline text-2xl font-bold text-foreground">Aniket Pitre</h1>
-        <div className="mt-4 flex gap-2">
-            <Button variant="outline" size="icon" asChild>
-                <a href="mailto:pitreaniket@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
+        <h1 className="font-headline text-3xl font-bold text-foreground text-center">Aniket Pitre</h1>
+        <div className="mt-4 flex gap-3">
+            <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
+                <a href="mailto:pitreaniket@gmail.com" aria-label="Email"><Mail className="h-5 w-5" /></a>
             </Button>
-            <Button variant="outline" size="icon" asChild>
-                <a href="https://www.linkedin.com/in/aniket-pitre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
+            <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
+                <a href="https://www.linkedin.com/in/aniket-pitre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
             </Button>
-            <Button variant="outline" size="icon" asChild>
-                <a href="https://github.com/aniketpitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-4 w-4" /></a>
+            <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
+                <a href="https://github.com/aniketpitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
             </Button>
         </div>
       </div>

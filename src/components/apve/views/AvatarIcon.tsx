@@ -4,7 +4,7 @@ import './UserProfileView.css';
 
 // A tiny, gray SVG that will serve as a blur-up placeholder
 const placeholderSvg = `
-<svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#333" />
 </svg>
 `;
@@ -18,19 +18,19 @@ const toBase64 = (str: string) =>
 export const AvatarIcon = () => {
     if (!userProfileImage || !professionalProfileImage) {
         return (
-            <div className="w-[160px] h-[160px] rounded-full bg-secondary flex items-center justify-center border-4 border-primary/50 shadow-lg" />
+            <div className="w-[200px] h-[200px] rounded-full bg-secondary flex items-center justify-center border-4 border-primary/50 shadow-lg" />
         );
     }
 
     return (
-        <div className="flip-card">
+        <div className="flip-card large">
             <div className="flip-card-inner">
                 <div className="flip-card-front">
                     <Image
                         src={professionalProfileImage.imageUrl}
                         alt="Aniket Pitre Professional Portrait"
-                        width={160}
-                        height={160}
+                        width={200}
+                        height={200}
                         className="object-cover w-full h-full rounded-full border-4 border-primary/50 shadow-lg"
                         placeholder="blur"
                         blurDataURL={`data:image/svg+xml;base64,${toBase64(placeholderSvg)}`}
@@ -40,8 +40,8 @@ export const AvatarIcon = () => {
                     <Image
                         src={userProfileImage.imageUrl}
                         alt="Aniket Pitre Avatar"
-                        width={160}
-                        height={160}
+                        width={200}
+                        height={200}
                         className="object-cover w-full h-full rounded-full border-4 border-primary/50 shadow-lg"
                     />
                 </div>

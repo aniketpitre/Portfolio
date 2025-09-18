@@ -6,6 +6,11 @@
     cursor: pointer;
 }
 
+.flip-card.large {
+    width: 200px;
+    height: 200px;
+}
+
 .flip-card-inner {
     position: relative;
     width: 100%;
