@@ -24,7 +24,7 @@ export function ContactView() {
         setStatus(null);
 
         // IMPORTANT: Replace this URL with the one you get from deploying your Google Apps Script.
-        const googleScriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzo3fRT59yV8mHIihvdBF-bVgyKHhvyuvVVTtTEgumGgT49WDNHmz7bw284f5mEiRcdFw/exec';
 
         try {
             if (googleScriptUrl === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
