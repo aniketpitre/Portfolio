@@ -30,7 +30,7 @@ const SkillsGraph = () => {
         id: category,
         name: category,
         isCategory: true,
-        val: isMobile ? 20 : 30, // Larger nodes for categories
+        val: isMobile ? 25 : 40, // Larger nodes for categories
         color: SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES]?.color || '#ffffff'
       });
     });
@@ -40,7 +40,7 @@ const SkillsGraph = () => {
         id: skill.name,
         name: skill.name,
         isCategory: false,
-        val: isMobile ? 5 : 8, // Smaller nodes for skills
+        val: isMobile ? 8 : 12, // Smaller nodes for skills
         level: skill.level,
         color: SKILL_CATEGORIES[skill.category as keyof typeof SKILL_CATEGORIES]?.color || '#a9a9a9'
       });
@@ -80,12 +80,12 @@ const SkillsGraph = () => {
   
   const paintNode = useCallback((node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
     const label = node.name;
-    const fontSize = node.isCategory ? 16 / globalScale : 10 / globalScale;
-    ctx.font = `${fontSize}px Inter`;
+    const fontSize = node.isCategory ? 14 / globalScale : 10 / globalScale;
+    ctx.font = `bold ${fontSize}px Inter`;
     
     const isHighlighted = highlightNodes.size === 0 || highlightNodes.has(node);
     
-    ctx.fillStyle = isHighlighted ? node.color : 'rgba(150, 150, 150, 0.5)';
+    ctx.fillStyle = isHighlighted ? node.color : 'rgba(150, 150, 150, 0.6)';
     
     ctx.beginPath();
     ctx.arc(node.x, node.y, node.val, 0, 2 * Math.PI, false);
@@ -93,7 +93,7 @@ const SkillsGraph = () => {
     
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = isHighlighted ? 'white' : 'rgba(200, 200, 200, 0.5)';
+    ctx.fillStyle = 'white'; // Always use white for text to ensure readability
     ctx.fillText(label, node.x, node.y);
 
     node.__bckgDimensions = [ctx.measureText(label).width, fontSize].map(n => n + fontSize * 0.2); // some padding
@@ -119,11 +119,11 @@ const SkillsGraph = () => {
         }}
         onNodeHover={handleNodeHover}
         linkWidth={link => highlightLinks.has(link) ? 2 : 0.5}
-        linkColor={link => highlightLinks.has(link) ? '#ffffff' : '#555555'}
-        linkDirectionalParticles={4}
+        linkColor={() => 'rgba(255,255,255,0.3)'}
+        linkDirectionalParticles={2}
         linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 3 : 0}
         linkDirectionalParticleColor={link => highlightNodes.has(link.source) || highlightNodes.has(link.target) ? 'white' : '#555555'}
-        cooldownTicks={100}
+        cooldownTicks={200}
         onEngineStop={() => fgRef.current?.zoomToFit(400, 100)}
         height={isMobile ? 400 : 600}
       />

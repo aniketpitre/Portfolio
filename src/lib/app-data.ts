@@ -157,13 +157,13 @@ export const AWARDS_CERTIFICATIONS = [
 ];
 
 export const SKILL_CATEGORIES = {
-    'Programming & Web': { icon: BrainCircuit, color: 'text-blue-400' },
-    'Cloud & DevOps': { icon: Server, color: 'text-purple-400' },
-    'System Administration': { icon: Cpu, color: 'text-green-400' },
-    'Databases': { icon: Database, color: 'text-orange-400' },
-    'Creative': { icon: Palette, color: 'text-red-400' },
-    'Soft Skills': { icon: Users, color: 'text-yellow-400' },
-    'Hobbies & Interests': { icon: Gamepad, color: 'text-pink-400' },
+    'Programming & Web': { icon: BrainCircuit, color: '#60a5fa' }, // blue-400
+    'Cloud & DevOps': { icon: Server, color: '#c084fc' }, // purple-400
+    'System Administration': { icon: Cpu, color: '#4ade80' }, // green-400
+    'Databases': { icon: Database, color: '#fb923c' }, // orange-400
+    'Creative': { icon: Palette, color: '#f87171' }, // red-400
+    'Soft Skills': { icon: Users, color: '#facc15' }, // yellow-400
+    'Hobbies & Interests': { icon: Gamepad, color: '#f472b6' }, // pink-400
 };
 
 export const SKILLS_LIST = [
