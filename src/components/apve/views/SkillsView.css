@@ -10,6 +10,7 @@
     padding: 2rem;
     transform-style: preserve-3d;
     overflow: hidden; /* Prevent draggables from going outside */
+    z-index: 1; /* Ensure this container has a stacking context */
 }
 
 .constellation {

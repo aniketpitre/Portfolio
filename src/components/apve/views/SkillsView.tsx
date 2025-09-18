@@ -9,11 +9,11 @@ import './SkillsView.css';
 
 const categoryOrder = [
   'Programming & Web',
-  'System Administration',
   'Cloud & DevOps',
+  'System Administration',
   'Databases',
-  'Soft Skills',
   'Creative',
+  'Soft Skills',
   'Hobbies & Interests',
 ];
 
@@ -37,17 +37,18 @@ export function SkillsView() {
           const skills = skillsByCategory[category];
           const Icon = categoryInfo.icon;
           const numSkills = skills.length;
+          const nodeRef = React.createRef<HTMLDivElement>();
           
           return (
-            <Draggable disabled={isMobile} bounds="parent" key={category}>
-              <div className="constellation" style={{'--cat-index': catIndex} as React.CSSProperties}>
+            <Draggable nodeRef={nodeRef} disabled={isMobile} bounds="parent" key={category}>
+              <div ref={nodeRef} className="constellation" style={{'--cat-index': catIndex} as React.CSSProperties}>
                 <div className="constellation-hub">
                   <Icon className={cn("h-8 w-8", categoryInfo.color)} />
                   <h3 className="constellation-title">{category}</h3>
                 </div>
                 {skills.map((skill, skillIndex) => {
-                  const angleOffset = (Math.random() - 0.5) * (Math.PI / 6); // More randomness
-                  const radiusOffset = Math.random() * 25; // More randomness
+                  const angleOffset = (Math.random() - 0.5) * (Math.PI / 4); // More randomness
+                  const radiusOffset = Math.random() * 30; // More randomness
                   const angle = (skillIndex / numSkills) * 2 * Math.PI + angleOffset;
                   const radius = 90 + (skill.name.length > 10 ? 15 : 0) + radiusOffset;
                   const x = Math.cos(angle) * radius;
