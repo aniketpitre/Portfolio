@@ -115,8 +115,8 @@
 }
 
 /* Specific positioning for constellations - adjusted for better balance */
-.constellation:nth-child(1) { grid-area: 1 / 2; } /* Top middle */
-.constellation:nth-child(2) { grid-area: 1 / 1; } /* Top left */
+.constellation:nth-child(1) { grid-area: 1 / 1; } /* Top left */
+.constellation:nth-child(2) { grid-area: 1 / 2; } /* Top middle */
 .constellation:nth-child(3) { grid-area: 2 / 2; } /* Center */
 .constellation:nth-child(4) { grid-area: 2 / 3; } /* Middle right */
 .constellation:nth-child(5) { grid-area: 3 / 1; } /* Bottom left */
