@@ -1,79 +1,146 @@
 'use client';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { SKILL_CATEGORIES, SKILLS_LIST } from '@/lib/app-data';
-import React, { useState } from 'react';
-import { cn } from '@/lib/utils';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useIsMobile } from '@/hooks/use-mobile';
+import './SkillsView.css';
 
-const categoryOrder = [
-  'Programming & Web',
-  'Cloud & DevOps',
-  'System Administration',
-  'Databases',
-  'Creative',
-  'Soft Skills',
-  'Hobbies & Interests',
-];
+// Dynamically import ForceGraph2D to avoid SSR issues
+import type { ForceGraphProps } from 'react-force-graph-2d';
+let ForceGraph2D: React.ComponentType<ForceGraphProps> | null = null;
+if (typeof window !== 'undefined') {
+  ForceGraph2D = require('react-force-graph-2d').default;
+}
+
+const SkillsGraph = () => {
+  const [graphData, setGraphData] = useState<{ nodes: any[], links: any[] }>({ nodes: [], links: [] });
+  const [highlightNodes, setHighlightNodes] = useState(new Set());
+  const [highlightLinks, setHighlightLinks] = useState(new Set());
+  const [hoverNode, setHoverNode] = useState<any | null>(null);
+
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const nodes: any[] = [];
+    const links: any[] = [];
+
+    Object.keys(SKILL_CATEGORIES).forEach(category => {
+      nodes.push({
+        id: category,
+        name: category,
+        isCategory: true,
+        val: isMobile ? 20 : 30, // Larger nodes for categories
+        color: SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES]?.color || '#ffffff'
+      });
+    });
+
+    SKILLS_LIST.forEach(skill => {
+      nodes.push({
+        id: skill.name,
+        name: skill.name,
+        isCategory: false,
+        val: isMobile ? 5 : 8, // Smaller nodes for skills
+        level: skill.level,
+        color: SKILL_CATEGORIES[skill.category as keyof typeof SKILL_CATEGORIES]?.color || '#a9a9a9'
+      });
+      links.push({
+        source: skill.name,
+        target: skill.category
+      });
+    });
+
+    setGraphData({ nodes, links });
+  }, [isMobile]);
+
+  const handleNodeHover = (node: any | null) => {
+    if ((!node && !highlightNodes.size) || (node && hoverNode === node)) return;
+    
+    highlightNodes.clear();
+    highlightLinks.clear();
+    
+    if (node) {
+      highlightNodes.add(node);
+      // Find neighbors
+      graphData.links.forEach(link => {
+        if (link.source.id === node.id) {
+          highlightNodes.add(link.target);
+          highlightLinks.add(link);
+        } else if (link.target.id === node.id) {
+          highlightNodes.add(link.source);
+          highlightLinks.add(link);
+        }
+      });
+    }
+
+    setHoverNode(node);
+    setHighlightNodes(new Set(highlightNodes));
+    setHighlightLinks(new Set(highlightLinks));
+  };
+  
+  const paintNode = useCallback((node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
+    const label = node.name;
+    const fontSize = node.isCategory ? 16 / globalScale : 10 / globalScale;
+    ctx.font = `${fontSize}px Inter`;
+    
+    const isHighlighted = highlightNodes.size === 0 || highlightNodes.has(node);
+    
+    ctx.fillStyle = isHighlighted ? node.color : 'rgba(150, 150, 150, 0.5)';
+    
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, node.val, 0, 2 * Math.PI, false);
+    ctx.fill();
+    
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = isHighlighted ? 'white' : 'rgba(200, 200, 200, 0.5)';
+    ctx.fillText(label, node.x, node.y);
+
+    node.__bckgDimensions = [ctx.measureText(label).width, fontSize].map(n => n + fontSize * 0.2); // some padding
+  }, [highlightNodes]);
+
+
+  if (!ForceGraph2D) {
+    return <div className="flex items-center justify-center h-full">Loading Skill Graph...</div>;
+  }
+
+  return (
+    <div className="relative w-full h-[60vh] md:h-[70vh] bg-transparent rounded-lg">
+      <ForceGraph2D
+        graphData={graphData}
+        nodeLabel="name"
+        nodeVal="val"
+        nodeCanvasObject={paintNode}
+        nodePointerAreaPaint={(node, color, ctx) => {
+          ctx.fillStyle = color;
+          const bckgDimensions = node.__bckgDimensions;
+          bckgDimensions && ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, bckgDimensions[0], bckgDimensions[1]);
+        }}
+        onNodeHover={handleNodeHover}
+        linkWidth={link => highlightLinks.has(link) ? 2 : 0.5}
+        linkColor={link => highlightLinks.has(link) ? '#ffffff' : '#555555'}
+        linkDirectionalParticles={4}
+        linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 3 : 0}
+        linkDirectionalParticleColor={link => highlightNodes.has(link.source) || highlightNodes.has(link.target) ? 'white' : '#555555'}
+        cooldownTicks={100}
+        onEngineStop={ (fg: any) => fg.zoomToFit(400, 100)}
+        height={isMobile ? 400 : 600}
+      />
+      {hoverNode && (
+        <div className="skill-tooltip">
+          <p className="font-bold">{hoverNode.name}</p>
+          {!hoverNode.isCategory && <p className="text-sm">{hoverNode.level}</p>}
+        </div>
+      )}
+    </div>
+  );
+};
+
 
 export function SkillsView() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
-  const handleCategoryFilter = (category: string) => {
-    setActiveCategory(prev => (prev === category ? null : category));
-  };
-
-  const skillsByCategory = categoryOrder.reduce((acc, category) => {
-    acc[category] = SKILLS_LIST.filter(skill => skill.category === category);
-    return acc;
-  }, {} as Record<string, typeof SKILLS_LIST>);
-  
-
   return (
     <div>
       <h1 className="font-headline font-bold text-2xl text-foreground mb-2">/usr/lib/skills</h1>
-      <p className="text-muted-foreground mb-6">- Skill Matrix</p>
-      
-      <div className="flex flex-wrap gap-2 mb-8 justify-center">
-        {categoryOrder.map(category => (
-          <Button
-            key={category}
-            variant={activeCategory === category ? 'default' : 'outline'}
-            onClick={() => handleCategoryFilter(category)}
-            className="transition-all"
-          >
-            {category}
-          </Button>
-        ))}
-      </div>
-
-      <TooltipProvider>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {SKILLS_LIST.map((skill) => {
-            const Icon = SKILL_CATEGORIES[skill.category as keyof typeof SKILL_CATEGORIES]?.icon;
-            const isDimmed = activeCategory && skill.category !== activeCategory;
-
-            return (
-              <Tooltip key={skill.name} delayDuration={0}>
-                <TooltipTrigger asChild>
-                  <Card className={cn(
-                    "bg-transparent text-center group cursor-pointer transition-all duration-300",
-                    isDimmed ? 'opacity-20' : 'opacity-100 hover:border-primary hover:scale-105'
-                  )}>
-                    <CardContent className="p-4 flex flex-col items-center justify-center gap-2">
-                        {Icon && <Icon className="h-8 w-8 text-primary/80 group-hover:text-primary transition-colors" />}
-                        <p className="text-sm font-medium text-foreground">{skill.name}</p>
-                    </CardContent>
-                  </Card>
-                </TooltipTrigger>
-                <TooltipContent side="top" className="font-sans bg-background text-foreground border-border">
-                  <p>{skill.level}</p>
-                </TooltipContent>
-              </Tooltip>
-            );
-          })}
-        </div>
-      </TooltipProvider>
+      <p className="text-muted-foreground mb-6">- Live Skill Graph. Hover over nodes to explore.</p>
+      <SkillsGraph />
     </div>
   );
 }

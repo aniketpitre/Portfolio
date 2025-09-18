@@ -1,0 +1,19 @@
+.skill-tooltip {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: hsla(var(--background) / 0.8);
+    backdrop-filter: blur(5px);
+    border: 1px solid hsl(var(--border));
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    pointer-events: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
