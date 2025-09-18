@@ -28,15 +28,22 @@ const insights = [
 
 const SystemInsights = () => {
     const [index, setIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     useInterval(() => {
-        setIndex((prev) => (prev + 1) % insights.length);
+        if (!isHovered) {
+            setIndex((prev) => (prev + 1) % insights.length);
+        }
     }, 4000);
   
     const insight = insights[index];
     
     return (
-        <Card className="border-dashed bg-transparent w-full">
+        <Card 
+            className="border-dashed bg-transparent w-full"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <CardHeader>
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Terminal className="h-4 w-4 text-primary" />
