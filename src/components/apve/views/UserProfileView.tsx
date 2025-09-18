@@ -28,7 +28,7 @@ const SystemInsights = () => {
     const insight = insights[index];
     
     return (
-        <Card className="mt-6 border-dashed bg-transparent">
+        <Card className="mt-6 border-dashed bg-transparent w-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Terminal className="h-4 w-4 text-primary" />
@@ -67,7 +67,7 @@ const SkillRadarChart = () => {
   }, 2000);
 
   return (
-      <Card className="mt-8 bg-transparent">
+      <Card className="mt-8 bg-transparent w-full">
           <CardHeader>
               <CardTitle className="text-lg font-headline">Core Competencies</CardTitle>
           </CardHeader>
@@ -109,6 +109,10 @@ export function UserProfileView() {
                 <a href="https://github.com/aniketpitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
             </Button>
         </div>
+        <div className="w-full mt-4">
+            <SkillRadarChart />
+            <SystemInsights />
+        </div>
       </div>
       <div className="md:col-span-2">
           <h2 className="font-headline text-xl font-bold text-foreground mb-4">About Me</h2>
@@ -117,8 +121,6 @@ export function UserProfileView() {
               <p>I focus on learning, experimenting, and applying concepts to solve real-world problems, while continuously expanding my skills across modern IT landscapes. With a vision to grow as a security and cloud-focused professional, I aim to create impactful solutions that blend technology, security, and efficiency.</p>
               <p>My journey so far has been shaped by hands-on experience in system administration, vulnerability management, and cloud-based problem solving, along with a strong drive to keep exploring new technologies.</p>
           </div>
-          <SkillRadarChart />
-          <SystemInsights />
       </div>
     </div>
   );
