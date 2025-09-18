@@ -7,13 +7,24 @@ import Dashboard from '@/components/apve/Dashboard';
 
 export default function Home() {
   const [booting, setBooting] = useState(true);
+  const [showDashboard, setShowDashboard] = useState(false);
 
   const handleBootComplete = () => {
-    setBooting(false);
+    setBooting(false); // This will now just signal the end of the text animation
   };
 
-  if (booting) {
-    return <LoadingSequence onFinished={handleBootComplete} />;
+  const handleEnter = () => {
+    setShowDashboard(true);
+  }
+
+  if (!showDashboard) {
+    return (
+      <LoadingSequence
+        booting={booting}
+        onFinished={handleBootComplete}
+        onEnter={handleEnter}
+      />
+    );
   }
 
   return (

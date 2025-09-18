@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 const sequence = [
   { text: 'Connecting to aniketpitre.com...', delay: 1000 },
@@ -8,7 +10,7 @@ const sequence = [
   { text: 'Welcome.', delay: 1000, className: 'text-primary' },
 ];
 
-export default function LoadingSequence({ onFinished }: { onFinished: () => void }) {
+export default function LoadingSequence({ booting, onFinished, onEnter }: { booting: boolean; onFinished: () => void; onEnter: () => void; }) {
   const [lines, setLines] = useState<{ text: string; className?: string }[]>([]);
   const [showCursor, setShowCursor] = useState(true);
 
@@ -28,16 +30,24 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-background font-code text-sm sm:text-base">
-      <div className="p-4">
+      <div className="p-4 text-center">
         {lines.map((line, index) => (
           <p key={index} className={line.className}>
             {line.text}
           </p>
         ))}
         {showCursor && (
-          <div className="flex items-center">
+          <div className="flex items-center justify-center">
             <p className="text-primary mr-2">guest@aniketpitre:~$</p>
             <span className="animate-blinking-cursor block h-4 w-2 bg-primary"></span>
+          </div>
+        )}
+        {!booting && (
+          <div className="mt-8 animate-in fade-in">
+              <Button onClick={onEnter} variant="outline" size="lg">
+                  Enter Environment
+                  <ArrowRight className="ml-2" />
+              </Button>
           </div>
         )}
       </div>
