@@ -16,7 +16,7 @@ const toBase64 = (str: string) =>
 
 
 export const AvatarIcon = () => {
-    if (!userProfileImage || !professionalProfileImage) {
+    if (!userProfileImage?.imageUrl || !professionalProfileImage?.imageUrl) {
         return (
             <div className="w-[200px] h-[200px] rounded-full bg-secondary flex items-center justify-center border-4 border-primary/50 shadow-lg" />
         );
