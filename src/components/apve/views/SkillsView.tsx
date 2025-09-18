@@ -51,8 +51,8 @@ const SkillDetailCard = ({ skill, onClose }: { skill: Skill, onClose: () => void
             </CardHeader>
             <CardContent>
                 <div className="space-y-2">
-                    <p><strong>Category:</strong> {skill.category}</p>
-                    <p><strong>Proficiency:</strong> <Badge variant="secondary">{skill.level}</Badge></p>
+                    <div><strong>Category:</strong> {skill.category}</div>
+                    <div><strong>Proficiency:</strong> <Badge variant="secondary">{skill.level}</Badge></div>
                 </div>
             </CardContent>
         </Card>
