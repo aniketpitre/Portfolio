@@ -15,6 +15,7 @@
     justify-content: center;
     align-items: center;
     z-index: 10;
+    cursor: pointer;
 }
 
 .constellation-hub {
@@ -33,6 +34,7 @@
     backdrop-filter: blur(5px);
 }
 
+.constellation.expanded .constellation-hub,
 .constellation:hover .constellation-hub {
     transform: scale(1.1);
     box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
@@ -60,7 +62,7 @@
     animation-delay: calc(var(--skill-index) * 0.05s);
 }
 
-.constellation:hover .skill-star {
+.constellation.expanded .skill-star {
     transform: scale(1.1) !important;
     color: hsl(var(--foreground));
     border-color: hsl(var(--primary));
@@ -73,9 +75,10 @@
     transform-origin: 0 0;
     transition: background-color 0.3s ease;
     z-index: -1;
+    height: 1px !important;
 }
 
-.constellation:hover .line-to-skill {
+.constellation.expanded .line-to-skill {
     background-color: hsl(var(--primary) / 0.5);
 }
 
