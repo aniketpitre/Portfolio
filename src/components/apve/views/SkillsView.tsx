@@ -43,13 +43,13 @@ export function SkillsView() {
               </div>
               {skills.map((skill, skillIndex) => {
                 const angle = (skillIndex / numSkills) * 2 * Math.PI;
-                const radius = 100 + (numSkills > 6 ? 20 : 0) + (skill.name.length > 10 ? 15 : 0);
+                const radius = 140 + (numSkills > 6 ? 25 : 0) + (skill.name.length > 10 ? 20 : 0);
                 const x = Math.cos(angle) * radius;
                 const y = Math.sin(angle) * radius;
 
                 return (
                   <div key={skill.name} className="skill-star-container" style={{ transform: `translate(${x}px, ${y}px)` }}>
-                    <div className="skill-star">{skill.name}</div>
+                    <div className="skill-star" style={{'--skill-index': skillIndex} as React.CSSProperties }>{skill.name}</div>
                      <div className="skill-star-line" style={{ transform: `rotate(${angle + Math.PI}rad)` }}></div>
                   </div>
                 );

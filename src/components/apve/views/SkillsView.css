@@ -39,6 +39,8 @@
     backdrop-filter: blur(2px);
     transition: all 0.3s ease;
     z-index: 10;
+    animation: hub-float 6s ease-in-out infinite;
+    animation-delay: calc(var(--cat-index) * 0.5s);
 }
 
 .constellation-title {
@@ -109,7 +111,7 @@
 }
 
 .constellation:hover .skill-star-line {
-    width: 100px; /* Default radius, adjust if needed */
+    width: 140px; /* Default radius, adjust if needed */
 }
 
 /* Specific positioning for constellations */
@@ -123,7 +125,14 @@
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes hub-float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(5px, 5px) rotate(1deg); }
+    50% { transform: translate(0, -5px) rotate(0deg); }
+    75% { transform: translate(-5px, 5px) rotate(-1deg); }
 }
 
 @media (max-width: 1024px) {
@@ -159,6 +168,7 @@
         justify-content: flex-start;
         padding: 0.75rem;
         border-radius: var(--radius);
+        animation: none;
     }
     .constellation-title {
         margin-top: 0;
