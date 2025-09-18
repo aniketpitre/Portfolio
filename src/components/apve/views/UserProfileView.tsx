@@ -13,13 +13,17 @@ import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } fro
 import { AnimatePresence, motion } from 'framer-motion';
 
 const insights = [
-  { category: 'Cyber Security', text: 'The best defense is a good offense... and regular patching.' },
-  { category: 'Linux', text: 'In a world without walls or fences, who needs Windows and Gates?' },
-  { category: 'Cloud', text: 'There is no cloud, it\'s just someone else\'s computer.' },
-  { category: 'Docker', text: 'Docker: "It works on my machine" is now a certified feature.' },
-  { category: 'Kubernetes', text: 'Kubernetes: The final boss of container orchestration. May the YAML be with you.' },
-  { category: 'Code', text: 'Talk is cheap. Show me the code.' },
-  { category: 'Debugging', text: 'Debugging is like being the detective in a crime movie where you are also the murderer.'}
+    { category: 'Cyber Security', text: 'The best defense is a good offense... and regular patching.' },
+    { category: 'Linux', text: 'In a world without walls or fences, who needs Windows and Gates?' },
+    { category: 'Cloud', text: 'There is no cloud, it\'s just someone else\'s computer.' },
+    { category: 'Docker', text: 'Docker: "It works on my machine" is now a certified feature.' },
+    { category: 'Kubernetes', text: 'Kubernetes: The final boss of container orchestration. May the YAML be with you.' },
+    { category: 'Code', text: 'Talk is cheap. Show me the code.' },
+    { category: 'Debugging', text: 'Debugging is like being the detective in a crime movie where you are also the murderer.'},
+    { category: 'Programming', text: 'There are two ways of constructing a software design: One way is to make it so simple that there are obviously no deficiencies, and the other way is to make it so complicated that there are no obvious deficiencies.'},
+    { category: 'AI', text: 'The question of whether a computer can think is no more interesting than the question of whether a submarine can swim.' },
+    { category: 'Hardware', text: 'The number of transistors on a microchip doubles about every two years. Moore\'s Law is a self-fulfilling prophecy.' },
+    { category: 'Security', text: 'Passwords are like underwear: don\'t let people see them, change them very often, and you shouldn\'t share them with strangers.' }
 ];
 
 const SystemInsights = () => {
