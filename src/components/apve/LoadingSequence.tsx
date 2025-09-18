@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
@@ -8,7 +8,7 @@ const sequence = [
   { text: 'Connection established.', delay: 1500 },
   { text: 'Requesting guest-level access...', delay: 1200 },
   { text: 'Authenticating...', delay: 1500 },
-  { text: 'ACCESS GRANTED.', delay: 500, className: 'text-green-500 flex items-center gap-2' },
+  { text: 'ACCESS GRANTED.', delay: 500, className: 'text-green-500 flex items-center justify-center gap-2' },
   { text: 'Loading virtual environment...', delay: 1500 },
   { text: 'Welcome.', delay: 1000, className: 'text-primary' },
 ];
@@ -16,28 +16,36 @@ const sequence = [
 export default function LoadingSequence({ booting, onFinished, onEnter }: { booting: boolean; onFinished: () => void; onEnter: () => void; }) {
   const [lines, setLines] = useState<{ text: string; className?: string }[]>([]);
   const [showCursor, setShowCursor] = useState(true);
+  const sequenceStarted = useRef(false);
 
-  const startSequence = useCallback(() => {
+  useEffect(() => {
+    if (sequenceStarted.current) return;
+    sequenceStarted.current = true;
+
+    const timeouts: NodeJS.Timeout[] = [];
     let currentDelay = 500;
+
     sequence.forEach((item, index) => {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setLines((prev) => [...prev, { text: item.text, className: item.className }]);
         if (index === sequence.length - 1) {
           setShowCursor(false);
-          setTimeout(onFinished, 1000);
+          const finishTimeout = setTimeout(onFinished, 1000);
+          timeouts.push(finishTimeout);
         }
       }, currentDelay);
+      timeouts.push(timeout);
       currentDelay += item.delay;
     });
-  }, [onFinished]);
 
-  useEffect(() => {
-    startSequence();
-  }, [startSequence]);
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
+  }, [onFinished]);
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-background font-code text-sm sm:text-base">
-      <div className="p-4 text-center">
+      <div className="p-4 text-center space-y-2">
         {lines.map((line, index) => (
           <p key={index} className={line.className}>
             {line.text.includes('ACCESS GRANTED') ? <><CheckCircle size={16} />{line.text}</> : line.text}
