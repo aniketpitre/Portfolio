@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Mail, Linkedin, Github, Terminal, RefreshCw } from 'lucide-react';
@@ -9,6 +10,7 @@ import { useInterval } from '@/hooks/use-interval';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const insights = [
   { category: 'Cyber Security', text: 'The best defense is a good offense... and regular patching.' },
@@ -16,33 +18,42 @@ const insights = [
   { category: 'Cloud', text: 'There is no cloud, it\'s just someone else\'s computer.' },
   { category: 'Docker', text: 'Docker: "It works on my machine" is now a certified feature.' },
   { category: 'Kubernetes', text: 'Kubernetes: The final boss of container orchestration. May the YAML be with you.' },
+  { category: 'Code', text: 'Talk is cheap. Show me the code.' },
+  { category: 'Debugging', text: 'Debugging is like being the detective in a crime movie where you are also the murderer.'}
 ];
 
 const SystemInsights = () => {
-    const [index, setIndex] = useState(() => Math.floor(Math.random() * insights.length));
+    const [index, setIndex] = useState(0);
 
-    const nextInsight = () => {
+    useInterval(() => {
         setIndex((prev) => (prev + 1) % insights.length);
-    }
+    }, 4000);
   
     const insight = insights[index];
     
     return (
         <Card className="border-dashed bg-transparent w-full">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardHeader>
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Terminal className="h-4 w-4 text-primary" />
                     <span>System Insights</span>
                 </CardTitle>
-                <Button variant="ghost" size="icon" onClick={nextInsight} className="h-6 w-6">
-                    <RefreshCw className="h-3 w-3" />
-                </Button>
             </CardHeader>
-            <CardContent className="pt-2">
-                <Badge variant="outline" className="mb-2">{insight.category}</Badge>
-                <p className="text-muted-foreground text-sm">
-                  "{insight.text}"
-                </p>
+            <CardContent className="pt-2 h-24" style={{ perspective: '500px' }}>
+              <AnimatePresence mode="wait">
+                  <motion.div
+                    key={index}
+                    initial={{ rotateY: -90, opacity: 0 }}
+                    animate={{ rotateY: 0, opacity: 1 }}
+                    exit={{ rotateY: 90, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Badge variant="outline" className="mb-2">{insight.category}</Badge>
+                    <p className="text-muted-foreground text-sm">
+                      "{insight.text}"
+                    </p>
+                  </motion.div>
+              </AnimatePresence>
             </CardContent>
         </Card>
     );
