@@ -69,7 +69,7 @@ export default function SystemMonitor() {
                         className={cn(
                         "w-full flex items-center gap-3 p-2 rounded-md text-left text-sm transition-colors",
                         view === daemon.id
-                            ? 'bg-primary/10 text-primary-foreground font-semibold'
+                            ? 'bg-accent text-accent-foreground font-semibold'
                             : 'hover:bg-muted text-muted-foreground hover:text-foreground'
                         )}
                     >
