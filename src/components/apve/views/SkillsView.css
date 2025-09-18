@@ -5,7 +5,7 @@
     align-items: center;
     gap: 4rem;
     position: relative;
-    height: 70vh;
+    min-height: 60vh;
     padding: 2rem;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .constellation:hover .skill-star {
-    transform: scale(1.1);
+    transform: scale(1.1) !important;
     color: hsl(var(--foreground));
     border-color: hsl(var(--primary));
     background-color: hsl(var(--secondary));
@@ -89,7 +89,8 @@
     .skills-container {
         height: auto;
         flex-direction: column;
-        gap: 2rem;
+        gap: 4rem;
+        padding-top: 2rem;
     }
     .constellation-hub {
         width: 100px;
