@@ -1,11 +1,11 @@
 'use client';
 import { SKILL_CATEGORIES, SKILLS_LIST } from '@/lib/app-data';
-import { Wrench } from 'lucide-react';
-import React from 'react';
+import React, { createRef } from 'react';
 import { cn } from '@/lib/utils';
-import { useIsMobile } from '@/hooks/use-mobile';
-import Draggable from 'react-draggable';
 import './SkillsView.css';
+import Draggable from 'react-draggable';
+import { useIsMobile } from '@/hooks/use-mobile';
+
 
 const categoryOrder = [
   'Programming & Web',
@@ -23,43 +23,65 @@ export function SkillsView() {
     acc[category] = SKILLS_LIST.filter(skill => skill.category === category);
     return acc;
   }, {} as Record<string, typeof SKILLS_LIST>);
+  
+  const refs = React.useRef<React.RefObject<HTMLDivElement>[]>([]);
+  categoryOrder.forEach((_, i) => {
+    refs.current[i] = createRef<HTMLDivElement>();
+  });
 
   return (
     <div>
-      <h1 className="font-headline text-2xl text-accent mb-8 flex items-center justify-center gap-2">
-        <Wrench />
-        <span>/usr/lib/skills - Skill Constellation</span>
-      </h1>
-      
-      <div className="constellation-container">
+      <h1 className="font-headline font-bold text-2xl text-foreground mb-2">/usr/lib/skills</h1>
+      <p className="text-muted-foreground mb-6">- Skill Constellation</p>
+
+      <div className="skills-container">
         {categoryOrder.map((category, catIndex) => {
           const categoryInfo = SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES];
           const skills = skillsByCategory[category];
           const Icon = categoryInfo.icon;
-          const numSkills = skills.length;
-          const nodeRef = React.createRef<HTMLDivElement>();
+          const nodeRef = refs.current[catIndex];
           
           return (
-            <Draggable nodeRef={nodeRef} disabled={isMobile} bounds="parent" key={category}>
-              <div ref={nodeRef} className="constellation" style={{'--cat-index': catIndex} as React.CSSProperties}>
+            <Draggable disabled={isMobile} nodeRef={nodeRef} key={category}>
+              <div ref={nodeRef} className="constellation">
                 <div className="constellation-hub">
                   <Icon className={cn("h-8 w-8", categoryInfo.color)} />
-                  <h3 className="constellation-title">{category}</h3>
+                  <h3>{category}</h3>
                 </div>
                 {skills.map((skill, skillIndex) => {
-                  const angleOffset = (Math.random() - 0.5) * (Math.PI / 4); // More randomness
-                  const radiusOffset = Math.random() * 30; // More randomness
-                  const angle = (skillIndex / numSkills) * 2 * Math.PI + angleOffset;
-                  const radius = 90 + (skill.name.length > 10 ? 15 : 0) + radiusOffset;
-                  const x = Math.cos(angle) * radius;
-                  const y = Math.sin(angle) * radius;
+                    const angle = (skillIndex / skills.length) * 2 * Math.PI + (Math.random() - 0.5) * 0.2;
+                    const radius = isMobile ? 60 + Math.random() * 10 : 100 + Math.random() * 20;
+                    const x = radius * Math.cos(angle);
+                    const y = radius * Math.sin(angle);
 
-                  return (
-                    <div key={skill.name} className="skill-star-container" style={{ transform: `translate(${x}px, ${y}px)` }}>
-                      <div className="skill-star" style={{'--skill-index': skillIndex} as React.CSSProperties }>{skill.name}</div>
-                      {!isMobile && <div className="skill-star-line" style={{ transform: `rotate(${angle + Math.PI}rad)`, width: `${radius}px` }}></div>}
-                    </div>
-                  );
+                    const lineAngle = Math.atan2(y, x) * (180 / Math.PI);
+                    const lineLength = Math.sqrt(x*x + y*y);
+
+                    return (
+                        <React.Fragment key={skill.name}>
+                            <div
+                                className="skill-star"
+                                style={{
+                                    transform: `translate(${x}px, ${y}px)`,
+                                    '--skill-index': skillIndex,
+                                } as React.CSSProperties}
+                            >
+                                {skill.name}
+                            </div>
+                            {!isMobile && (
+                                <div
+                                className="line-to-skill"
+                                style={{
+                                    width: `${lineLength}px`,
+                                    height: '1px',
+                                    transform: `rotate(${lineAngle}deg)`,
+                                    top: '50%',
+                                    left: '50%',
+                                }}
+                                />
+                            )}
+                        </React.Fragment>
+                    );
                 })}
               </div>
             </Draggable>

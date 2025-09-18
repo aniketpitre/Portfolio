@@ -23,7 +23,6 @@ export function ContactView() {
         setIsLoading(true);
         setStatus(null);
 
-        // IMPORTANT: Replace this URL with the one you get from deploying your Google Apps Script.
         const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzo3fRT59yV8mHIihvdBF-bVgyKHhvyuvVVTtTEgumGgT49WDNHmz7bw284f5mEiRcdFw/exec';
 
         try {
@@ -31,24 +30,23 @@ export function ContactView() {
                 throw new Error("Google Apps Script URL is not configured.");
             }
 
-            const response = await fetch(googleScriptUrl, {
+            await fetch(googleScriptUrl, {
                 method: 'POST',
-                mode: 'no-cors', // Important for Google Apps Script cross-origin requests
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             });
             
-            // Note: with 'no-cors', we can't read the response body, but we can assume success if no network error was thrown.
-            setStatus({ type: 'success', message: 'Message transmitted successfully! I will get back to you shortly.' });
+            setStatus({ type: 'success', message: 'Message sent successfully! I will get back to you shortly.' });
             reset();
 
         } catch (error) {
             console.error('Submission Error:', error);
             const errorMessage = (error instanceof Error && error.message.includes('not configured')) 
                 ? 'The contact form is not yet connected to a data source.'
-                : 'An error occurred while transmitting the message. Please try again later.';
+                : 'An error occurred while sending the message. Please try again later.';
             setStatus({ type: 'error', message: errorMessage });
         } finally {
             setIsLoading(false);
@@ -57,55 +55,54 @@ export function ContactView() {
 
     return (
         <div>
-            <h1 className="font-headline text-2xl text-accent mb-4 flex items-center gap-2">
-                <Mail />
-                <span>Secure Message Relay</span>
-            </h1>
-            <div className="max-w-xl mx-auto bg-card p-6 rounded-lg border border-border">
+            <h1 className="font-headline font-bold text-2xl text-foreground mb-2">Contact Me</h1>
+            <p className="text-muted-foreground mb-6">Have a question or want to work together? Send me a message.</p>
+
+            <div className="max-w-xl mx-auto bg-transparent p-6 rounded-lg">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-2">
-                        <Label htmlFor="email">Your Return Address (Email)</Label>
+                        <Label htmlFor="email">Email</Label>
                         <Input 
                             id="email" 
                             type="email" 
-                            placeholder="user@domain.com" 
+                            placeholder="your.email@example.com" 
                             required 
-                            className="bg-background"
+                            className="bg-background/50"
                             {...register('email', { required: true })}
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="subject">Subject Line</Label>
+                        <Label htmlFor="subject">Subject</Label>
                         <Input 
                             id="subject" 
                             type="text" 
-                            placeholder="Inquiry / Opportunity" 
+                            placeholder="Re: Project Opportunity" 
                             required 
-                            className="bg-background"
+                            className="bg-background/50"
                             {...register('subject', { required: true })}
                         />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="message">Encrypted Message Body</Label>
+                        <Label htmlFor="message">Message</Label>
                         <Textarea 
                             id="message" 
-                            placeholder="Type your message here..." 
+                            placeholder="Your message here..." 
                             required 
                             rows={6} 
-                            className="bg-background"
+                            className="bg-background/50"
                             {...register('message', { required: true })}
                         />
                     </div>
-                    <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90">
+                    <Button type="submit" disabled={isLoading} className="w-full">
                         {isLoading ? (
-                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Transmitting...</>
+                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</>
                         ) : (
-                            <><Send className="mr-2 h-4 w-4" /> Transmit Securely</>
+                            <><Send className="mr-2 h-4 w-4" /> Send Message</>
                         )}
                     </Button>
                 </form>
                 {status && (
-                    <Alert variant={status.type === 'success' ? 'default' : 'destructive'} className={`mt-4 ${status.type === 'success' ? 'border-green-500' : ''}`}>
+                    <Alert variant={status.type === 'success' ? 'default' : 'destructive'} className="mt-4 bg-transparent">
                       {status.type === 'success' ? <CheckCircle className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}
                       <AlertTitle>{status.type === 'success' ? 'Success' : 'Error'}</AlertTitle>
                       <AlertDescription>

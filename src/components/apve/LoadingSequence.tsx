@@ -2,11 +2,10 @@
 import { useState, useEffect } from 'react';
 
 const sequence = [
-  { text: 'Requesting connection to apitre.io...', delay: 1000 },
-  { text: 'Remote host found. Exchanging SSH keys...', delay: 1500 },
-  { text: '[ AUTH_KEY_ACCEPTED ]', delay: 500, className: 'text-green-400' },
-  { text: 'Establishing secure tunnel... Encrypting session with AES-256.', delay: 1500 },
-  { text: 'Success. Spawning guest shell... Welcome to APVE.', delay: 1000, className: 'text-accent' },
+  { text: 'Connecting to aniketpitre.com...', delay: 1000 },
+  { text: 'Connection established.', delay: 1500 },
+  { text: 'Loading environment...', delay: 1500 },
+  { text: 'Welcome.', delay: 1000, className: 'text-primary' },
 ];
 
 export default function LoadingSequence({ onFinished }: { onFinished: () => void }) {
@@ -20,7 +19,7 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
         setLines((prev) => [...prev, { text: item.text, className: item.className }]);
         if (index === sequence.length - 1) {
           setShowCursor(false);
-          setTimeout(onFinished, 1000); // Wait a bit before finishing
+          setTimeout(onFinished, 1000);
         }
       }, currentDelay);
       currentDelay += item.delay;
@@ -28,7 +27,7 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
   }, [onFinished]);
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-black font-code text-sm sm:text-base">
+    <div className="flex h-screen w-full items-center justify-center bg-background font-code text-sm sm:text-base">
       <div className="p-4">
         {lines.map((line, index) => (
           <p key={index} className={line.className}>
@@ -37,7 +36,8 @@ export default function LoadingSequence({ onFinished }: { onFinished: () => void
         ))}
         {showCursor && (
           <div className="flex items-center">
-            <span className="animate-blinking-cursor block h-4 w-2 bg-green-400"></span>
+            <p className="text-primary mr-2">guest@aniketpitre:~$</p>
+            <span className="animate-blinking-cursor block h-4 w-2 bg-primary"></span>
           </div>
         )}
       </div>

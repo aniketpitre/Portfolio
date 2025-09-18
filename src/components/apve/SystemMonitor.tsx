@@ -28,7 +28,7 @@ const StatBar = ({ icon: Icon, label, value, unit }: { icon: React.ElementType, 
             </div>
             <span className="font-mono">{value.toFixed(1)}{unit}</span>
         </div>
-        <Progress value={value} className="h-1 bg-primary/20" />
+        <Progress value={value} className="h-1 bg-secondary" indicatorClassName="bg-primary" />
     </div>
 );
 
@@ -45,21 +45,21 @@ export default function SystemMonitor() {
   }, 2000);
 
   return (
-    <aside className="hidden md:flex flex-col w-64 border-r border-border bg-card/20 p-4 space-y-6">
+    <aside className="hidden md:flex flex-col w-64 border-r border-border bg-background/30 p-4 space-y-6">
       <div>
-        <h1 className="font-headline text-xl text-accent text-glow">Aniket Pitre</h1>
-        <p className="text-sm text-muted-foreground">Virtual Environment</p>
+        <h1 className="font-headline text-xl font-bold text-foreground">Aniket Pitre</h1>
+        <p className="text-sm text-muted-foreground">Software Engineer</p>
       </div>
       
       <div className="space-y-4">
-        <h2 className="text-sm font-semibold text-muted-foreground">SYSTEM STATUS</h2>
+        <h2 className="text-xs font-semibold uppercase text-muted-foreground tracking-wider">System Status</h2>
         <StatBar icon={Cpu} label="CPU" value={cpu} unit="%" />
         <StatBar icon={MemoryStick} label="Memory" value={mem} unit="%" />
         <StatBar icon={Network} label="Network I/O" value={net} unit="KB/s" />
       </div>
 
-      <div className="flex-1 space-y-2 overflow-y-auto">
-        <h2 className="text-sm font-semibold text-muted-foreground">RUNNING DAEMONS</h2>
+      <div className="flex-1 space-y-1 overflow-y-auto">
+        <h2 className="text-xs font-semibold uppercase text-muted-foreground tracking-wider">Views</h2>
         <TooltipProvider>
             {daemons.map(daemon => (
               <Tooltip key={daemon.id} delayDuration={0}>
@@ -69,18 +69,17 @@ export default function SystemMonitor() {
                         className={cn(
                         "w-full flex items-center gap-3 p-2 rounded-md text-left text-sm transition-colors",
                         view === daemon.id
-                            ? 'bg-primary/80 text-primary-foreground'
-                            : 'hover:bg-primary/20 text-muted-foreground hover:text-foreground'
+                            ? 'bg-primary/10 text-primary-foreground font-semibold'
+                            : 'hover:bg-muted text-muted-foreground hover:text-foreground'
                         )}
                     >
-                        <daemon.icon size={16} className={cn(view === daemon.id ? "text-accent" : "")} />
+                        <daemon.icon size={16} />
                         <div className="flex-1 truncate">
-                        <p className="font-medium">{daemon.label}</p>
-                        <p className="text-xs text-muted-foreground/80">{daemon.name}</p>
+                          <p>{daemon.label}</p>
                         </div>
                     </button>
                   </TooltipTrigger>
-                  <TooltipContent side="right" className="font-sans">
+                  <TooltipContent side="right" className="font-sans bg-background text-foreground border-border">
                       <p>{daemon.description}</p>
                   </TooltipContent>
               </Tooltip>
@@ -88,10 +87,9 @@ export default function SystemMonitor() {
         </TooltipProvider>
       </div>
       
-      <div className="text-xs text-muted-foreground">
-        <p>IP: 10.1.1.5</p>
-        <p>User: guest</p>
-        <p>Uptime: {Math.floor(Date.now() / 1000 / 60)}m</p>
+      <div className="text-xs text-muted-foreground font-mono">
+        <p>IP: 127.0.0.1</p>
+        <p>USER: guest</p>
       </div>
     </aside>
   );

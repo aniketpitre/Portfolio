@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -41,26 +40,26 @@ export default function Shell() {
 
   return (
     <div
-      className="relative h-1/3 md:h-1/4 min-h-[150px] border-t-2 border-primary/50 bg-background/80 backdrop-blur-sm font-code text-sm text-foreground"
+      className="relative h-1/3 md:h-1/4 min-h-[150px] border-t border-border bg-background/80 font-code text-sm text-foreground"
       onClick={handleContainerClick}
     >
-      <div className="absolute left-2 top-2 z-10 flex items-center gap-2 text-xs text-accent">
+      <div className="absolute left-2 top-2 z-10 flex items-center gap-2 text-xs text-muted-foreground">
         <Terminal size={16} />
-        <span>APVE SHELL</span>
+        <span>SHELL</span>
       </div>
       <ScrollArea className="h-full w-full" ref={scrollAreaRef}>
         <div className="p-4 pt-8">
           {history.map((item) => (
             <div key={item.id}>
               <div className="flex items-center">
-                <span className="text-accent">guest@aniketpitre:~$</span>
+                <span className="text-primary">guest@aniketpitre:~$</span>
                 <span className="ml-2">{item.command}</span>
               </div>
               <div className="leading-snug">{item.output}</div>
             </div>
           ))}
           <form onSubmit={handleCommand} className="flex items-center">
-            <label htmlFor="shell-input" className="text-accent">guest@aniketpitre:~$</label>
+            <label htmlFor="shell-input" className="text-primary">guest@aniketpitre:~$</label>
             <input
               id="shell-input"
               ref={inputRef}
