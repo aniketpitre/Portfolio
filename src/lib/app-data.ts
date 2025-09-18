@@ -1,3 +1,4 @@
+
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BrainCircuit, Cpu, Database, Server, Users, Wrench, Camera, Film, Gamepad, Palette } from 'lucide-react';
 
@@ -106,25 +107,25 @@ export const EDUCATION_HISTORY = [
         id: 'pg-mca',
         institution: 'K.K. Wagh Institute of Engineering (PG-MCA)',
         degree: 'Post-Graduate MCA',
-        description: 'Advanced studies in computer applications and software development.',
+        description: 'Pursuing a Master of Computer Applications with a focus on advanced computing concepts, including AI, cybersecurity, and cloud technologies. This program involves intensive, hands-on lab work and project-based learning.',
         years: '2024 - Present',
-        details: 'Current CGPA: 7.77',
+        details: 'Key Coursework: Advanced Data Structures, AI & Machine Learning, Network Security, Cloud Computing. Current CGPA: 7.77',
     },
     {
         id: 'bba-ca',
         institution: 'BYK College',
         degree: 'BBA-CA',
-        description: 'Foundation in business administration with a focus on computer applications.',
+        description: 'Completed a Bachelor of Business Administration in Computer Applications, blending management principles with technical skills. The curriculum provided a strong foundation in programming, database management, and business analytics.',
         years: '2019 – 2022',
-        details: 'Final CGPA: 8.95',
+        details: 'Developed a strong aptitude for bridging the gap between technical solutions and business objectives. Final CGPA: 8.95',
     },
     {
         id: 'hsc',
         institution: 'Bhonsala Military Junior College',
         degree: 'HSC Commerce',
-        description: 'Higher secondary education in commerce stream.',
+        description: 'Completed higher secondary education with a focus on commerce, accounts, and economics. This disciplined environment fostered a strong sense of responsibility and analytical thinking.',
         years: '2017 – 2019',
-        details: 'Final Grade: B',
+        details: 'Gained foundational knowledge in financial principles and business operations. Final Grade: B',
     },
 ];
 
