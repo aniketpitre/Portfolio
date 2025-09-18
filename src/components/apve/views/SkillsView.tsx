@@ -2,8 +2,9 @@
 import { SKILL_CATEGORIES, SKILLS_LIST } from '@/lib/app-data';
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import './SkillsView.css';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const categoryOrder = [
   'Programming & Web',
@@ -16,79 +17,63 @@ const categoryOrder = [
 ];
 
 export function SkillsView() {
-  const isMobile = useIsMobile();
-  const [activeConstellation, setActiveConstellation] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const handleCategoryFilter = (category: string) => {
+    setActiveCategory(prev => (prev === category ? null : category));
+  };
 
   const skillsByCategory = categoryOrder.reduce((acc, category) => {
     acc[category] = SKILLS_LIST.filter(skill => skill.category === category);
     return acc;
   }, {} as Record<string, typeof SKILLS_LIST>);
   
-  const handleConstellationClick = (index: number) => {
-    setActiveConstellation(prev => (prev === index ? null : index));
-  };
 
   return (
     <div>
       <h1 className="font-headline font-bold text-2xl text-foreground mb-2">/usr/lib/skills</h1>
-      <p className="text-muted-foreground mb-6">- Skill Constellation</p>
-
-      <div className="skills-container">
-        {categoryOrder.map((category, catIndex) => {
-          const categoryInfo = SKILL_CATEGORIES[category as keyof typeof SKILL_CATEGORIES];
-          const skills = skillsByCategory[category];
-          const Icon = categoryInfo.icon;
-          const isExpanded = activeConstellation === catIndex;
-          
-          return (
-            <div 
-              key={category} 
-              className={cn('constellation', { 'expanded': isExpanded })}
-              onClick={() => handleConstellationClick(catIndex)}
-            >
-              <div className="constellation-hub">
-                <Icon className={cn("h-8 w-8", categoryInfo.color)} />
-                <h3>{category}</h3>
-              </div>
-              {isExpanded && skills.map((skill, skillIndex) => {
-                  const angle = (skillIndex / skills.length) * 2 * Math.PI + (Math.random() - 0.5) * 0.2;
-                  const radius = isMobile ? 70 + Math.random() * 10 : 110 + Math.random() * 20;
-                  const x = radius * Math.cos(angle);
-                  const y = radius * Math.sin(angle);
-
-                  const lineAngle = Math.atan2(y, x) * (180 / Math.PI);
-                  const lineLength = Math.sqrt(x*x + y*y);
-
-                  return (
-                      <React.Fragment key={skill.name}>
-                          <div
-                              className="skill-star"
-                              style={{
-                                  transform: `translate(${x}px, ${y}px)`,
-                                  '--skill-index': skillIndex,
-                              } as React.CSSProperties}
-                          >
-                              {skill.name}
-                          </div>
-                          {!isMobile && (
-                              <div
-                              className="line-to-skill"
-                              style={{
-                                  width: `${lineLength}px`,
-                                  height: '1px',
-                                  transform: `rotate(${lineAngle}deg)`,
-                                  top: '50%',
-                                  left: '50%',
-                              }}
-                              />
-                          )}
-                      </React.Fragment>
-                  );
-              })}
-            </div>
-          );
-        })}
+      <p className="text-muted-foreground mb-6">- Skill Matrix</p>
+      
+      <div className="flex flex-wrap gap-2 mb-8 justify-center">
+        {categoryOrder.map(category => (
+          <Button
+            key={category}
+            variant={activeCategory === category ? 'default' : 'outline'}
+            onClick={() => handleCategoryFilter(category)}
+            className="transition-all"
+          >
+            {category}
+          </Button>
+        ))}
       </div>
+
+      <TooltipProvider>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {SKILLS_LIST.map((skill) => {
+            const Icon = SKILL_CATEGORIES[skill.category as keyof typeof SKILL_CATEGORIES]?.icon;
+            const isDimmed = activeCategory && skill.category !== activeCategory;
+
+            return (
+              <Tooltip key={skill.name} delayDuration={0}>
+                <TooltipTrigger asChild>
+                  <Card className={cn(
+                    "bg-transparent text-center group cursor-pointer transition-all duration-300",
+                    isDimmed ? 'opacity-20' : 'opacity-100 hover:border-primary hover:scale-105'
+                  )}>
+                    <CardContent className="p-4 flex flex-col items-center justify-center gap-2">
+                        {Icon && <Icon className="h-8 w-8 text-primary/80 group-hover:text-primary transition-colors" />}
+                        <p className="text-sm font-medium text-foreground">{skill.name}</p>
+                    </CardContent>
+                  </Card>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="font-sans bg-background text-foreground border-border">
+                  <p>{skill.level}</p>
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </div>
+      </TooltipProvider>
     </div>
   );
 }
