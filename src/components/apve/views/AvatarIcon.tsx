@@ -43,6 +43,8 @@ export const AvatarIcon = () => {
                         width={200}
                         height={200}
                         className="object-cover w-full h-full rounded-full border-4 border-primary/50 shadow-lg"
+                        placeholder="blur"
+                        blurDataURL={`data:image/svg+xml;base64,${toBase64(placeholderSvg)}`}
                     />
                 </div>
             </div>
