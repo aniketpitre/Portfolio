@@ -1,7 +1,7 @@
 .constellation-container {
     position: relative;
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -31,8 +31,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     background: hsl(var(--card) / 0.5);
     border: 1px solid hsl(var(--border));
@@ -111,7 +111,7 @@
 }
 
 .constellation:hover .skill-star-line {
-    width: 120px; /* Default radius, adjust if needed */
+    width: 100px; /* Default radius, adjust if needed */
 }
 
 /* Specific positioning for constellations */
