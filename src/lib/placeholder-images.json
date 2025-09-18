@@ -2,9 +2,15 @@
   "placeholderImages": [
     {
       "id": "user-profile",
-      "description": "A portrait of Aniket Pitre.",
+      "description": "A cartoon-style avatar of Aniket Pitre.",
       "imageUrl": "https://avatars.githubusercontent.com/u/125744373?v=4",
       "imageHint": "man glasses portrait"
+    },
+    {
+      "id": "user-profile-professional",
+      "description": "A professional portrait of Aniket Pitre.",
+      "imageUrl": "https://i.ibb.co/3k1bT8v/aniket-pitre-professional.jpg",
+      "imageHint": "man glasses suit"
     }
   ]
 }

@@ -2,6 +2,8 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BrainCircuit, Cpu, Database, Server, Users, Wrench, Camera, Film, Gamepad, Palette } from 'lucide-react';
 
 export const userProfileImage = PlaceHolderImages.find(p => p.id === 'user-profile');
+export const professionalProfileImage = PlaceHolderImages.find(p => p.id === 'user-profile-professional');
+
 
 export const BIO_CONTENT = `
 > aniket.pitre(uid=1001)

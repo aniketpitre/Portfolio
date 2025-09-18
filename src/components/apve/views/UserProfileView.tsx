@@ -1,19 +1,18 @@
 'use client';
-import { BIO_CONTENT, userProfileImage } from '@/lib/app-data';
+import { BIO_CONTENT } from '@/lib/app-data';
 import { Mail, Linkedin, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AvatarIcon } from './AvatarIcon';
+import './UserProfileView.css';
 
 export function UserProfileView() {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-1 flex flex-col items-center md:items-start">
-          {userProfileImage && (
-            <div className="mb-4">
-              <AvatarIcon />
-            </div>
-          )}
+          <div className="mb-4">
+            <AvatarIcon />
+          </div>
           <h1 className="font-headline text-2xl font-bold text-foreground">Aniket Pitre</h1>
           <p className="text-primary font-medium">Software Engineer</p>
           <div className="mt-4 flex gap-2">
