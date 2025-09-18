@@ -1,12 +1,15 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const sequence = [
-  { text: 'Connecting to aniketpitre.com...', delay: 1000 },
+  { text: 'Connecting to aniketpitre.com (192.168.1.1)...', delay: 1000 },
   { text: 'Connection established.', delay: 1500 },
-  { text: 'Loading environment...', delay: 1500 },
+  { text: 'Requesting guest-level access...', delay: 1200 },
+  { text: 'Authenticating...', delay: 1500 },
+  { text: 'ACCESS GRANTED.', delay: 500, className: 'text-green-500 flex items-center gap-2' },
+  { text: 'Loading virtual environment...', delay: 1500 },
   { text: 'Welcome.', delay: 1000, className: 'text-primary' },
 ];
 
@@ -14,7 +17,7 @@ export default function LoadingSequence({ booting, onFinished, onEnter }: { boot
   const [lines, setLines] = useState<{ text: string; className?: string }[]>([]);
   const [showCursor, setShowCursor] = useState(true);
 
-  useEffect(() => {
+  const startSequence = useCallback(() => {
     let currentDelay = 500;
     sequence.forEach((item, index) => {
       setTimeout(() => {
@@ -28,12 +31,16 @@ export default function LoadingSequence({ booting, onFinished, onEnter }: { boot
     });
   }, [onFinished]);
 
+  useEffect(() => {
+    startSequence();
+  }, [startSequence]);
+
   return (
     <div className="flex h-screen w-full items-center justify-center bg-background font-code text-sm sm:text-base">
       <div className="p-4 text-center">
         {lines.map((line, index) => (
           <p key={index} className={line.className}>
-            {line.text}
+            {line.text.includes('ACCESS GRANTED') ? <><CheckCircle size={16} />{line.text}</> : line.text}
           </p>
         ))}
         {showCursor && (
@@ -45,7 +52,7 @@ export default function LoadingSequence({ booting, onFinished, onEnter }: { boot
         {!booting && (
           <div className="mt-8 animate-in fade-in">
               <Button onClick={onEnter} variant="outline" size="lg">
-                  Enter Environment
+                  View Portfolio
                   <ArrowRight className="ml-2" />
               </Button>
           </div>
