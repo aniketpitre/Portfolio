@@ -52,7 +52,7 @@ export function SkillsView() {
               </div>
               {isExpanded && skills.map((skill, skillIndex) => {
                   const angle = (skillIndex / skills.length) * 2 * Math.PI + (Math.random() - 0.5) * 0.2;
-                  const radius = isMobile ? 60 + Math.random() * 10 : 100 + Math.random() * 20;
+                  const radius = isMobile ? 70 + Math.random() * 10 : 110 + Math.random() * 20;
                   const x = radius * Math.cos(angle);
                   const y = radius * Math.sin(angle);
 
