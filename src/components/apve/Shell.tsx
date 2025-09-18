@@ -16,6 +16,7 @@ export default function Shell() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [height, setHeight] = useState(200); // Default height
   const shellRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -57,62 +58,63 @@ export default function Shell() {
 
 
   return (
-    <div
-      ref={shellRef}
-      style={{ height: `${height}px` }}
-      className={cn(
-        "relative w-full flex-shrink-0 bg-background/80 font-code text-sm text-foreground overflow-hidden",
-        "animate-in fade-in slide-in-from-bottom-10"
-      )}
-      onClick={handleContainerClick}
+    <Draggable
+      nodeRef={dragRef}
+      axis="y"
+      handle=".drag-handle"
+      position={{ x: 0, y: 0 }}
+      onDrag={onDrag}
     >
-      <Draggable
-        axis="y"
-        handle=".drag-handle"
-        position={{ x: 0, y: 0 }}
-        onDrag={onDrag}
-      >
+        <div
+        ref={dragRef}
+        style={{ height: `${height}px` }}
+        className={cn(
+            "relative w-full flex-shrink-0 bg-background/80 font-code text-sm text-foreground overflow-hidden",
+            "animate-in fade-in slide-in-from-bottom-10"
+        )}
+        onClick={handleContainerClick}
+        >
         <div className="drag-handle absolute top-0 left-0 right-0 h-4 cursor-ns-resize flex items-center justify-center border-t border-b border-border bg-background/50 group">
             <GripHorizontal className="text-muted-foreground group-hover:text-primary transition-colors" size={20} />
         </div>
-      </Draggable>
 
-      <div className="absolute left-2 top-5 z-10 flex items-center gap-2 text-xs text-muted-foreground">
-        <Terminal size={16} />
-        <span>SHELL</span>
-      </div>
-      <Button variant="ghost" size="icon" className="absolute right-2 top-4 h-6 w-6 z-10" onClick={toggleShell}>
-        <X size={16} />
-      </Button>
-
-      <ScrollArea className="h-full w-full pt-12" ref={scrollAreaRef}>
-        <div className="p-4">
-          {history.map((item) => (
-            <div key={item.id}>
-              <div className="flex items-center">
-                <span className="text-primary">guest@aniketpitre:~$</span>
-                <span className="ml-2">{item.command}</span>
-              </div>
-              <div className="leading-snug">{item.output}</div>
-            </div>
-          ))}
-          <form onSubmit={handleCommand} className="flex items-center">
-            <label htmlFor="shell-input" className="text-primary">guest@aniketpitre:~$</label>
-            <input
-              id="shell-input"
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="ml-2 w-full flex-1 bg-transparent focus:outline-none"
-              autoComplete="off"
-              spellCheck="false"
-              autoFocus
-              disabled={context.isExited}
-            />
-          </form>
+        <div className="absolute left-2 top-5 z-10 flex items-center gap-2 text-xs text-muted-foreground">
+            <Terminal size={16} />
+            <span>SHELL</span>
         </div>
-      </ScrollArea>
-    </div>
+        <Button variant="ghost" size="icon" className="absolute right-2 top-4 h-6 w-6 z-10" onClick={toggleShell}>
+            <X size={16} />
+        </Button>
+
+        <ScrollArea className="h-full w-full pt-12" ref={scrollAreaRef}>
+            <div className="p-4">
+            {history.map((item) => (
+                <div key={item.id}>
+                <div className="flex items-center">
+                    <span className="text-primary">guest@aniketpitre:~$</span>
+                    <span className="ml-2">{item.command}</span>
+                </div>
+                <div className="leading-snug">{item.output}</div>
+                </div>
+            ))}
+            <form onSubmit={handleCommand} className="flex items-center">
+                <label htmlFor="shell-input" className="text-primary">guest@aniketpitre:~$</label>
+                <input
+                id="shell-input"
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="ml-2 w-full flex-1 bg-transparent focus:outline-none"
+                autoComplete="off"
+                spellCheck="false"
+                autoFocus
+                disabled={context.isExited}
+                />
+            </form>
+            </div>
+        </ScrollArea>
+        </div>
+    </Draggable>
   );
 }
