@@ -1,17 +1,19 @@
 'use client';
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { SKILL_CATEGORIES, SKILLS_LIST } from '@/lib/app-data';
 import { useIsMobile } from '@/hooks/use-mobile';
 import './SkillsView.css';
 
 // Dynamically import ForceGraph2D to avoid SSR issues
 import type { ForceGraphProps } from 'react-force-graph-2d';
+import type { ForceGraphMethods } from 'react-force-graph-2d';
 let ForceGraph2D: React.ComponentType<ForceGraphProps> | null = null;
 if (typeof window !== 'undefined') {
   ForceGraph2D = require('react-force-graph-2d').default;
 }
 
 const SkillsGraph = () => {
+  const fgRef = useRef<ForceGraphMethods>();
   const [graphData, setGraphData] = useState<{ nodes: any[], links: any[] }>({ nodes: [], links: [] });
   const [highlightNodes, setHighlightNodes] = useState(new Set());
   const [highlightLinks, setHighlightLinks] = useState(new Set());
@@ -105,6 +107,7 @@ const SkillsGraph = () => {
   return (
     <div className="relative w-full h-[60vh] md:h-[70vh] bg-transparent rounded-lg">
       <ForceGraph2D
+        ref={fgRef}
         graphData={graphData}
         nodeLabel="name"
         nodeVal="val"
@@ -121,7 +124,7 @@ const SkillsGraph = () => {
         linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 3 : 0}
         linkDirectionalParticleColor={link => highlightNodes.has(link.source) || highlightNodes.has(link.target) ? 'white' : '#555555'}
         cooldownTicks={100}
-        onEngineStop={ (fg: any) => fg.zoomToFit(400, 100)}
+        onEngineStop={() => fgRef.current?.zoomToFit(400, 100)}
         height={isMobile ? 400 : 600}
       />
       {hoverNode && (
