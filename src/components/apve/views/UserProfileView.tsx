@@ -1,9 +1,56 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { BIO_CONTENT } from '@/lib/app-data';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail, Linkedin, Github, GitCommit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AvatarIcon } from './AvatarIcon';
 import './UserProfileView.css';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const activities = [
+  "feat: Implement neural network pruning",
+  "fix: Patch buffer overflow vulnerability",
+  "refactor: Optimize database query performance",
+  "chore: Update CI/CD pipeline dependencies",
+  "docs: Add API endpoint documentation",
+  "style: Reformat codebase with Prettier",
+  "test: Add unit tests for auth service",
+];
+
+const RecentActivity = () => {
+    const [activity, setActivity] = useState(activities[0]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActivity(prev => {
+                const currentIndex = activities.indexOf(prev);
+                const nextIndex = (currentIndex + 1) % activities.length;
+                return activities[nextIndex];
+            });
+        }, 3000); // Change activity every 3 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="mt-6 p-4 border border-dashed border-border rounded-lg bg-background/30 font-code text-sm">
+            <h3 className="text-xs uppercase text-muted-foreground font-semibold mb-3">Recent Activity</h3>
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={activity}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex items-start gap-3"
+                >
+                    <GitCommit className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+                    <p className="text-foreground truncate">{activity}</p>
+                </motion.div>
+            </AnimatePresence>
+        </div>
+    )
+}
 
 export function UserProfileView() {
   return (
@@ -23,9 +70,10 @@ export function UserProfileView() {
                   <a href="https://www.linkedin.com/in/aniket-pitre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
               </Button>
               <Button variant="outline" size="icon" asChild>
-                  <a href="https://github.com/aniket-pitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-4 w-4" /></a>
+                  <a href="https://github.com/aniketpitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-4 w-4" /></a>
               </Button>
           </div>
+          <RecentActivity />
         </div>
         <div className="md:col-span-2">
             <h2 className="font-headline text-xl font-bold text-foreground mb-4">About Me</h2>
