@@ -94,7 +94,12 @@ Security Patching & System Hardening:
     event: 'TRAINING_COMPLETED',
     user: 'aniket.pitre',
     role: 'Cybersecurity Intern @ CODTECH',
-    details: 'Codtech: Completed an internship in Cybersecurity and Ethical Hacking. Conducted penetration testing, identified flaws, and reported on remediation strategies.',
+    details: `Codtech IT Solutions
+Gained hands-on experience in Cybersecurity and Ethical Hacking through a series of practical projects. My work focused on developing defensive security tools and scripts to address common cyber threats.
+Key Responsibilities & Accomplishments:
+- Developed multiple Python-based security tools, including an encryption utility and a file integrity monitor.
+- Conducted simulated penetration tests on internal lab environments to identify vulnerabilities.
+- Documented findings and contributed to reports outlining security weaknesses and recommended remediation strategies.`,
     awards: [],
     projects: [
         { id: 'encryption-tool', name: 'Advanced Encryption Tool'},
