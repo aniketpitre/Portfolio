@@ -32,6 +32,8 @@ type AppContextType = {
   exit: () => void;
   activePod: string | null;
   setActivePod: (podId: string | null) => void;
+  isShellOpen: boolean;
+  toggleShell: () => void;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -41,6 +43,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [history, setHistory] = useState<CommandHistory[]>(initialHistory);
   const [isExited, setIsExited] = useState(false);
   const [activePod, setActivePod] = useState<string | null>(null);
+  const [isShellOpen, setIsShellOpen] = useState(true);
 
   const pushToHistory = useCallback((item: { command: string; output: ReactNode }) => {
     setHistory((prev) => [...prev, { ...item, id: prev.length }]);
@@ -57,6 +60,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const exit = () => setIsExited(true);
+  
+  const toggleShell = () => setIsShellOpen(prev => !prev);
 
   const value = {
     view,
@@ -68,6 +73,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     exit,
     activePod,
     setActivePod,
+    isShellOpen,
+    toggleShell,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
