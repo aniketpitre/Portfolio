@@ -48,7 +48,6 @@ export default function SystemMonitor() {
     <aside className="hidden md:flex flex-col w-64 border-r border-border bg-background/30 p-4 space-y-6">
       <div>
         <h1 className="font-headline text-xl font-bold text-foreground">Aniket Pitre</h1>
-        <p className="text-sm text-muted-foreground">Software Engineer</p>
       </div>
       
       <div className="space-y-4">

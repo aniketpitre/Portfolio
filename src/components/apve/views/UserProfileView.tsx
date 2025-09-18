@@ -14,7 +14,6 @@ export function UserProfileView() {
             <AvatarIcon />
           </div>
           <h1 className="font-headline text-2xl font-bold text-foreground">Aniket Pitre</h1>
-          <p className="text-primary font-medium">Software Engineer</p>
           <div className="mt-4 flex gap-2">
               <Button variant="outline" size="icon" asChild>
                   <a href="mailto:pitreaniket@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
