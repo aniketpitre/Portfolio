@@ -78,11 +78,13 @@ export const EXPERIENCE = [
     role: 'System Administrator @ TCS',
     details: `Tata Consultancy Services
 Vulnerability Scanning & Management:
-- Conducted regular vulnerability scans on Linux and Windows servers.
-- Applied patches and updates to ensure systems remained secure.
-Security Patching:
-- Managed and implemented security patches across the organization’s infrastructure.
-- Ensured timely remediation of vulnerabilities to reduce risk exposure.`,
+- Conducted regular vulnerability scans on diverse enterprise environments, including Linux (RHEL, CentOS) and Windows servers, using industry-standard tools like Nessus and Qualys.
+- Analyzed scan reports to prioritize vulnerabilities based on CVSS scores and business impact.
+- Collaborated with system owners to coordinate and apply patches, ensuring minimal disruption to production services.
+Security Patching & System Hardening:
+- Managed the end-to-end lifecycle of security patching across the organization’s infrastructure.
+- Ensured timely remediation of critical vulnerabilities to reduce risk exposure and maintain compliance with security policies.
+- Implemented system hardening best practices, configuring servers and applications to resist common attack vectors.`,
     awards: ['Best Team Award', 'Special Achievement Award'],
   },
   {
