@@ -4,13 +4,13 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const sequence = [
-  { text: 'Connecting to aniketpitre.com (192.168.1.1)...', delay: 1000 },
-  { text: 'Connection established.', delay: 1500 },
-  { text: 'Requesting guest-level access...', delay: 1200 },
-  { text: 'Authenticating...', delay: 1500 },
-  { text: 'ACCESS GRANTED.', delay: 500, className: 'text-green-500 flex items-center justify-center gap-2' },
-  { text: 'Loading virtual environment...', delay: 1500 },
-  { text: 'Welcome.', delay: 1000, className: 'text-primary' },
+  { text: 'Connecting to aniketpitre.com (192.168.1.1)...', delay: 500 },
+  { text: 'Connection established.', delay: 750 },
+  { text: 'Requesting guest-level access...', delay: 600 },
+  { text: 'Authenticating...', delay: 800 },
+  { text: 'ACCESS GRANTED.', delay: 250, className: 'text-green-500 flex items-center justify-center gap-2' },
+  { text: 'Loading virtual environment...', delay: 750 },
+  { text: 'Welcome.', delay: 500, className: 'text-primary' },
 ];
 
 export default function LoadingSequence({ booting, onFinished, onEnter }: { booting: boolean; onFinished: () => void; onEnter: () => void; }) {
