@@ -17,7 +17,7 @@ export function UserProfileView() {
           <p className="text-primary font-medium">Software Engineer</p>
           <div className="mt-4 flex gap-2">
               <Button variant="outline" size="icon" asChild>
-                  <a href="mailto:aniketpitre2001@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
+                  <a href="mailto:pitreaniket@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
               </Button>
               <Button variant="outline" size="icon" asChild>
                   <a href="https://www.linkedin.com/in/aniket-pitre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
