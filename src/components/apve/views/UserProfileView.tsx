@@ -28,7 +28,7 @@ const SystemInsights = () => {
     const insight = insights[index];
     
     return (
-        <Card className="mt-6 border-dashed bg-transparent w-full">
+        <Card className="border-dashed bg-transparent w-full">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Terminal className="h-4 w-4 text-primary" />
@@ -67,7 +67,7 @@ const SkillRadarChart = () => {
   }, 2000);
 
   return (
-      <Card className="mt-8 bg-transparent w-full">
+      <Card className="bg-transparent w-full">
           <CardHeader>
               <CardTitle className="text-lg font-headline">Core Competencies</CardTitle>
           </CardHeader>
@@ -92,35 +92,37 @@ const SkillRadarChart = () => {
 
 export function UserProfileView() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-      <div className="md:col-span-1 flex flex-col items-center">
-        <div className="mb-6">
-          <AvatarIcon />
+    <div className="flex flex-col gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="md:col-span-1 flex flex-col items-center">
+          <div className="mb-6">
+            <AvatarIcon />
+          </div>
+          <h1 className="font-headline text-3xl font-bold text-foreground text-center">Aniket Pitre</h1>
+          <div className="mt-4 flex gap-3">
+              <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
+                  <a href="mailto:pitreaniket@gmail.com" aria-label="Email"><Mail className="h-5 w-5" /></a>
+              </Button>
+              <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
+                  <a href="https://www.linkedin.com/in/aniket-pitre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
+              </Button>
+              <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
+                  <a href="https://github.com/aniketpitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
+              </Button>
+          </div>
         </div>
-        <h1 className="font-headline text-3xl font-bold text-foreground text-center">Aniket Pitre</h1>
-        <div className="mt-4 flex gap-3">
-            <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
-                <a href="mailto:pitreaniket@gmail.com" aria-label="Email"><Mail className="h-5 w-5" /></a>
-            </Button>
-            <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
-                <a href="https://www.linkedin.com/in/aniket-pitre" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
-            </Button>
-            <Button variant="outline" size="lg" className="h-12 w-12 p-0 rounded-full" asChild>
-                <a href="https://github.com/aniketpitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
-            </Button>
-        </div>
-        <div className="w-full mt-4">
-            <SkillRadarChart />
-            <SystemInsights />
+        <div className="md:col-span-2">
+            <h2 className="font-headline text-xl font-bold text-foreground mb-4">About Me</h2>
+            <div className="text-muted-foreground space-y-4">
+                <p>I’m Aniket Pitre, an MCA postgraduate student driven by curiosity and innovation. My core interests lie in Cybersecurity, Linux, and Cloud technologies, where I enjoy exploring how systems work, how they break, and how to make them stronger.</p>
+                <p>I focus on learning, experimenting, and applying concepts to solve real-world problems, while continuously expanding my skills across modern IT landscapes. With a vision to grow as a security and cloud-focused professional, I aim to create impactful solutions that blend technology, security, and efficiency.</p>
+                <p>My journey so far has been shaped by hands-on experience in system administration, vulnerability management, and cloud-based problem solving, along with a strong drive to keep exploring new technologies.</p>
+            </div>
         </div>
       </div>
-      <div className="md:col-span-2">
-          <h2 className="font-headline text-xl font-bold text-foreground mb-4">About Me</h2>
-          <div className="text-muted-foreground space-y-4">
-              <p>I’m Aniket Pitre, an MCA postgraduate student driven by curiosity and innovation. My core interests lie in Cybersecurity, Linux, and Cloud technologies, where I enjoy exploring how systems work, how they break, and how to make them stronger.</p>
-              <p>I focus on learning, experimenting, and applying concepts to solve real-world problems, while continuously expanding my skills across modern IT landscapes. With a vision to grow as a security and cloud-focused professional, I aim to create impactful solutions that blend technology, security, and efficiency.</p>
-              <p>My journey so far has been shaped by hands-on experience in system administration, vulnerability management, and cloud-based problem solving, along with a strong drive to keep exploring new technologies.</p>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <SkillRadarChart />
+        <SystemInsights />
       </div>
     </div>
   );
