@@ -32,7 +32,7 @@ const StatBar = ({ icon: Icon, label, value, unit }: { icon: React.ElementType, 
     </div>
 );
 
-export default function SystemMonitor() {
+export default function SystemMonitor({ onLinkClick }: { onLinkClick: () => void; }) {
   const { view, setView } = useAppContext();
   const [cpu, setCpu] = useState(25);
   const [mem, setMem] = useState(40);
@@ -44,8 +44,13 @@ export default function SystemMonitor() {
     setNet(Math.random() * 15 + 5);
   }, 2000);
 
+  const handleViewChange = (viewId: any) => {
+    setView(viewId);
+    onLinkClick();
+  };
+
   return (
-    <aside className="hidden md:flex flex-col w-64 border-r border-border bg-background/30 p-4 space-y-6">
+    <aside className="flex flex-col w-full h-full border-r border-border bg-background/30 p-4 space-y-6">
       <div>
         <h1 className="font-headline text-xl font-bold text-foreground">Aniket Pitre</h1>
       </div>
@@ -64,7 +69,7 @@ export default function SystemMonitor() {
               <Tooltip key={daemon.id} delayDuration={0}>
                   <TooltipTrigger asChild>
                     <button
-                        onClick={() => setView(daemon.id as any)}
+                        onClick={() => handleViewChange(daemon.id as any)}
                         className={cn(
                         "w-full flex items-center gap-3 p-2 rounded-md text-left text-sm transition-colors",
                         view === daemon.id

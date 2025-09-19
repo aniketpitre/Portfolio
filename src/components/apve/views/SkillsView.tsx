@@ -42,7 +42,7 @@ const SkillDetailCard = ({ skill, onClose }: { skill: Skill, onClose: () => void
         className="md:col-span-2"
     >
         <Card className="bg-transparent border-dashed relative">
-            <button onClick={onClose} className="absolute top-2 right-2 p-1 rounded-full hover:bg-muted">
+            <button onClick={onClose} className="absolute top-2 right-2 p-1 rounded-full hover:bg-muted md:hidden">
                 <CornerDownLeft className="h-4 w-4 text-muted-foreground" />
             </button>
             <CardHeader>

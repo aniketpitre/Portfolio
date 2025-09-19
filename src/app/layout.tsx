@@ -3,6 +3,7 @@ import { Inter, Source_Code_Pro } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import './globals.css';
+import { AppProvider } from '@/context/AppContext';
 
 export const metadata: Metadata = {
   title: 'Aniket Pitre | Virtual Environment',
@@ -39,8 +40,10 @@ export default function RootLayout({
           fontCode.variable
         )}
       >
-        {children}
-        <Toaster />
+        <AppProvider>
+          {children}
+          <Toaster />
+        </AppProvider>
       </body>
     </html>
   );

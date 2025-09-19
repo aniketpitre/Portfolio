@@ -115,8 +115,8 @@ const SkillRadarChart = () => {
 export function UserProfileView() {
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-        <div className="md:col-span-1 flex flex-col items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="lg:col-span-1 flex flex-col items-center">
           <div className="mb-6">
             <AvatarIcon />
           </div>
@@ -133,7 +133,7 @@ export function UserProfileView() {
               </Button>
           </div>
         </div>
-        <div className="md:col-span-2">
+        <div className="lg:col-span-2">
             <h2 className="font-headline text-xl font-bold text-foreground mb-4">About Me</h2>
             <div className="text-muted-foreground space-y-4">
                 <p>I’m Aniket Pitre, an MCA postgraduate student driven by curiosity and innovation. My core interests lie in Cybersecurity, Linux, and Cloud technologies, where I enjoy exploring how systems work, how they break, and how to make them stronger.</p>
