@@ -234,7 +234,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Certified AI Foundations Associate',
         issuer: 'Oracle',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1B-0g-0o3X-1L-y_4Z-o_6k-F_8d_3S-j`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1CoHYoWGjn5w_LfqpEyBOVc0J4PRNN5Tb`
     },
     {
         id: 'cert-aws-cloud-essential',
@@ -398,3 +398,4 @@ Hobbies:
     
 
     
+
