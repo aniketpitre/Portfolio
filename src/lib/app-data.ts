@@ -170,7 +170,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Microsoft AI Skill Challenge',
         issuer: 'Microsoft',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1CQ5hygZwMTa5zKv6F1l1rLe63ggDRckG`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1CQ5hygZwMTa5zKv6F1l1rLe63ggDRckG'
     },
     {
         id: 'cert-aws-cloud-practitioner',
@@ -194,7 +194,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Project Management Foundations',
         issuer: 'LinkedIn Learning',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1IBOnNH6U6H_8SmX5yH4i9eOmfFFdT3a1`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1IBOnNH6U6H_8SmX5yH4i9eOmfFFdT3a1'
     },
     {
         id: 'cert-cyber-forensics',
@@ -202,7 +202,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cyber Forensics',
         issuer: 'GreatLearning',
         year: '2023',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1HRH6NGuTf8Fp9vj4eBHDaOiNUR39LZOr`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1HRH6NGuTf8Fp9vj4eBHDaOiNUR39LZOr'
     },
     {
         id: 'cert-intro-asset-security',
@@ -210,7 +210,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Introduction to Asset Security',
         issuer: 'GreatLearning',
         year: '2023',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1lLAmp45vyTJDyOXtDjKQZwgQeG3G12yl`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1lLAmp45vyTJDyOXtDjKQZwgQeG3G12yl'
     },
     {
         id: 'cert-cybersecurity-job-sim',
@@ -218,7 +218,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cybersecurity Job Simulation',
         issuer: 'Forage',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1KNEda0ibri0b_bSlYgwefaivDnmJoc32`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1KNEda0ibri0b_bSlYgwefaivDnmJoc32'
     },
     {
         id: 'cert-cyber-threat-intelligence',
@@ -226,7 +226,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cyber Threat Intellgence 101',
         issuer: 'arcX',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1LnEZGYjJor7r8GmsogoUQoG6tNtYyD8z`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1LnEZGYjJor7r8GmsogoUQoG6tNtYyD8z'
     },
     {
         id: 'cert-ai-foundations-associate',
@@ -234,7 +234,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Certified AI Foundations Associate',
         issuer: 'Oracle',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1CoHYoWGjn5w_LfqpEyBOVc0J4PRNN5Tb`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1CoHYoWGjn5w_LfqpEyBOVc0J4PRNN5Tb'
     },
     {
         id: 'cert-aws-cloud-essential',
@@ -242,7 +242,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Getting Started With Cloud Essential',
         issuer: 'AWS',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1UWqkkYUvDxKZtdoCK8_yPeYc6mD_K9kr`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1UWqkkYUvDxKZtdoCK8_yPeYc6mD_K9kr'
     },
     {
         id: 'cert-google-analytics',
@@ -250,7 +250,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Google Analytics Certification',
         issuer: 'Google',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1k-5P-4S_1V-0y-x_2Z-o_3R-j_9Q-s_k`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1EYY4Mt4qbIZ8_V8lZ7_XqTPjuoGKW-zH`
     },
     {
         id: 'cert-osint-intro',
