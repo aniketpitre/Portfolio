@@ -283,6 +283,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'Cisco',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1EGVrgkovuxeAIvkeBjfETSSbJrK0CkUE'
+    },
+    {
+        id: 'cert-mobile-forensic',
+        type: 'certificate',
+        title: 'Mobile Forensic Overview',
+        issuer: 'White Band Associates',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1QNr140-om9RfkH2aAdSEcoFD_JfUYmv6'
     }
 ];
 
