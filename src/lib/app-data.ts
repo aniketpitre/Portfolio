@@ -194,7 +194,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Project Management Foundations',
         issuer: 'LinkedIn Learning',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1Z-0c-G4s5Q4M1-Y_2Z3rJ_X0o9k3V-pI`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1IBOnNH6U6H_8SmX5yH4i9eOmfFFdT3a1`
     },
     {
         id: 'cert-cyber-forensics',
