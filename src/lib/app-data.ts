@@ -211,6 +211,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'GreatLearning',
         year: '2023',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1HRH6NGuTf8Fp9vj4eBHDaOiNUR39LZOr'
+    },
+    {
+        id: 'cert-cybersecurity-job-sim',
+        type: 'certificate',
+        title: 'Cybersecurity Job Simulation',
+        issuer: 'Forage',
+        year: '2025',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1KNEda0ibri0b_bSlYgwefaivDnmJoc32'
     }
 ];
 
