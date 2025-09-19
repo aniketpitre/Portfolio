@@ -7,6 +7,19 @@ import { Award, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
+// A tiny, gray SVG that will serve as a blur-up placeholder
+const placeholderSvg = `
+<svg width="800" height="565" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#333" />
+</svg>
+`;
+
+const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str);
+
+
 export function CredentialsManagerView() {
   return (
     <div>
@@ -53,7 +66,14 @@ export function CredentialsManagerView() {
                           )}
                           {cred.type === 'certificate' && cred.imageUrl && (
                             <div className="relative w-full aspect-[1.414]">
-                               <Image src={cred.imageUrl} alt={`${cred.title} Certificate`} layout="fill" objectFit="contain" />
+                               <Image 
+                                 src={cred.imageUrl} 
+                                 alt={`${cred.title} Certificate`} 
+                                 layout="fill" 
+                                 objectFit="contain"
+                                 placeholder="blur"
+                                 blurDataURL={`data:image/svg+xml;base64,${toBase64(placeholderSvg)}`}
+                                />
                             </div>
                           )}
                       </div>
