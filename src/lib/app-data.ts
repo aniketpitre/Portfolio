@@ -210,7 +210,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Introduction to Asset Security',
         issuer: 'GreatLearning',
         year: '2023',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1V-6H-5O3Z-0y_4y-Q8j_1Z2H-pS_k2dJ`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1lLAmp45vyTJDyOXtDjKQZwgQeG3G12yl`
     },
     {
         id: 'cert-cybersecurity-job-sim',
@@ -393,6 +393,8 @@ Hobbies:
 `;
 
     
+    
+
     
 
     
