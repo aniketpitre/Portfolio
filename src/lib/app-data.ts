@@ -171,6 +171,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'Microsoft',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1CQ5hygZwMTa5zKv6F1l1rLe63ggDRckG'
+    },
+    {
+        id: 'cert-aws-cloud-practitioner',
+        type: 'certificate',
+        title: 'AWS Cloud Practitioner Essentials',
+        issuer: 'AWS',
+        year: '2025',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1as-IPnRbrVhtkabbnJYG-IvbRlKe7KzR'
     }
 ];
 
