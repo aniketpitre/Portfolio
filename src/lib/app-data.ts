@@ -307,6 +307,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'EC Council',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1o9ZxHhseRsPU80H9J2U1WnzrlnEX-Uec'
+    },
+    {
+        id: 'cert-cybersecurity-analyst-job-sim',
+        type: 'certificate',
+        title: 'Cybersecurity Analyst Job Simulation',
+        issuer: 'Forage and Tata',
+        year: '2025',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1aG5tI7kRgJiqlKtmV2ZACpNMIJHS2Uli'
     }
 ];
 
