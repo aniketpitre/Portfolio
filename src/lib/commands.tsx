@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { AppContextType, ViewId } from '@/context/AppContext';
 import { BIO_CONTENT, PROJECTS, EXPERIENCE, SKILLS } from './app-data';
 import { HelpView } from '@/components/apve/views/HelpView';
+import { NeofetchView } from '@/components/apve/views/NeofetchView';
 
 const MOCK_FILESYSTEM: Record<string, Record<string, string | { content: string, view: ViewId }>> = {
   'about': {
@@ -136,6 +137,9 @@ export const processCommand = (
     
     case 'echo':
         return { command, output: args.join(' ') };
+
+    case 'neofetch':
+        return { command, output: <NeofetchView /> };
 
     case 'clear':
       context.clearHistory();
