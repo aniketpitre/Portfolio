@@ -235,6 +235,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'Oracle',
         year: '2025',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1CoHYoWGjn5w_LfqpEyBOVc0J4PRNN5Tb'
+    },
+    {
+        id: 'cert-aws-cloud-essential',
+        type: 'certificate',
+        title: 'Getting Started With Cloud Essential',
+        issuer: 'AWS',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1UWqkkYUvDxKZtdoCK8_yPeYc6mD_K9kr'
     }
 ];
 
