@@ -8,11 +8,17 @@ import { Button } from '../ui/button';
 import { TerminalSquare, Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ExitScreen = () => (
-  <div className="flex h-screen w-full items-center justify-center bg-background font-code text-lg text-foreground">
+  <motion.div 
+    className="flex h-screen w-full items-center justify-center bg-background font-code text-lg text-foreground"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+  >
     <p>Session Closed.</p>
-  </div>
+  </motion.div>
 );
 
 export default function Dashboard() {
@@ -46,19 +52,27 @@ export default function Dashboard() {
 
       <main className="flex flex-1 flex-col overflow-hidden bg-background/80 backdrop-blur-sm">
         <Viewport />
-        {isShellOpen && <Shell />}
+        <Shell />
       </main>
+      <AnimatePresence>
       {!isShellOpen && (
-        <Button 
-          onClick={toggleShell}
-          variant="ghost" 
-          size="sm" 
-          className="absolute bottom-4 left-4 md:left-[calc(16rem+1rem)] z-30 animate-in fade-in"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          className="absolute bottom-4 left-4 md:left-[calc(16rem+1rem)] z-30"
         >
-          <TerminalSquare />
-          <span className="ml-2">Launch Shell</span>
-        </Button>
+          <Button 
+            onClick={toggleShell}
+            variant="ghost" 
+            size="sm" 
+          >
+            <TerminalSquare />
+            <span className="ml-2">Launch Shell</span>
+          </Button>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }

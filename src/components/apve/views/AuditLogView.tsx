@@ -3,10 +3,33 @@
 import { EXPERIENCE } from '@/lib/app-data';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
-import { Briefcase, ChevronDown } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
 import { useAppContext } from '@/context/AppContext';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 import './EducationView.css'; // Reusing the timeline styles
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+    },
+  },
+};
 
 export function AuditLogView() {
   const { setView, setActivePod } = useAppContext();
@@ -18,12 +41,19 @@ export function AuditLogView() {
   };
 
   return (
-    <div>
-      <h1 className="font-headline font-bold text-2xl text-foreground mb-8">Experience</h1>
+    <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+      <motion.h1
+        className="font-headline font-bold text-2xl text-foreground mb-8"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        Experience
+      </motion.h1>
       <div className="timeline-container">
         <Accordion type="single" collapsible className="w-full">
             {EXPERIENCE.map((entry, index) => (
-            <div key={entry.id} className="timeline-item">
+            <motion.div key={entry.id} className="timeline-item" variants={itemVariants}>
                 <div className="timeline-icon-container">
                     <div className="timeline-icon bg-background/50 border border-border">
                         <Briefcase className="h-6 w-6 text-primary" />
@@ -75,10 +105,10 @@ export function AuditLogView() {
                         </div>
                     </AccordionContent>
                 </AccordionItem>
-            </div>
+            </motion.div>
             ))}
         </Accordion>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -11,6 +11,7 @@ import { K8sValidatorDemo } from './K8sValidatorDemo';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Draggable from 'react-draggable';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 const DeploymentLogView = ({ onFinished }: { onFinished: () => void }) => {
@@ -61,8 +62,15 @@ const ProjectDetail = ({ project, onClose }: { project: any, onClose: () => void
 
     return (
         <Draggable nodeRef={nodeRef} disabled={isMobile}>
-            <div ref={nodeRef} className="w-full max-w-2xl">
-                <Card className="bg-background/80 backdrop-blur-md border-border animate-in fade-in zoom-in-95">
+            <motion.div 
+                ref={nodeRef} 
+                className="w-full max-w-2xl"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+            >
+                <Card className="bg-background/80 backdrop-blur-md border-border">
                     <CardHeader>
                         <div className="flex justify-between items-start">
                             <div>
@@ -74,7 +82,11 @@ const ProjectDetail = ({ project, onClose }: { project: any, onClose: () => void
                     </CardHeader>
                     <CardContent className="space-y-4">
                         {!showContent ? <DeploymentLogView onFinished={() => setShowContent(true)} /> : (
-                            <div className="animate-in fade-in space-y-4">
+                            <motion.div 
+                                className="space-y-4"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            >
                                 <p className="text-muted-foreground">{project.description}</p>
                                 <div className="flex flex-wrap gap-2">
                                     {project.techStack.map((tech: string) => (
@@ -93,14 +105,33 @@ const ProjectDetail = ({ project, onClose }: { project: any, onClose: () => void
                                         </div>
                                     )}
                                 </div>
-                            </div>
+                            </motion.div>
                         )}
                     </CardContent>
                 </Card>
-            </div>
+            </motion.div>
         </Draggable>
     );
 };
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
 
 export function KubeletView() {
   const { activePod, setActivePod } = useAppContext();
@@ -121,45 +152,62 @@ export function KubeletView() {
 
   return (
     <div>
-      <h1 className="font-headline text-2xl font-bold text-foreground mb-2">Projects</h1>
-      <p className="text-muted-foreground mb-6">A selection of my projects. Click on a pod to view details.</p>
+        <motion.div 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            <h1 className="font-headline text-2xl font-bold text-foreground mb-2">Projects</h1>
+            <p className="text-muted-foreground mb-6">A selection of my projects. Click on a pod to view details.</p>
+        </motion.div>
       
-      {selectedProject ? (
-        <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/30 animate-in fade-in">
-            <ProjectDetail project={selectedProject} onClose={handleCloseDetail} />
-        </div>
-      ) : (
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in"
+        <AnimatePresence>
+            {selectedProject && (
+                <motion.div 
+                    className="absolute inset-0 flex items-center justify-center z-20 bg-black/30"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <ProjectDetail project={selectedProject} onClose={handleCloseDetail} />
+                </motion.div>
+            )}
+        </AnimatePresence>
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
           {PROJECTS.map(p => {
             const statusColor = p.status === 'Running' ? 'text-green-500' : 'text-yellow-500';
             return (
-              <Card 
-                key={p.id} 
-                className="cursor-pointer bg-transparent hover:border-primary/50 transition-colors" 
-                onClick={() => handlePodClick(p.id)}
-              >
-                <CardHeader>
-                  <CardTitle className="truncate flex items-center gap-2">
-                    <Server size={18} /> {p.name}
-                  </CardTitle>
-                  <CardDescription>pod/{p.id}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground h-16 overflow-hidden text-ellipsis">
-                    {p.description}
-                  </p>
-                  <div className="flex items-center gap-1.5 mt-4 text-xs">
-                    <div className={cn('w-2 h-2 rounded-full', statusColor === 'text-green-500' ? 'bg-green-500' : 'bg-yellow-500')}></div>
-                    <p className={cn("font-medium", statusColor)}>{p.status}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div key={p.id} variants={itemVariants}>
+                <Card 
+                  className="cursor-pointer bg-transparent hover:border-primary/50 transition-colors h-full" 
+                  onClick={() => handlePodClick(p.id)}
+                >
+                  <CardHeader>
+                    <CardTitle className="truncate flex items-center gap-2">
+                      <Server size={18} /> {p.name}
+                    </CardTitle>
+                    <CardDescription>pod/{p.id}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground h-16 overflow-hidden text-ellipsis">
+                      {p.description}
+                    </p>
+                    <div className="flex items-center gap-1.5 mt-4 text-xs">
+                      <div className={cn('w-2 h-2 rounded-full', statusColor === 'text-green-500' ? 'bg-green-500' : 'bg-yellow-500')}></div>
+                      <p className={cn("font-medium", statusColor)}>{p.status}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             )
           })}
-        </div>
-      )}
+        </motion.div>
     </div>
   );
 }

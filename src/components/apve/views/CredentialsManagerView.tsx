@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Award, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const placeholderSvg = `
 <svg width="800" height="565" xmlns="http://www.w3.org/2000/svg">
@@ -18,17 +19,48 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString('base64')
     : window.btoa(str);
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+        staggerChildren: 0.1,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+    },
+};
+
 
 export function CredentialsManagerView() {
 
   return (
     <div>
-      <h1 className="font-headline font-bold text-2xl text-foreground mb-6">Awards & Certifications</h1>
+      <motion.h1 
+        className="font-headline font-bold text-2xl text-foreground mb-6"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        Awards & Certifications
+      </motion.h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
           {AWARDS_CERTIFICATIONS.map((cred) => (
               <Dialog key={cred.id}>
                   <DialogTrigger asChild>
+                    <motion.div variants={itemVariants} className="h-full">
                       <Card className="cursor-pointer bg-transparent hover:border-primary/50 transition-colors group flex flex-col h-full">
                           <CardHeader className="flex-grow">
                               <div className="flex items-start justify-between">
@@ -47,6 +79,7 @@ export function CredentialsManagerView() {
                             </Button>
                           </CardContent>
                       </Card>
+                    </motion.div>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-3xl bg-background border-border">
                       <DialogHeader>
@@ -60,7 +93,7 @@ export function CredentialsManagerView() {
                            <Image 
                              src={cred.imageUrl} 
                              alt={`${cred.title} Certificate`} 
-                             layout="fill"
+                             fill
                              objectFit="contain"
                              placeholder="blur"
                              blurDataURL={`data:image/svg+xml;base64,${toBase64(placeholderSvg)}`}
@@ -80,9 +113,7 @@ export function CredentialsManagerView() {
                   </DialogContent>
               </Dialog>
           ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
-
-    

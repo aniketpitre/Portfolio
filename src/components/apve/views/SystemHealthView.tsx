@@ -6,6 +6,7 @@ import { useInterval } from '@/hooks/use-interval';
 import { Cpu, MemoryStick, ShieldCheck, Terminal, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const generateData = () =>
   Array.from({ length: 10 }, (_, i) => ({
@@ -37,15 +38,26 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 const SystemInsights = () => {
     const [index, setIndex] = useState(() => Math.floor(Math.random() * insights.length));
+    const [isHovered, setIsHovered] = useState(false);
 
     const nextInsight = () => {
         setIndex((prev) => (prev + 1) % insights.length);
     }
+
+    useInterval(() => {
+        if(!isHovered) {
+            nextInsight();
+        }
+    }, 4000);
   
     const insight = insights[index];
     
     return (
-        <Card className="mt-6 border-dashed bg-transparent">
+        <Card 
+          className="mt-6 border-dashed bg-transparent"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
             <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Terminal className="h-4 w-4 text-primary" />
@@ -55,11 +67,22 @@ const SystemInsights = () => {
                     <RefreshCw className="h-3 w-3" />
                 </Button>
             </CardHeader>
-            <CardContent className="pt-2">
-                <Badge variant="outline" className="mb-2">{insight.category}</Badge>
-                <p className="text-muted-foreground text-sm">
-                  "{insight.text}"
-                </p>
+            <CardContent className="pt-2 h-20 relative">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute"
+                    >
+                        <Badge variant="outline" className="mb-2">{insight.category}</Badge>
+                        <p className="text-muted-foreground text-sm">
+                        "{insight.text}"
+                        </p>
+                    </motion.div>
+                </AnimatePresence>
             </CardContent>
         </Card>
     );
@@ -94,6 +117,21 @@ const ChartCard = ({ title, icon: Icon, data, dataKey, color, unit }: any) => (
   </Card>
 );
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+};
+
 export function SystemHealthView() {
   const [data, setData] = useState(generateData());
 
@@ -107,14 +145,35 @@ export function SystemHealthView() {
 
   return (
     <div>
-      <h1 className="font-headline text-2xl font-bold text-foreground mb-2">System Health</h1>
-      <p className="text-muted-foreground mb-6">Live metrics of the virtual environment.</p>
+        <motion.div 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            <h1 className="font-headline text-2xl font-bold text-foreground mb-2">System Health</h1>
+            <p className="text-muted-foreground mb-6">Live metrics of the virtual environment.</p>
+        </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <ChartCard title="CPU Usage" icon={Cpu} data={data} dataKey="cpu" color="hsl(var(--primary))" unit="%" />
-        <ChartCard title="Memory Usage" icon={MemoryStick} data={data} dataKey="mem" color="#8884d8" unit="%" />
-      </div>
-      <SystemInsights />
+      <motion.div 
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+    >
+        <motion.div variants={itemVariants}>
+            <ChartCard title="CPU Usage" icon={Cpu} data={data} dataKey="cpu" color="hsl(var(--primary))" unit="%" />
+        </motion.div>
+        <motion.div variants={itemVariants}>
+            <ChartCard title="Memory Usage" icon={MemoryStick} data={data} dataKey="mem" color="#8884d8" unit="%" />
+        </motion.div>
+      </motion.div>
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        <SystemInsights />
+      </motion.div>
     </div>
   );
 }

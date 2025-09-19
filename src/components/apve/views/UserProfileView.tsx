@@ -112,11 +112,31 @@ const SkillRadarChart = () => {
   )
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+};
+
 export function UserProfileView() {
   return (
-    <div className="flex flex-col gap-8">
+    <motion.div 
+        className="flex flex-col gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        <div className="lg:col-span-1 flex flex-col items-center">
+        <motion.div className="lg:col-span-1 flex flex-col items-center" variants={itemVariants}>
           <div className="mb-6">
             <AvatarIcon />
           </div>
@@ -132,20 +152,24 @@ export function UserProfileView() {
                   <a href="https://github.com/aniketpitre" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
               </Button>
           </div>
-        </div>
-        <div className="lg:col-span-2">
+        </motion.div>
+        <motion.div className="lg:col-span-2" variants={itemVariants}>
             <h2 className="font-headline text-xl font-bold text-foreground mb-4">About Me</h2>
             <div className="text-muted-foreground space-y-4">
                 <p>I’m Aniket Pitre, an MCA postgraduate student driven by curiosity and innovation. My core interests lie in Cybersecurity, Linux, and Cloud technologies, where I enjoy exploring how systems work, how they break, and how to make them stronger.</p>
                 <p>I focus on learning, experimenting, and applying concepts to solve real-world problems, while continuously expanding my skills across modern IT landscapes. With a vision to grow as a security and cloud-focused professional, I aim to create impactful solutions that blend technology, security, and efficiency.</p>
                 <p>My journey so far has been shaped by hands-on experience in system administration, vulnerability management, and cloud-based problem solving, along with a strong drive to keep exploring new technologies.</p>
             </div>
-        </div>
+        </motion.div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <SkillRadarChart />
-        <SystemInsights />
+        <motion.div variants={itemVariants}>
+            <SkillRadarChart />
+        </motion.div>
+        <motion.div variants={itemVariants}>
+            <SystemInsights />
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

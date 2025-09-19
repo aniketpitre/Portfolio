@@ -11,40 +11,59 @@ import { ContactView } from './views/ContactView';
 import { HelpView } from './views/HelpView';
 import { EducationView } from './views/EducationView';
 import { SkillsView } from './views/SkillsView';
+import { AnimatePresence, motion } from 'framer-motion';
 
-const renderView = (view: string) => {
-  switch (view) {
-    case 'system_health':
-      return <SystemHealthView />;
-    case 'user_profile':
-      return <UserProfileView />;
-    case 'kubelet':
-        return <KubeletView />;
-    case 'auditd':
-        return <AuditLogView />;
-    case 'education':
-        return <EducationView />;
-    case 'credentials':
-        return <CredentialsManagerView />;
-    case 'skills':
-        return <SkillsView />;
-    case 'contact':
-        return <ContactView />;
-    case 'help':
-        return <HelpView />;
-    default:
-      return <SystemHealthView />;
-  }
+const views: { [key: string]: React.ComponentType } = {
+  system_health: SystemHealthView,
+  user_profile: UserProfileView,
+  kubelet: KubeletView,
+  auditd: AuditLogView,
+  education: EducationView,
+  credentials: CredentialsManagerView,
+  skills: SkillsView,
+  contact: ContactView,
+  help: HelpView,
+};
+
+const viewVariants = {
+  enter: {
+    opacity: 0,
+    y: 20,
+  },
+  center: {
+    zIndex: 1,
+    opacity: 1,
+    y: 0,
+  },
+  exit: {
+    zIndex: 0,
+    opacity: 0,
+    y: -20,
+  },
 };
 
 export default function Viewport() {
   const { view } = useAppContext();
+  const CurrentView = views[view] || SystemHealthView;
 
   return (
     <ScrollArea className="flex-1 bg-background/50">
-      <div className="p-4 md:p-8">
-        {renderView(view)}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={view}
+          variants={viewVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            y: { type: 'spring', stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
+          }}
+          className="p-4 md:p-8"
+        >
+          <CurrentView />
+        </motion.div>
+      </AnimatePresence>
     </ScrollArea>
   );
 }

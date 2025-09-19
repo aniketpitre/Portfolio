@@ -7,11 +7,17 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Send, Loader2, CheckCircle, XCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { motion } from 'framer-motion';
 
 type FormValues = {
   email: string;
   subject: string;
   message: string;
+};
+
+const formVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
 export function ContactView() {
@@ -55,10 +61,21 @@ export function ContactView() {
 
     return (
         <div>
-            <h1 className="font-headline font-bold text-2xl text-foreground mb-2">Contact Me</h1>
-            <p className="text-muted-foreground mb-6">Have a question or want to work together? Send me a message.</p>
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <h1 className="font-headline font-bold text-2xl text-foreground mb-2">Contact Me</h1>
+                <p className="text-muted-foreground mb-6">Have a question or want to work together? Send me a message.</p>
+            </motion.div>
 
-            <div className="max-w-xl mx-auto bg-transparent p-6 rounded-lg">
+            <motion.div 
+                className="max-w-xl mx-auto bg-transparent p-6 rounded-lg"
+                variants={formVariants}
+                initial="hidden"
+                animate="visible"
+            >
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
@@ -102,15 +119,20 @@ export function ContactView() {
                     </Button>
                 </form>
                 {status && (
-                    <Alert variant={status.type === 'success' ? 'default' : 'destructive'} className="mt-4 bg-transparent">
-                      {status.type === 'success' ? <CheckCircle className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}
-                      <AlertTitle>{status.type === 'success' ? 'Success' : 'Error'}</AlertTitle>
-                      <AlertDescription>
-                        {status.message}
-                      </AlertDescription>
-                    </Alert>
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                    >
+                        <Alert variant={status.type === 'success' ? 'default' : 'destructive'} className="mt-4 bg-transparent">
+                        {status.type === 'success' ? <CheckCircle className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}
+                        <AlertTitle>{status.type === 'success' ? 'Success' : 'Error'}</AlertTitle>
+                        <AlertDescription>
+                            {status.message}
+                        </AlertDescription>
+                        </Alert>
+                    </motion.div>
                 )}
-            </div>
+            </motion.div>
         </div>
     );
 }
