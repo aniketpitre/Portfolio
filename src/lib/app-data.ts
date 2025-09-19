@@ -282,7 +282,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Mobile Forensic Overview',
         issuer: 'White Band Associates',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1d-0L-5O9p_3F-y-Q_0k_5X-pY9f_3R-o`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1QNr140-om9RfkH2aAdSEcoFD_JfUYmv6`
     },
     {
         id: 'cert-network-security',
@@ -398,6 +398,7 @@ Hobbies:
     
 
     
+
 
 
 
