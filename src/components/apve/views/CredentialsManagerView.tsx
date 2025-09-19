@@ -1,9 +1,11 @@
+
 'use client';
 import { AWARDS_CERTIFICATIONS } from '@/lib/app-data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
-import { Award } from 'lucide-react';
+import { Award, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export function CredentialsManagerView() {
   return (
@@ -17,7 +19,11 @@ export function CredentialsManagerView() {
                           <CardHeader>
                               <div className="flex items-start justify-between">
                                   <CardTitle className="text-base group-hover:text-primary transition-colors">{cred.title}</CardTitle>
-                                  <Award className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                  {cred.type === 'award' ? (
+                                    <Award className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                  ) : (
+                                    <Star className="text-muted-foreground group-hover:text-primary transition-colors" />
+                                  )}
                               </div>
                               <CardDescription>{cred.issuer} - {cred.year}</CardDescription>
                           </CardHeader>
@@ -34,12 +40,21 @@ export function CredentialsManagerView() {
                           </DialogDescription>
                       </DialogHeader>
                       <div className="space-y-4 font-body text-foreground">
-                          <p className='text-lg'>{cred.description}</p>
-                          {cred.abstract && (
-                              <div className="border-l-2 border-border pl-4">
-                                  <h3 className="font-semibold mb-1">Abstract</h3>
-                                  <p className="text-muted-foreground">{cred.abstract}</p>
-                              </div>
+                          {cred.type === 'award' && (
+                            <>
+                                <p className='text-lg'>{cred.description}</p>
+                                {cred.abstract && (
+                                    <div className="border-l-2 border-border pl-4">
+                                        <h3 className="font-semibold mb-1">Abstract</h3>
+                                        <p className="text-muted-foreground">{cred.abstract}</p>
+                                    </div>
+                                )}
+                            </>
+                          )}
+                          {cred.type === 'certificate' && cred.imageUrl && (
+                            <div className="relative w-full aspect-[1.414]">
+                               <Image src={cred.imageUrl} alt={`${cred.title} Certificate`} layout="fill" objectFit="contain" />
+                            </div>
                           )}
                       </div>
                   </DialogContent>

@@ -139,7 +139,7 @@ export const EDUCATION_HISTORY = [
 export const AWARDS_CERTIFICATIONS = [
     {
         id: 'award-paper',
-        type: 'featured-badge',
+        type: 'award',
         title: 'Best Paper Award',
         issuer: 'ICEISF Conference',
         year: '2025',
@@ -148,7 +148,7 @@ export const AWARDS_CERTIFICATIONS = [
     },
     {
         id: 'award-tcs-team',
-        type: 'featured-badge',
+        type: 'award',
         title: 'Best Team Award',
         issuer: 'Tata Consultancy Services',
         year: '2023',
@@ -157,12 +157,20 @@ export const AWARDS_CERTIFICATIONS = [
     },
     {
         id: 'award-tcs-special',
-        type: 'featured-badge',
+        type: 'award',
         title: 'Special Achievement Award',
         issuer: 'Tata Consultancy Services',
         year: '2022',
         description: 'Awarded for exceptional contributions and dedication to improving enterprise security posture.',
         abstract: 'This individual honor recognizes proactive identification of critical vulnerabilities and the implementation of robust security measures.'
+    },
+    {
+        id: 'cert-ms-ai',
+        type: 'certificate',
+        title: 'Microsoft AI Skill Challenge',
+        issuer: 'Microsoft',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1CQ5hygZwMTa5zKv6F1l1rLe63ggDRckG'
     }
 ];
 
