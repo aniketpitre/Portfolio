@@ -179,6 +179,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'AWS',
         year: '2025',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1as-IPnRbrVhtkabbnJYG-IvbRlKe7KzR'
+    },
+    {
+        id: 'cert-whiteband-security',
+        type: 'certificate',
+        title: 'Security Testing in Industry v/s Bug Hunting',
+        issuer: 'WhiteBand Associates',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1IJPj9bmEjltzmb03-xOk3vNStjUX783H'
     }
 ];
 
