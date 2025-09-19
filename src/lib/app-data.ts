@@ -195,6 +195,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'LinkedIn Learning',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1mBgk0eDIkasHbQYRXqEvaUbuFyNnbkL0'
+    },
+    {
+        id: 'cert-linkedin-pm-foundations',
+        type: 'certificate',
+        title: 'Project Management Foundations',
+        issuer: 'LinkedIn Learning',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1IBOnNH6U6H_8SmX5yH4i9eOmfFFdT3a1'
     }
 ];
 
