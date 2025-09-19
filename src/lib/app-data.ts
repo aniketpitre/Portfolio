@@ -314,7 +314,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'The Fundamentals of Digital Marketing',
         issuer: 'Google',
         year: '2022',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1h-4B-1s1V_3Q_2L-x2w-n_O8P6k2Z-yW`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1lBISRsKxuxLuAGvBzN17VPcp2eqcrkby`
     }
 ];
 
@@ -398,6 +398,7 @@ Hobbies:
     
 
     
+
 
 
 
