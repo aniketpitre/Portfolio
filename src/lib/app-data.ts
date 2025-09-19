@@ -242,7 +242,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Getting Started With Cloud Essential',
         issuer: 'AWS',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1c-1a-3R-y_5V-4P-k8O-p_7Z_9f_3Q-s`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1UWqkkYUvDxKZtdoCK8_yPeYc6mD_K9kr`
     },
     {
         id: 'cert-google-analytics',
@@ -398,4 +398,3 @@ Hobbies:
     
 
     
-
