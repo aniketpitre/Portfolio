@@ -219,6 +219,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'Forage',
         year: '2025',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1KNEda0ibri0b_bSlYgwefaivDnmJoc32'
+    },
+    {
+        id: 'cert-cyber-threat-intelligence',
+        type: 'certificate',
+        title: 'Cyber Threat Intellgence 101',
+        issuer: 'arcX',
+        year: '2025',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1LnEZGYjJor7r8GmsogoUQoG6tNtYyD8z'
     }
 ];
 
