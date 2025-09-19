@@ -9,7 +9,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Terminal, MousePointerClick, Zap } from 'lucide-react';
+import { Terminal, MousePointerClick, Zap, BotMessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function WelcomeGuide({ open, onClose }: { open: boolean, onClose: () => void }) {
@@ -42,6 +42,16 @@ export function WelcomeGuide({ open, onClose }: { open: boolean, onClose: () => 
                 <code className="bg-muted px-1 py-0.5 rounded text-primary">help</code>,{' '}
                 <code className="bg-muted px-1 py-0.5 rounded text-primary">ls</code>, or{' '}
                 <code className="bg-muted px-1 py-0.5 rounded text-primary">neofetch</code>.
+              </p>
+            </div>
+          </div>
+           <div className="flex items-start gap-3">
+            <BotMessageSquare className="h-5 w-5 mt-1 text-muted-foreground flex-shrink-0" />
+            <div>
+              <h3 className="font-semibold text-foreground">Talk to the AI Assistant</h3>
+              <p className="text-muted-foreground">
+                You can ask questions directly. Try running:{' '}
+                <code className="bg-muted px-1 py-0.5 rounded text-primary">ask "What are your skills?"</code>
               </p>
             </div>
           </div>

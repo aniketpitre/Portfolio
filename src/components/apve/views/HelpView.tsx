@@ -3,10 +3,12 @@ import { motion } from 'framer-motion';
 
 const commands = [
     { cmd: 'help', desc: 'Shows this list of available commands.' },
+    { cmd: 'ask "<question>"', desc: 'Ask the AI assistant a question about Aniket (e.g., ask "What are your skills?").' },
     { cmd: 'ls [dir]', desc: 'Lists contents of a directory (e.g., `ls experience`).' },
     { cmd: 'cat <file>', desc: 'Displays file content (e.g., `cat about/bio.txt`).' },
     { cmd: 'view <view_id>', desc: 'Switches to a specific view (e.g., `view skills`).' },
-    { cmd: 'run <project_id>', desc: 'Directly deploys and views a specific project pod.' },
+    { cmd: 'run <project_id>', desc: 'Deploys and views a specific project pod.' },
+    { cmd: 'neofetch', desc: 'Displays a summary of the virtual system and skills.' },
     { cmd: 'send_message', desc: 'Opens the contact form view.' },
     { cmd: 'clear', desc: 'Clears the terminal history.' },
     { cmd: 'exit', desc: 'Closes the guest session.' },
