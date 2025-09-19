@@ -251,6 +251,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'Google',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1EYY4Mt4qbIZ8_V8lZ7_XqTPjuoGKW-zH'
+    },
+    {
+        id: 'cert-osint-intro',
+        type: 'certificate',
+        title: 'Introduction to OSINT',
+        issuer: 'Security Blue Team',
+        year: '2025',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1apoclTt_kn0Ro9iDvbpdRG2suwQOyJSU'
     }
 ];
 
