@@ -299,6 +299,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'GreatLearning',
         year: '2023',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1uDQopqkjIHv4de4sROEfC-AZBE1Ix-QL'
+    },
+    {
+        id: 'cert-sql-injection',
+        type: 'certificate',
+        title: 'SQL Injection Attacks',
+        issuer: 'EC Council',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1o9ZxHhseRsPU80H9J2U1WnzrlnEX-Uec'
     }
 ];
 
