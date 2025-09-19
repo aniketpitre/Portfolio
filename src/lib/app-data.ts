@@ -202,7 +202,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cyber Forensics',
         issuer: 'GreatLearning',
         year: '2023',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1R-2L-0s3w-f6N1iX8K9V-pY3g7F4X-qC`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1HRH6NGuTf8Fp9vj4eBHDaOiNUR39LZOr`
     },
     {
         id: 'cert-intro-asset-security',
@@ -306,7 +306,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cybersecurity Analyst Job Simulation',
         issuer: 'Forage and Tata',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1g-0L-5O9p_3F-y-Q_0k_5X-pY9f_3R-o`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1g-0L_5O9p_3F-y-Q_0k_5X-pY9f_3R-o`
     },
     {
         id: 'cert-digital-marketing',
