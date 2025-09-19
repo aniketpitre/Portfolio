@@ -227,6 +227,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'arcX',
         year: '2025',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1LnEZGYjJor7r8GmsogoUQoG6tNtYyD8z'
+    },
+    {
+        id: 'cert-ai-foundations-associate',
+        type: 'certificate',
+        title: 'Certified AI Foundations Associate',
+        issuer: 'Oracle',
+        year: '2025',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1CoHYoWGjn5w_LfqpEyBOVc0J4PRNN5Tb'
     }
 ];
 
