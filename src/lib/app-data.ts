@@ -250,7 +250,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Google Analytics Certification',
         issuer: 'Google',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1EYY4Mt4qbIZ8_V8lZ7_XqTPjuoGKW-zH`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1EYY4Mt4qbIZ8_V8lZ7_XqTPjuoGKW-zH'
     },
     {
         id: 'cert-osint-intro',
@@ -258,7 +258,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Introduction to OSINT',
         issuer: 'Security Blue Team',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1a-0L-5O9p_3F-y-Q_0k_5X-pY9f_3R-o`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1apoclTt_kn0Ro9iDvbpdRG2suwQOyJSU'
     },
     {
         id: 'cert-intro-pen-testing',
@@ -398,3 +398,4 @@ Hobbies:
     
 
     
+
