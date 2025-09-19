@@ -187,6 +187,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'WhiteBand Associates',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1IJPj9bmEjltzmb03-xOk3vNStjUX783H'
+    },
+    {
+        id: 'cert-linkedin-gen-ai',
+        type: 'certificate',
+        title: 'Career Essentials in Generative AI',
+        issuer: 'LinkedIn Learning',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1mBgk0eDIkasHbQYRXqEvaUbuFyNnbkL0'
     }
 ];
 
