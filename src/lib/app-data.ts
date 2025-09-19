@@ -243,6 +243,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'AWS',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1UWqkkYUvDxKZtdoCK8_yPeYc6mD_K9kr'
+    },
+    {
+        id: 'cert-google-analytics',
+        type: 'certificate',
+        title: 'Google Analytics Certification',
+        issuer: 'Google',
+        year: '2024',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1EYY4Mt4qbIZ8_V8lZ7_XqTPjuoGKW-zH'
     }
 ];
 
