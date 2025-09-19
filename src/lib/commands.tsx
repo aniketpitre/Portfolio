@@ -169,7 +169,6 @@ export const processCommand = (
     case 'neofetch':
         return { command, output: <NeofetchView /> };
 
-`'
     case 'clear':
       context.clearHistory();
       return { command: '', output: '' }; // The clearHistory function handles the message
@@ -193,5 +192,3 @@ export const processCommand = (
       };
   }
 };
-`'
-
