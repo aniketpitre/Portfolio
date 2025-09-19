@@ -218,7 +218,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cybersecurity Job Simulation',
         issuer: 'Forage',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1a-4B-1s1V_3Q_2L-x2w-n_O8P6k2Z-yW`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1KNEda0ibri0b_bSlYgwefaivDnmJoc32`
     },
     {
         id: 'cert-cyber-threat-intelligence',
