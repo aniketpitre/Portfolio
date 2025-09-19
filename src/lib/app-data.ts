@@ -226,7 +226,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cyber Threat Intellgence 101',
         issuer: 'arcX',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1j-0L_5O9p_3F-y-Q_0k_5X-pY9f_3R-o`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1LnEZGYjJor7r8GmsogoUQoG6tNtYyD8z`
     },
     {
         id: 'cert-ai-foundations-associate',
