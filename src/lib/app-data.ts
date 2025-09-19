@@ -266,7 +266,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Introduction to Penetration Testing',
         issuer: 'Security Blue Team',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1b-4B-1s1V_3Q_2L-x2w-n_O8P6k2Z-yW`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1d46lBsPnYrn6-s8eRrJgvtrvpRhHxWOJ`
     },
     {
         id: 'cert-intro-cyber-security',
@@ -398,4 +398,5 @@ Hobbies:
     
 
     
+
 
