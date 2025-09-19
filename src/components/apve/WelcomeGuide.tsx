@@ -20,7 +20,7 @@ export function WelcomeGuide({ open, onClose }: { open: boolean, onClose: () => 
         <DialogHeader>
           <DialogTitle className="text-xl font-headline text-primary flex items-center gap-2">
             <Zap />
-            Welcome to the Environment
+            Welcome to Aniket's Environment
           </DialogTitle>
           <DialogDescription>
             This portfolio is an interactive virtual desktop. Here are a few tips to get started.
@@ -59,7 +59,7 @@ export function WelcomeGuide({ open, onClose }: { open: boolean, onClose: () => 
             <div>
               <h3 className="font-semibold text-foreground">Discover Easter Eggs</h3>
               <p className="text-muted-foreground">
-                There are hidden commands and interactions to find. Happy exploring!
+                There are hidden commands and interactions to find. Try running <code className="bg-muted px-1 py-0.5 rounded text-primary">sudo</code>... if you dare. Happy exploring!
               </p>
             </div>
           </div>
