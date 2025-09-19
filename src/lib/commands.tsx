@@ -1,9 +1,10 @@
 'use client';
-import type { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import type { AppContextType, ViewId } from '@/context/AppContext';
 import { BIO_CONTENT, PROJECTS, EXPERIENCE, SKILLS } from './app-data';
 import { HelpView } from '@/components/apve/views/HelpView';
 import { NeofetchView } from '@/components/apve/views/NeofetchView';
+import { askAniket } from '@/ai/flows/ask-aniket-flow';
 
 const MOCK_FILESYSTEM: Record<string, Record<string, string | { content: string, view: ViewId }>> = {
   'about': {
@@ -68,11 +69,31 @@ const catFile = (path: string, context: AppContextType): ReactNode => {
     return <pre className="font-code whitespace-pre-wrap text-sm">{typeof fileContent === 'string' ? fileContent : fileContent.content}</pre>;
 };
 
+const AskOutput = ({ command, question }: { command: string, question: string }) => {
+  const [answer, setAnswer] = React.useState('Thinking...');
+
+  React.useEffect(() => {
+    const getAnswer = async () => {
+      try {
+        const result = await askAniket(question);
+        setAnswer(result);
+      } catch (error) {
+        console.error(error);
+        setAnswer('Sorry, I had trouble connecting to my brain. Please try again.');
+      }
+    };
+    getAnswer();
+  }, [question]);
+
+  return <div>{answer}</div>;
+}
+
 export const processCommand = (
   command: string,
   context: AppContextType
 ): { command: string; output: ReactNode } => {
   const [cmd, ...args] = command.trim().split(' ');
+  const fullCommand = command.trim();
 
   switch (cmd.toLowerCase()) {
     case '':
@@ -80,6 +101,13 @@ export const processCommand = (
     case 'help':
       context.setView('help');
       return { command, output: <HelpView /> };
+
+    case 'ask':
+      const question = fullCommand.substring(fullCommand.indexOf(' ') + 1).replace(/"/g, '');
+      if (!question || question.trim() === 'ask') {
+        return { command, output: 'ask: please provide a question in quotes. Example: ask "What are your skills?"' };
+      }
+      return { command, output: <AskOutput command={command} question={question} /> };
 
     case 'ls':
       const path = args[0] || '';
@@ -133,7 +161,7 @@ export const processCommand = (
         return { command, output: new Date().toString() };
     
     case 'uname':
-        return { command, output: 'Linux apitre.io 5.4.0-150-generic #167-Ubuntu SMP Mon May 15 17:29:33 UTC 2023 x86_64 GNU/Linux' };
+        return { command, output: 'Linux apitre.io 5.4.0-150-generic #167-Ubuntu SMP Mon May 15 17:33:00 UTC 2023 x86_64 GNU/Linux' };
     
     case 'echo':
         return { command, output: args.join(' ') };
@@ -141,6 +169,7 @@ export const processCommand = (
     case 'neofetch':
         return { command, output: <NeofetchView /> };
 
+`'
     case 'clear':
       context.clearHistory();
       return { command: '', output: '' }; // The clearHistory function handles the message
@@ -164,3 +193,5 @@ export const processCommand = (
       };
   }
 };
+`'
+
