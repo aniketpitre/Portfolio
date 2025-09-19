@@ -186,7 +186,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Career Essentials in Generative AI',
         issuer: 'LinkedIn Learning',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1N1b_N1gX21mY2b-L6Y9f3aP7j5c9Q-yA`
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1mBgk0eDIkasHbQYRXqEvaUbuFyNnbkL0'
     },
     {
         id: 'cert-linkedin-pm-foundations',
@@ -393,4 +393,6 @@ Hobbies:
 `;
 
     
+    
+
     
