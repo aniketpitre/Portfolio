@@ -298,7 +298,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'SQL Injection Attacks',
         issuer: 'EC Council',
         year: '2024',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1f-1a-3R-y_5V-4P-k8O-p_7Z_9f_3Q-s`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1o9ZxHhseRsPU80H9J2U1WnzrlnEX-Uec`
     },
     {
         id: 'cert-cybersecurity-analyst-job-sim',
@@ -398,6 +398,7 @@ Hobbies:
     
 
     
+
 
 
 
