@@ -259,6 +259,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'Security Blue Team',
         year: '2025',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1apoclTt_kn0Ro9iDvbpdRG2suwQOyJSU'
+    },
+    {
+        id: 'cert-intro-pen-testing',
+        type: 'certificate',
+        title: 'Introduction to Penetration Testing',
+        issuer: 'Security Blue Team',
+        year: '2025',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1d46lBsPnYrn6-s8eRrJgvtrvpRhHxWOJ'
     }
 ];
 
