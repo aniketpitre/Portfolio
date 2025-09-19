@@ -306,7 +306,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Cybersecurity Analyst Job Simulation',
         issuer: 'Forage and Tata',
         year: '2025',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1g-0L_5O9p_3F-y-Q_0k_5X-pY9f_3R-o`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1aG5tI7kRgJiqlKtmV2ZACpNMIJHS2Uli`
     },
     {
         id: 'cert-digital-marketing',
@@ -398,6 +398,7 @@ Hobbies:
     
 
     
+
 
 
 
