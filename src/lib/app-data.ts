@@ -291,6 +291,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'White Band Associates',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1QNr140-om9RfkH2aAdSEcoFD_JfUYmv6'
+    },
+    {
+        id: 'cert-network-security',
+        type: 'certificate',
+        title: 'Network Security',
+        issuer: 'GreatLearning',
+        year: '2023',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1uDQopqkjIHv4de4sROEfC-AZBE1Ix-QL'
     }
 ];
 
