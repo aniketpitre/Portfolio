@@ -315,6 +315,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'Forage and Tata',
         year: '2025',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1aG5tI7kRgJiqlKtmV2ZACpNMIJHS2Uli'
+    },
+    {
+        id: 'cert-digital-marketing',
+        type: 'certificate',
+        title: 'The Fundamentals of Digital Marketing',
+        issuer: 'Google',
+        year: '2022',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1lBISRsKxuxLuAGvBzN17VPcp2eqcrkby'
     }
 ];
 
