@@ -290,7 +290,7 @@ export const AWARDS_CERTIFICATIONS = [
         title: 'Network Security',
         issuer: 'GreatLearning',
         year: '2023',
-        imageUrl: `https://drive.google.com/uc?export=view&id=1e-4B-1s1V_3Q_2L-x2w-n_O8P6k2Z-yW`
+        imageUrl: `https://drive.google.com/uc?export=view&id=1uDQopqkjIHv4de4sROEfC-AZBE1Ix-QL`
     },
     {
         id: 'cert-sql-injection',
@@ -398,6 +398,7 @@ Hobbies:
     
 
     
+
 
 
 
