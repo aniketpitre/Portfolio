@@ -213,6 +213,14 @@ export const AWARDS_CERTIFICATIONS = [
         imageUrl: 'https://drive.google.com/uc?export=view&id=1HRH6NGuTf8Fp9vj4eBHDaOiNUR39LZOr'
     },
     {
+        id: 'cert-intro-asset-security',
+        type: 'certificate',
+        title: 'Introduction to Asset Security',
+        issuer: 'GreatLearning',
+        year: '2023',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1lLAmp45vyTJDyOXtDjKQZwgQeG3G12yl'
+    },
+    {
         id: 'cert-cybersecurity-job-sim',
         type: 'certificate',
         title: 'Cybersecurity Job Simulation',
