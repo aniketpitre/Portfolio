@@ -203,6 +203,14 @@ export const AWARDS_CERTIFICATIONS = [
         issuer: 'LinkedIn Learning',
         year: '2024',
         imageUrl: 'https://drive.google.com/uc?export=view&id=1IBOnNH6U6H_8SmX5yH4i9eOmfFFdT3a1'
+    },
+    {
+        id: 'cert-cyber-forensics',
+        type: 'certificate',
+        title: 'Cyber Forensics',
+        issuer: 'GreatLearning',
+        year: '2023',
+        imageUrl: 'https://drive.google.com/uc?export=view&id=1HRH6NGuTf8Fp9vj4eBHDaOiNUR39LZOr'
     }
 ];
 
